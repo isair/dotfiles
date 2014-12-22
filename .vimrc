@@ -60,5 +60,5 @@ autocmd FileType c,cpp,java,php,swift,js,css autocmd BufWritePre <buffer> :%s/\s
 " Set color scheme to Solarized
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme default
 
