@@ -49,15 +49,14 @@ let g:clang_library_path = '/usr/local/lib/libclang.dylib'
 "
 " Non-Plugin stuff
 "
-autocmd FileType c,cpp,java,php,py,txt autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Show line numbers
 set nu
 
-" Clean trailing whitespace characters in code files
-autocmd FileType c,cpp,java,php,swift,js,css autocmd BufWritePre <buffer> :%s/\s\+$//e
+" Clean trailing whitespace characters in code and text files
+autocmd FileType txt,c,cpp,java,php,swift,js,css,py,rb autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-" Set color scheme to Solarized
+" Set colors
 syntax enable
 set background=dark
 colorscheme default
