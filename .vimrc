@@ -12,14 +12,16 @@ call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'jerrymarino/xcodebuild.vim'
+NeoBundle 'toyamarinyon/vim-swift'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'scrooloose/syntastic' " Compiler/interpreter error/warning display
 NeoBundle 'bling/vim-airline' " Better tabs
 NeoBundle 'tpope/vim-fugitive' " Use Git from Vim
 NeoBundle 'guns/ultisnips' " Code snippets
-NeoBundle 'ngmy/vim-rubocop'
 call neobundle#end()
 
 filetype plugin indent on
