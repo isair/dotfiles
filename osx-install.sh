@@ -41,14 +41,12 @@ brew install python
 brew cask install apptrap
 brew cask install google-chrome
 brew cask install lastpass-universal
-# brew install xmarks-safari
 brew cask install flux
 brew cask install dropbox
 brew cask install google-drive
 brew cask install vlc
 brew cask install spotify
 brew cask install skype
-brew cask install rowanj-gitx
 brew cask install torbrowser
 brew cask install imageoptim
 brew cask install cd-to
@@ -56,11 +54,11 @@ brew cask install gfxcardstatus
 brew cask install jdownloader
 brew cask install subtitles
 brew cask install steam
-brew cask install playonmac  # TODO: Script for backing up drives.
 brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install bit-slicer
 brew cask install onyx
 brew cask install cleanmymac
+brew cask install eclipse-java
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
