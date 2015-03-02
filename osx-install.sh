@@ -38,6 +38,7 @@ brew install python
 
 # Install essential apps
 # brew cask install atext
+brew cask install rescuetime
 brew cask install apptrap
 brew cask install google-chrome
 brew cask install lastpass-universal
