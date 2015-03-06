@@ -12,9 +12,8 @@ call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'sheerun/vim-polyglot' " Fantastic multi-language pack
 NeoBundle 'jerrymarino/xcodebuild.vim'
-NeoBundle 'toyamarinyon/vim-swift'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'haya14busa/incsearch.vim'
