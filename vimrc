@@ -61,6 +61,9 @@ set nu
 " Clean trailing whitespace characters in code and text files
 autocmd FileType txt,c,cpp,java,php,swift,js,css,py,rb autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" Ctrl + C for deleting buffer without closing split
+nnoremap <C-c> :bp\|bd #<CR>
+
 " Set colors
 syntax enable
 set background=dark
