@@ -12,15 +12,19 @@ call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim
 NeoBundle 'sheerun/vim-polyglot' " Fantastic multi-language pack
-NeoBundle 'jerrymarino/xcodebuild.vim'
+NeoBundle 'junegunn/goyo.vim' " Just focus on text, :Goyo
+NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'scrooloose/syntastic' " Compiler/interpreter error/warning display
 NeoBundle 'bling/vim-airline' " Better tabs
-NeoBundle 'tpope/vim-fugitive' " Use Git from Vim
+NeoBundle 'ervandew/supertab' " Insert mode completions with tab key
 NeoBundle 'guns/ultisnips' " Code snippets
+NeoBundle 'tpope/vim-endwise' " Automatically end code blocks in some languages
+NeoBundle 'altercation/vim-colors-solarized' " Solarized for vim
 call neobundle#end()
 
 filetype plugin indent on
