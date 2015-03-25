@@ -7,8 +7,6 @@ export PATH="/usr/local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -16,10 +14,13 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
-# Hub aliasing
+# Aliases
 alias git=hub
+alias gg='noglob gg'
 
 # added by travis gem
 [ -f /Users/Isair/.travis/travis.sh ] && source /Users/Isair/.travis/travis.sh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# rbenv setup
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
