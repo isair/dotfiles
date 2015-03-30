@@ -74,3 +74,5 @@ syntax enable
 set background=dark
 colorscheme default
 
+" Fix for gitgutter
+highlight clear SignColumn
