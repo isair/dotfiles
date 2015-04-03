@@ -69,6 +69,13 @@ set softtabstop=2
 " Ctrl + C for deleting buffer without closing split
 nnoremap <C-c> :bp\|bd #<CR>
 
+" \x where x is a number to move to window #x
+let i = 1
+while i <= 9
+  execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+  let i = i + 1
+endwhile
+
 " Set colors
 syntax enable
 set background=dark
