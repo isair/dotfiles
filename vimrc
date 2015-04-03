@@ -83,3 +83,7 @@ colorscheme default
 
 " Fix for gitgutter
 highlight clear SignColumn
+
+" Highlight background of lines longer than 80 characters
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%>80v.\+/
