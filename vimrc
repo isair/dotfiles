@@ -12,19 +12,19 @@ call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim
-NeoBundle 'sheerun/vim-polyglot' " Fantastic multi-language pack
-NeoBundle 'junegunn/goyo.vim' " Just focus on text, :Goyo
-NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim
-NeoBundle 'ngmy/vim-rubocop'
-NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
+NeoBundle 'sheerun/vim-polyglot' " Syntax and indentation for all
+NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
+NeoBundle 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
+NeoBundle 'ngmy/vim-rubocop' " Ruby code quality checking, :RuboCop
+NeoBundle 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line 
+NeoBundle 'airblade/vim-gitgutter' " Show git diff in sign column
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'scrooloose/syntastic' " Compiler/interpreter error/warning display
 NeoBundle 'bling/vim-airline' " Better tabs
 NeoBundle 'ervandew/supertab' " Insert mode completions with tab key
 NeoBundle 'guns/ultisnips' " Code snippets
 NeoBundle 'tpope/vim-endwise' " Automatically end code blocks in some languages
-NeoBundle 'altercation/vim-colors-solarized' " Solarized for vim
 call neobundle#end()
 
 filetype plugin indent on
