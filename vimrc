@@ -59,7 +59,7 @@ let g:clang_library_path = '/usr/local/lib/libclang.dylib'
 set nu
 
 " Clean trailing whitespace characters in code and text files
-autocmd FileType txt,c,cpp,java,php,swift,js,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Indentation configuration
 set expandtab
