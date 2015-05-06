@@ -55,8 +55,8 @@ let g:clang_library_path = '/usr/local/lib/libclang.dylib'
 " Non-Plugin stuff
 "
 
-" Show line numbers
-set nu
+" Show relative line numbers
+set relativenumber
 
 " Clean trailing whitespace characters in code and text files
 autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
