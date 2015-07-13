@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Make sure Xcode is install before running
+# Make sure Xcode is installed before running this script
 
-# Install command line tools
+# Install command line tools if not installed
 xcode-select -p
 if [[ $? -ne 0 ]]; then
     xcode-select --install
@@ -11,7 +11,7 @@ fi
 # Update all OSX packages
 sudo softwareupdate -i -a
 
-# Install Homebrew if not found
+# Install Homebrew if not installed
 brew --version
 if [[ $? -ne 0 ]]; then
     # Clean-up failed Homebrew install
@@ -22,29 +22,36 @@ fi
 brew update
 brew upgrade
 
-# Include duplicates packages
-brew tap homebrew/dupes
+# Install essential packages
+brew install zsh
+brew install thefuck
+brew install git
+brew install hub
+brew install node
+brew install flow
+brew install xctool
+brew install swiftlint
+brew install rbenv
+brew install rbenv-bundler
+brew install youtube-dl
+brew install imagemagick
 
 # Install Cask
 brew tap caskroom/cask
 brew install brew-cask
 
-# Enhance core OS X
-brew cask install xquartz
-
-brew install bash
-brew install ruby
-brew install python
-
 # Install essential apps
 # brew cask install atext
-brew cask install rescuetime
-brew cask install apptrap
-brew cask install google-chrome
-brew cask install lastpass-universal
+# brew cask install desktime
+brew cask install gitup
+brew cask install atom
+brew cask install slack
+brew cask install lastpass
 brew cask install flux
 brew cask install dropbox
 brew cask install google-drive
+brew cask install fabric
+brew cask install aluxian-messenger
 brew cask install vlc
 brew cask install spotify
 brew cask install skype
@@ -59,7 +66,6 @@ brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install bit-slicer
 brew cask install onyx
 brew cask install cleanmymac
-brew cask install eclipse-java
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
@@ -81,5 +87,3 @@ brew linkapps
 brew cleanup
 brew prune
 brew cask cleanup
-
-# TODO: Back-up and update script to run at log-in.
