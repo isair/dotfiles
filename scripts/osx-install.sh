@@ -27,7 +27,8 @@ brew install zsh
 brew install thefuck
 brew install git
 brew install hub
-brew install node
+brew install iojs && brew link iojs --force
+brew install watchman
 brew install flow
 brew install xctool
 brew install swiftlint
@@ -35,6 +36,10 @@ brew install rbenv
 brew install rbenv-bundler
 brew install youtube-dl
 brew install imagemagick
+
+# Install essential node packages
+npm install -g react-native-cli
+npm install -g eslint
 
 # Install Cask
 brew tap caskroom/cask
