@@ -7,3 +7,5 @@ rm ~/.zshrc
 ln -s zshrc ~/.zshrc
 rm ~/.vimrc
 ln -s vimrc ~/.vimrc
+rm ~/.eslintrc
+ln -s eslintrc ~/.eslintrc
