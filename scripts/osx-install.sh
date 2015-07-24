@@ -40,6 +40,7 @@ brew install imagemagick
 # Install essential node packages
 npm install -g react-native-cli
 npm install -g eslint
+npm install -g eslint-plugin-react
 
 # Install Cask
 brew tap caskroom/cask
