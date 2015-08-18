@@ -1,3 +1,5 @@
+set nocompatible
+
 "
 " NeoBundle
 "
@@ -12,11 +14,11 @@ call neobundle#begin(expand('~/vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
 NeoBundle 'sheerun/vim-polyglot' " Syntax and indentation for all
 NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
 NeoBundle 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
-NeoBundle 'ngmy/vim-rubocop' " Ruby code quality checking, :RuboCop
 NeoBundle 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line 
 NeoBundle 'airblade/vim-gitgutter' " Show git diff in sign column
 NeoBundle 'haya14busa/incsearch.vim'
@@ -42,31 +44,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"
-" Clang stuff
-"
-
-" Disable auto completion, always <c-x> <c-o> to complete
-let g:clang_complete_auto = 0 
-let g:clang_use_library = 1
-let g:clang_periodic_quickfix = 0
-let g:clang_close_preview = 1
-
-" For Objective-C, this needs to be active, otherwise multi-parameter
-" methods won't be completed correctly
-let g:clang_snippets = 1
-
-" Snipmate does not work anymore, ultisnips is the recommended plugin
-let g:clang_snippets_engine = 'ultisnips'
-				
-" This might change depending on your installation
-let g:clang_exec = '/usr/local/bin/clang'
-let g:clang_library_path = '/usr/local/lib/libclang.dylib'
-
-"
-" Non-Plugin stuff
-"
-
 " Show relative line numbers
 set relativenumber
 
@@ -91,7 +68,11 @@ endwhile
 " Set colors
 syntax enable
 set background=dark
-colorscheme default
+colorscheme solarized
+color solarized
+
+" MacVim
+set guifont=Monaco:h12
 
 " Fix for gitgutter
 highlight clear SignColumn
