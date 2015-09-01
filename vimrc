@@ -16,6 +16,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
+NeoBundle 'kien/ctrlp.vim' " Fuzzy file finder
+NeoBundle 'jeetsukumaran/vim-buffergator' " Better buffer management
 NeoBundle 'sheerun/vim-polyglot' " Syntax and indentation for all
 NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
 NeoBundle 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
@@ -32,6 +34,26 @@ call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 
+" CtrlP setup
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+let g:ctrlp_working_path_mode = 'r'
+
+nmap <leader>p :CtrlP<cr>
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+" Buffergator setup
+let g:buffergator_viewport_split_policy = 'R'
+let g:buffergator_suppress_keymaps = 1
+
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+nmap <leader>bl :BuffergatorOpen<cr>
+
 " Syntastic setup
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -44,6 +66,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Airline setup
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 " Show relative line numbers
 set relativenumber
 
@@ -55,8 +82,17 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" Allow modified buffers to be hidden
+set hidden
+
 " Ctrl + C for deleting buffer without closing split
-nnoremap <C-c> :bp\|bd #<CR>
+nnoremap <C-c> :bprevious\|bd #<CR>
+
+" \t for opening a new buffer
+nmap <leader>t :enew<cr>
+
+" Ctrl + S to open sidebar (NERDTree)
+nnoremap <C-s> :NERDTree<CR>
 
 " \x where x is a number to move to window #x
 let i = 1
