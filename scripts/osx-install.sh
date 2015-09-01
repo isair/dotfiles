@@ -11,6 +11,9 @@ fi
 # Update all OSX packages
 sudo softwareupdate -i -a
 
+# Link airport binary
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+
 # Install Homebrew if not installed
 brew --version
 if [[ $? -ne 0 ]]; then
