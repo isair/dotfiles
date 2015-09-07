@@ -14,6 +14,13 @@ sudo softwareupdate -i -a
 # Link airport binary
 sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
 
+# Install NVM
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
+
+# Install iojs-v2 and set it as default
+nvm install iojs-v2
+nvm alias default iojs-v2
+
 # Install Homebrew if not installed
 brew --version
 if [[ $? -ne 0 ]]; then
@@ -30,7 +37,6 @@ brew install zsh
 brew install thefuck
 brew install git
 brew install hub
-brew install iojs && brew link iojs --force
 brew install watchman
 brew install flow
 brew install xctool

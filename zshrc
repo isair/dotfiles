@@ -27,3 +27,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # thefuck setup
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+
+export NVM_DIR="/Users/Isair/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+. /Users/Isair/torch/install/bin/torch-activate
