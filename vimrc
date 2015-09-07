@@ -86,7 +86,7 @@ set softtabstop=2
 set hidden
 
 " Ctrl + C for deleting buffer without closing split
-nnoremap <C-c> :bprevious\|bd #<CR>
+nnoremap <C-c> :bp\|bd #<CR>
 
 " \t for opening a new buffer
 nmap <leader>t :enew<cr>
