@@ -2,7 +2,7 @@
 rm ~/.profile
 ln -s profile ~/.profile
 rm ~/.bash_profile
-ln -s bash_profile ~/bash_profile
+ln -s bash_profile ~/.bash_profile
 rm ~/.zshrc
 ln -s zshrc ~/.zshrc
 rm ~/.vimrc
