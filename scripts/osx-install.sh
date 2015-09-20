@@ -33,7 +33,6 @@ brew update
 brew upgrade
 
 # Install essential packages
-brew install zsh
 brew install thefuck
 brew install git
 brew install hub
@@ -61,10 +60,10 @@ brew install brew-cask
 # brew cask install desktime
 brew cask install bettertouchtool
 brew cask install gitup
-brew cask install atom
 brew cask install slack
 brew cask install lastpass
 brew cask install flux
+brew cask install teamviewer
 brew cask install dropbox
 brew cask install google-drive
 brew cask install fabric
