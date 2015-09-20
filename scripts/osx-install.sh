@@ -59,6 +59,7 @@ brew install brew-cask
 # Install essential apps
 # brew cask install atext
 # brew cask install desktime
+brew cask install bettertouchtool
 brew cask install gitup
 brew cask install atom
 brew cask install slack
