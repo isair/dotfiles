@@ -34,6 +34,7 @@ brew upgrade
 
 # Install essential packages
 brew install thefuck
+brew install vim
 brew install git
 brew install hub
 brew install watchman
