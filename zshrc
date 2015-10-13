@@ -16,7 +16,6 @@ export PATH=/usr/local/sbin:$PATH
 
 # Aliases
 alias git=hub
-alias gg='noglob gg'
 
 # added by travis gem
 [ -f /Users/Isair/.travis/travis.sh ] && source /Users/Isair/.travis/travis.sh
@@ -31,5 +30,3 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # nvm setup
 export NVM_DIR="/Users/Isair/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-. /Users/Isair/torch/install/bin/torch-activate
