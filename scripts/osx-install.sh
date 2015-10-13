@@ -14,6 +14,9 @@ sudo softwareupdate -i -a
 # Link airport binary
 sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
 
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Install NVM
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 
@@ -56,11 +59,12 @@ brew tap caskroom/cask
 brew install brew-cask
 
 # Install essential apps
-# brew cask install atext
 # brew cask install desktime
+brew cask install macvim
 brew cask install gitup
 brew cask install slack
 brew cask install lastpass
+brew cask install the-unarchiver
 brew cask install flux
 brew cask install teamviewer
 brew cask install dropbox
@@ -80,7 +84,10 @@ brew cask install steam
 brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install bit-slicer
 brew cask install onyx
-brew cask install cleanmymac
+
+# Paid apps
+# brew cask install atext
+# brew cask install cleanmymac
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins

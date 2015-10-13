@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+setenv SCRIPTDIR `dirname $0`
 rm ~/.profile
-ln -s profile ~/.profile
+ln -s $SCRIPTDIR/../profile ~/.profile
 rm ~/.bash_profile
-ln -s bash_profile ~/.bash_profile
+ln -s $SCRIPTDIR/../bash_profile ~/.bash_profile
 rm ~/.zshrc
-ln -s zshrc ~/.zshrc
+ln -s $SCRIPTDIR/../zshrc ~/.zshrc
 rm ~/.vimrc
-ln -s vimrc ~/.vimrc
+ln -s $SCRIPTDIR/../vimrc ~/.vimrc
 rm ~/.eslintrc
-ln -s eslintrc ~/.eslintrc
+ln -s $SCRIPTDIR/../eslintrc ~/.eslintrc
