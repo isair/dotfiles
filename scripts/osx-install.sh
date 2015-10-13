@@ -48,6 +48,7 @@ brew install rbenv
 brew install rbenv-bundler
 brew install youtube-dl
 brew install imagemagick
+brew install android-sdk
 
 # Install essential node packages
 npm install -g react-native-cli

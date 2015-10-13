@@ -30,3 +30,6 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # nvm setup
 export NVM_DIR="/Users/Isair/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Android SDK
+export ANDROID_HOME=/usr/local/Cellar/android-sdk
