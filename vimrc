@@ -116,3 +116,6 @@ highlight clear SignColumn
 " Highlight background of lines longer than 80 characters
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
 match OverLength /\%>80v.\+/
+
+" Don't expand tabs for Makefile
+autocmd FileType make setlocal noexpandtab

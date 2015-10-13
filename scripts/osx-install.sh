@@ -37,6 +37,7 @@ brew upgrade
 
 # Install essential packages
 brew install thefuck
+brew install vim
 brew install git
 brew install hub
 brew install watchman
@@ -61,6 +62,7 @@ brew install brew-cask
 # Install essential apps
 # brew cask install desktime
 brew cask install macvim
+brew cask install bettertouchtool
 brew cask install gitup
 brew cask install slack
 brew cask install lastpass
