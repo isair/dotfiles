@@ -32,4 +32,4 @@ export NVM_DIR="/Users/Isair/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Android SDK
-export ANDROID_HOME=/usr/local/Cellar/android-sdk
+export ANDROID_HOME=/usr/local/opt/android-sdk
