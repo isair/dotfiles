@@ -33,3 +33,6 @@ export NVM_DIR="/Users/Isair/.nvm"
 
 # Android SDK
 export ANDROID_HOME=/usr/local/opt/android-sdk
+
+# React Editor
+REACT_EDITOR=mvim
