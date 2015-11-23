@@ -102,10 +102,10 @@ while i <= 9
 endwhile
 
 " Set colors
+let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme solarized
-color solarized
 
 " MacVim
 set guifont=Monaco:h12
