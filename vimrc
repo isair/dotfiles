@@ -108,7 +108,7 @@ set background=dark
 colorscheme solarized
 
 " MacVim
-set guifont=Monaco:h12
+set guifont=Monaco:h13
 
 " Fix for gitgutter
 highlight clear SignColumn
