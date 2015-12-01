@@ -49,12 +49,14 @@ brew install rbenv-bundler
 brew install youtube-dl
 brew install imagemagick
 brew install android-sdk
+brew install reaver
 
 # Install essential node packages
 npm install -g react-native-cli
 npm install -g eslint
 npm install -g babel-eslint
 npm install -g eslint-plugin-react
+npm install -g eslint-config-airbnb
 
 # Install Cask
 brew tap caskroom/cask

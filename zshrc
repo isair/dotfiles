@@ -20,10 +20,6 @@ alias git=hub
 # added by travis gem
 [ -f /Users/Isair/.travis/travis.sh ] && source /Users/Isair/.travis/travis.sh
 
-# rbenv setup
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # thefuck setup
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
