@@ -1,0 +1,46 @@
+# General 
+.DS_Store
+.Trashes
+*.swp
+*.lock
+build/
+
+# Xcode
+!Podfile.lock
+*~.nib
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+*.moved-aside
+ 
+# iOS package managers
+Pods/
+Carthage/
+
+# IDEA
+.idea/
+*.oc3ScN
+.zedstate
+workbench.xmi
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# react-native
+main.jsbundle
+index.android.bundle
+
+# Android
+.gradle/
+*.keystore
+
+# Project Specific
+# Add anything you want here.
