@@ -17,12 +17,11 @@ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Curre
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# Install NVM
+# Install NVM and the latest version of Node.js
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 
-# Install iojs-v2 and set it as default
-nvm install iojs-v2
-nvm alias default iojs-v2
+nvm install node
+nvm alias default node
 
 # Install Homebrew if not installed
 brew --version
@@ -43,20 +42,22 @@ brew install hub
 brew install watchman
 brew install flow
 brew install xctool
-brew install swiftlint
-brew install rbenv
-brew install rbenv-bundler
 brew install youtube-dl
 brew install imagemagick
 brew install android-sdk
 brew install reaver
 
 # Install essential node packages
-npm install -g react-native-cli
-npm install -g eslint
-npm install -g babel-eslint
-npm install -g eslint-plugin-react
-npm install -g eslint-config-airbnb
+npm i -g http-server
+npm i -g react-native-cli
+npm i -g babel
+npm i -g babel-preset-es2015
+npm i -g babel-eslint
+npm i -g eslint
+npm i -g eslint-plugin-react
+npm i -g eslint-config-airbnb
+npm i -g browserify
+npm i -g babelify
 
 # Install Cask
 brew tap caskroom/cask
