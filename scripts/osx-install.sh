@@ -48,6 +48,7 @@ brew install android-sdk
 brew install reaver
 
 # Install essential node packages
+npm i -g npm-which
 npm i -g http-server
 npm i -g react-native-cli
 npm i -g babel

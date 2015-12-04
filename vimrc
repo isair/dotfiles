@@ -55,6 +55,11 @@ nmap <leader>kk :BuffergatorMruCycleNext<cr>
 nmap <leader>bl :BuffergatorOpen<cr>
 
 " Syntastic setup
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
+
+let g:syntastic_javascript_eslint_exec = StrTrim(system('npm-which eslint'))
 let g:syntastic_javascript_checkers = ['eslint']
 
 set statusline+=%#warningmsg#
