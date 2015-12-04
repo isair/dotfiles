@@ -60,6 +60,10 @@ npm i -g eslint-config-airbnb
 npm i -g browserify
 npm i -g babelify
 
+# Install essential gems
+sudo gem install cocoapods
+sudo gem install gym
+
 # Install Cask
 brew tap caskroom/cask
 brew install brew-cask
@@ -95,6 +99,8 @@ brew cask install onyx
 # Paid apps
 # brew cask install atext
 # brew cask install cleanmymac
+# brew cask install dash
+# brew cask insall omnigraffle
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins

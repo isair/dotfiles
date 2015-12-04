@@ -29,6 +29,7 @@ NeoBundle 'bling/vim-airline' " Better tabs
 NeoBundle 'ervandew/supertab' " Insert mode completions with tab key
 NeoBundle 'guns/ultisnips' " Code snippets
 NeoBundle 'tpope/vim-endwise' " Automatically end code blocks in some languages
+NeoBundle 'rizzatti/dash.vim' " Dash (code docs) support
 call neobundle#end()
 
 filetype plugin indent on
@@ -75,6 +76,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" \d to search word under cursor in Dash
+nmap <silent> <leader>d <Plug>DashSearch
 
 " Show relative line numbers
 set relativenumber
