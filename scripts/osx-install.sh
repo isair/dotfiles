@@ -46,19 +46,17 @@ brew install youtube-dl
 brew install imagemagick
 brew install android-sdk
 brew install reaver
+brew install aircrack-ng
 
 # Install essential node packages
 npm i -g npm-which
 npm i -g http-server
 npm i -g react-native-cli
-npm i -g babel
-npm i -g babel-preset-es2015
-npm i -g babel-eslint
 npm i -g eslint
 npm i -g eslint-plugin-react
 npm i -g eslint-config-airbnb
-npm i -g browserify
-npm i -g babelify
+npm i -g babel-eslint
+npm i -g flow-bin
 
 # Install essential gems
 sudo gem install cocoapods
@@ -97,10 +95,12 @@ brew cask install bit-slicer
 brew cask install onyx
 
 # Paid apps
-# brew cask install atext
-# brew cask install cleanmymac
-# brew cask install dash
-# brew cask insall omnigraffle
+brew cask install atext
+brew cask install cleanmymac
+brew cask install dash
+brew cask install omnigraffle
+brew cask install daisydisk
+brew cask install boom
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
