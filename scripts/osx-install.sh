@@ -39,6 +39,7 @@ brew install thefuck
 brew install vim
 brew install git
 brew install hub
+brew install git-lfs && git lfs install
 brew install watchman
 brew install flow
 brew install xctool
@@ -47,6 +48,7 @@ brew install imagemagick
 brew install android-sdk
 brew install reaver
 brew install aircrack-ng
+brew install lynx
 
 # Install essential node packages
 npm i -g npm-which
@@ -61,6 +63,7 @@ npm i -g flow-bin
 # Install essential gems
 sudo gem install cocoapods
 sudo gem install gym
+sudo gem install git-up
 
 # Install Cask
 brew tap caskroom/cask

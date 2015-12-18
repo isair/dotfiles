@@ -16,6 +16,7 @@ export PATH=/usr/local/sbin:$PATH
 
 # Aliases
 alias git=hub
+alias lynx='lynx -cfg=~/.lynxrc'
 
 # added by travis gem
 [ -f /Users/Isair/.travis/travis.sh ] && source /Users/Isair/.travis/travis.sh
