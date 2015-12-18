@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-setenv SCRIPTDIR `dirname $0`
+baseDir=`dirname $0`
 rm ~/.zshrc
-ln -s $SCRIPTDIR/../zshrc ~/.zshrc
+ln -s $baseDir/../zshrc ~/.zshrc
 rm ~/.vimrc
-ln -s $SCRIPTDIR/../vimrc ~/.vimrc
+ln -s $baseDir/../vimrc ~/.vimrc
 rm ~/.emacs
-ln -s $SCRIPTDIR/../emacs ~/.emacs
+ln -s $baseDir/../emacs ~/.emacs
 rm ~/.eslintrc
-ln -s $SCRIPTDIR/../eslintrc ~/.eslintrc
+ln -s $baseDir/../eslintrc ~/.eslintrc
