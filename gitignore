@@ -1,12 +1,32 @@
-# General 
+# General
 .DS_Store
 .Trashes
 *.swp
 *.lock
 build/
 
+# Unity3D
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/Assets/AssetStoreTools*
+ExportedObj/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pidb.meta
+sysinfo.txt
+
 # Xcode
-!Podfile.lock
 *~.nib
 DerivedData/
 *.pbxuser
@@ -19,8 +39,9 @@ DerivedData/
 !default.perspectivev3
 xcuserdata
 *.moved-aside
- 
+
 # iOS package managers
+!Podfile.lock
 Pods/
 Carthage/
 
