@@ -17,12 +17,6 @@ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Curre
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# Install NVM and the latest version of Node.js
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
-
-nvm install node
-nvm alias default node
-
 # Install Homebrew if not installed
 brew --version
 if [[ $? -ne 0 ]]; then
@@ -41,17 +35,32 @@ brew install git
 brew install hub
 brew install git-lfs && git lfs install
 brew install watchman
-brew install flow
-brew install xctool
 brew install youtube-dl
 brew install imagemagick
+brew install lynx
+brew install tree
+brew install xaric
+
+# Install mobile development packages
+brew install xctool
 brew install android-sdk
+
+# Install security packages
+# brew install otx
+brew install gdb
 brew install reaver
 brew install aircrack-ng
-brew install lynx
+brew install nmap
+brew install theharvester
+
+# Install NVM and the latest version of Node.js
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
+nvm install node
+nvm alias default node
 
 # Install essential node packages
 npm i -g npm-which
+npm i -g devtool
 npm i -g http-server
 npm i -g react-native-cli
 npm i -g eslint
@@ -65,6 +74,9 @@ sudo gem install cocoapods
 sudo gem install gym
 sudo gem install git-up
 
+# Install essential python packages
+sudo pip install -U subliminal
+
 # Install Cask
 brew tap caskroom/cask
 brew install brew-cask
@@ -72,6 +84,7 @@ brew install brew-cask
 # Install essential apps
 # brew cask install desktime
 brew cask install macvim
+brew cask install atom
 brew cask install bettertouchtool
 brew cask install gitup
 brew cask install slack
@@ -82,7 +95,7 @@ brew cask install teamviewer
 brew cask install dropbox
 brew cask install google-drive
 brew cask install fabric
-brew cask install aluxian-messenger
+brew cask install goofy
 brew cask install vlc
 brew cask install spotify
 brew cask install skype
@@ -91,19 +104,28 @@ brew cask install imageoptim
 brew cask install cd-to
 brew cask install gfxcardstatus
 brew cask install jdownloader
-brew cask install subtitles
 brew cask install steam
 brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install bit-slicer
 brew cask install onyx
+brew cask install macupdate-desktop
 
 # Paid apps
-brew cask install atext
+# brew cask install atext
 brew cask install cleanmymac
 brew cask install dash
-brew cask install omnigraffle
+# brew cask install omnigraffle
 brew cask install daisydisk
 brew cask install boom
+# brew cask install bartender2
+# brew cask install hopper
+# brew cask install photosweeper-X
+
+# Install atom packages
+apm install vim-mode
+apm install merge-conflicts
+apm install nuclide
+apm install git-plus
 
 # Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
