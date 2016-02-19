@@ -29,6 +29,7 @@ brew update
 brew upgrade
 
 # Install essential packages
+brew install coreutils
 brew install thefuck
 brew install vim
 brew install git

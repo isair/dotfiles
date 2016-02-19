@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-baseDir=`dirname $0`
+relativeDir=`dirname $0`
+baseDir=`greadlink -f $relativeDir`
 rm ~/.zshrc
 ln -s $baseDir/../zshrc ~/.zshrc
 rm ~/.vimrc
