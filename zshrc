@@ -32,4 +32,9 @@ export NVM_DIR="/Users/Isair/.nvm"
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # React Editor
-REACT_EDITOR=mvim
+REACT_EDITOR=atom
+
+# Set atom as default system editor
+export VISUAL=atom
+export EDITOR="$VISUAL"
+export GIT_EDITOR="$VISUAL -w"
