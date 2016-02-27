@@ -38,3 +38,9 @@ REACT_EDITOR=atom
 export VISUAL=atom
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL -w"
+
+# Fuzzy auto-completion
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
