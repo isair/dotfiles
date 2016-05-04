@@ -21,7 +21,7 @@ NeoBundle 'jeetsukumaran/vim-buffergator' " Better buffer management
 NeoBundle 'sheerun/vim-polyglot' " Syntax and indentation for all
 NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
 NeoBundle 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
-NeoBundle 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line 
+NeoBundle 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
 NeoBundle 'airblade/vim-gitgutter' " Show git diff in sign column
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'scrooloose/syntastic' " Compiler/interpreter error/warning display
