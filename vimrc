@@ -1,39 +1,28 @@
 set nocompatible
 
-"
-" NeoBundle
-"
-if !1 | finish | endif
+" vim-plug
 
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+call plug#begin('~/.vim/plugged')
 
-call neobundle#begin(expand('~/vim/bundle/'))
+Plug 'tpope/vim-sensible' " Sensible defaults
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
+Plug 'kien/ctrlp.vim' " Fuzzy file finder
+Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
+Plug 'sheerun/vim-polyglot' " Syntax and indentation for all
+Plug 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
+Plug 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
+Plug 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
+Plug 'airblade/vim-gitgutter' " Show git diff in sign column
+Plug 'haya14busa/incsearch.vim'
+Plug 'scrooloose/syntastic' " Compiler/interpreter error/warning display
+Plug 'bling/vim-airline' " Better tabs
+Plug 'ervandew/supertab' " Insert mode completions with tab key
+Plug 'guns/ultisnips' " Code snippets
+Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
+Plug 'rizzatti/dash.vim' " Dash (code docs) support
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
-NeoBundle 'kien/ctrlp.vim' " Fuzzy file finder
-NeoBundle 'jeetsukumaran/vim-buffergator' " Better buffer management
-NeoBundle 'sheerun/vim-polyglot' " Syntax and indentation for all
-NeoBundle 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
-NeoBundle 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
-NeoBundle 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
-NeoBundle 'airblade/vim-gitgutter' " Show git diff in sign column
-NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'scrooloose/syntastic' " Compiler/interpreter error/warning display
-NeoBundle 'bling/vim-airline' " Better tabs
-NeoBundle 'ervandew/supertab' " Insert mode completions with tab key
-NeoBundle 'guns/ultisnips' " Code snippets
-NeoBundle 'tpope/vim-endwise' " Automatically end code blocks in some languages
-NeoBundle 'rizzatti/dash.vim' " Dash (code docs) support
-call neobundle#end()
-
-filetype plugin indent on
-NeoBundleCheck
+call plug#end()
 
 " CtrlP setup
 let g:ctrlp_custom_ignore = {
