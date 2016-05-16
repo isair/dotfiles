@@ -4,6 +4,7 @@
 *.swp
 *.lock
 build/
+builds/
 
 # Unity3D
 /[Ll]ibrary/
@@ -51,7 +52,7 @@ Carthage/
 .zedstate
 workbench.xmi
 
-# Node.js
+# node.js
 node_modules/
 npm-debug.log
 
@@ -59,9 +60,21 @@ npm-debug.log
 main.jsbundle
 index.android.bundle
 
+# BUCK
+buck-out/
+\.buckd/
+
+# BUCK + react-native
+android/app/libs
+android/keystores/debug.keystore
+
 # Android
 .gradle/
 *.keystore
+
+# fastlane
+*.app.dSYM.zip
+fastlane/report.xml
 
 # Project Specific
 # Add anything you want here.
