@@ -73,7 +73,7 @@ nmap <silent> <leader>d <Plug>DashSearch
 set relativenumber
 
 " Clean trailing whitespace characters in code and text files
-autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Indentation configuration
 set expandtab
