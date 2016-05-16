@@ -83,10 +83,8 @@ brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install onyx
 brew cask install macupdate-desktop
 brew cask install filezilla
-brew cask install malwarebytes-anti-malware
 # Paid
 # brew cask install atext
-brew cask install cleanmymac
 brew cask install dash
 # brew cask install omnigraffle
 brew cask install daisydisk
@@ -96,6 +94,11 @@ brew cask install boom
 # brew cask install photosweeper-X
 brew cask install sketch
 # brew cask install transmit
+
+## Install maintenance apps
+brew cask install malwarebytes-anti-malware
+brew cask install ccleaner
+brew cask install appcleaner
 
 ## Install essential python packages
 sudo pip install -U subliminal
