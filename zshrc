@@ -43,6 +43,10 @@ export REACT_EDITOR='atom'
 # Ruby
 #
 
+# rvm setup
+export RVM_DIR="$HOME/.rvm"
+[ -f "$RVM_DIR/scripts/rvm" ] && source "$RVM_DIR/scripts/rvm"
+
 # travis gem setup
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
