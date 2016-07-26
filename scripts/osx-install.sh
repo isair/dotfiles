@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# TO-DO: Install Xcode
+# TODO: Install Xcode
 
 ## Install command line tools
 xcode-select -p
@@ -60,18 +60,16 @@ brew cask install macvim
 brew cask install atom
 brew cask install bettertouchtool
 brew cask install gitup
-brew cask install slack
 brew cask install discord
 brew cask install the-unarchiver
 brew cask install flux
-brew cask install teamviewer
+brew cask install joinme
 brew cask install dropbox
 brew cask install google-drive
-brew cask install fabric
-brew cask install goofy
+brew cask install franz
+brew cask install skype
 brew cask install vlc
 brew cask install spotify
-brew cask install skype
 brew cask install torbrowser
 brew cask install imageoptim
 brew cask install cd-to
@@ -81,8 +79,8 @@ brew cask install steam
 brew cask install gog-galaxy
 brew cask install openemu    # TODO: Script for backing up ROMs and save files.
 brew cask install onyx
-brew cask install macupdate-desktop
 brew cask install filezilla
+brew cask install awareness
 # Paid
 # brew cask install atext
 brew cask install dash
@@ -100,13 +98,21 @@ brew cask install malwarebytes-anti-malware
 brew cask install ccleaner
 brew cask install appcleaner
 
-## Install essential python packages
-sudo pip install -U subliminal
+## Python and Python packages
+brew install python
+pip install -U subliminal
+
+## Ruby and Ruby packages
+curl -L https://get.rvm.io | bash
+rvm install ruby-2.1.1
+rvm use ruby-2.1.1 --default
+gem install bundler --no-ri --no-rdoc
 
 ## Install atom packages
 apm install vim-mode
 apm install merge-conflicts
 apm install git-plus
+# TODO: Add all.
 
 ## Install mobile development packages and apps
 sudo gem install cocoapods
@@ -116,6 +122,7 @@ brew install xctool
 brew install android-sdk
 brew cask install android-studio
 brew cask install genymotion
+brew cask install fabric
 
 ## Install security packages and apps
 # brew install otx
@@ -138,6 +145,8 @@ npm i -g npm-which
 npm i -g devtool
 npm i -g http-server
 npm i -g react-native-cli
+npm i -g code-push-cli
+npm i -g reploy-cli
 npm i -g eslint
 npm i -g eslint-plugin-react
 npm i -g eslint-config-airbnb
