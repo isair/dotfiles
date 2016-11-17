@@ -3,13 +3,13 @@
 cd $(dirname "$0")/..
 
 rm ~/.zshrc
-ln -s zshrc ~/.zshrc
+ln -s "$PWD/zshrc" ~/.zshrc
 
 rm ~/.vimrc
-ln -s vimrc ~/.vimrc
+ln -s "$PWD/vimrc" ~/.vimrc
 
 rm ~/.eslintrc
-ln -s eslintrc ~/.eslintrc
+ln -s "$PWD/eslintrc" ~/.eslintrc
 
 rm ~/.lynxrc
-ln -s lynxrc ~/.lynxrc
+ln -s "$PWD/lynxrc" ~/.lynxrc
