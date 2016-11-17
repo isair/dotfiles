@@ -2,13 +2,15 @@
 
 cd $(dirname "$0")/..
 
+if ! hash xcode-select 2>/dev/null; then
+  echo Xcode needs to be installed
+  exit
+fi
+
 ## Install command line tools
 xcode-select -p
 if [[ $? -ne 0 ]]; then
   xcode-select --install
-else
-  echo Xcode needs to be installed
-  exit 1
 fi
 
 ## Make sure everthing is up-to-date
