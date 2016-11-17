@@ -43,9 +43,9 @@ export REACT_EDITOR='atom'
 # Ruby
 #
 
-# rvm setup
-export RVM_DIR="$HOME/.rvm"
-[ -f "$RVM_DIR/scripts/rvm" ] && source "$RVM_DIR/scripts/rvm"
+# rbenv setup
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # travis gem setup
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
@@ -57,6 +57,8 @@ export RVM_DIR="$HOME/.rvm"
 # Aliases
 alias git=hub
 alias lynx="lynx -cfg=$HOME/.lynxrc"
+alias vi="mvim -v"
+alias vim=vi
 
 # Heroku Toolbelt setup
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -69,7 +71,8 @@ export PATH="/usr/local/sbin:$PATH"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 # Android SDK (installed via homebrew)
-export ANDROID_HOME='/usr/local/opt/android-sdk'
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
 
 # Add depot_tools binaries
 export PATH="$HOME/Projects/depot_tools:$PATH"

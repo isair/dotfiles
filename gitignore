@@ -76,5 +76,10 @@ android/keystores/debug.keystore
 *.app.dSYM.zip
 fastlane/report.xml
 
+# bundler
+/.bundle
+/vendor/bundle/
+/vendor/ruby/
+
 # Project Specific
 # Add anything you want here.

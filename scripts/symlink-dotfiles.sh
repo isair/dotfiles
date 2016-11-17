@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-relativeDir=`dirname $0`
-baseDir=`greadlink -f $relativeDir`
+
+cd $(dirname "$0")/..
+
 rm ~/.zshrc
-ln -s $baseDir/../zshrc ~/.zshrc
+ln -s zshrc ~/.zshrc
+
 rm ~/.vimrc
-ln -s $baseDir/../vimrc ~/.vimrc
+ln -s vimrc ~/.vimrc
+
 rm ~/.eslintrc
-ln -s $baseDir/../eslintrc ~/.eslintrc
+ln -s eslintrc ~/.eslintrc
+
 rm ~/.lynxrc
-ln -s $baseDir/../lynxrc ~/.lynxrc
+ln -s lynxrc ~/.lynxrc

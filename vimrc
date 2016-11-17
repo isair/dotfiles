@@ -18,9 +18,9 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/syntastic' " Compiler/interpreter error/warning display
 Plug 'bling/vim-airline' " Better tabs
 Plug 'ervandew/supertab' " Insert mode completions with tab key
-Plug 'guns/ultisnips' " Code snippets
 Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
 Plug 'rizzatti/dash.vim' " Dash (code docs) support
+Plug 'wkentaro/conque.vim' " shell inside vim buffer
 
 call plug#end()
 
@@ -62,7 +62,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Airline setup
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
@@ -117,3 +116,6 @@ match OverLength /\%>80v.\+/
 
 " Don't expand tabs for Makefile
 autocmd FileType make setlocal noexpandtab
+
+" eclim + supertab
+let g:SuperTabDefaultCompletionType = 'context'

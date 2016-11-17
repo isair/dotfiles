@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# TODO: Install Xcode
+cd $(dirname "$0")/..
 
 ## Install command line tools
 xcode-select -p
@@ -30,7 +30,7 @@ if ! hash brew 2>/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-## Make sure packages and package definitions are up-to-date
+## Make sure packages and their definitions are up-to-date
 brew update
 brew upgrade
 
@@ -38,13 +38,39 @@ brew upgrade
 brew tap caskroom/cask
 brew install brew-cask
 
+## Install git
+brew install git
+brew install hub
+brew install git-lfs && git lfs install
+
+## Install nvm and node
+if ! hash nvm 2>/dev/null; then
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
+  nvm install node
+  nvm alias default node
+fi
+
+## Install rbenv, ruby-builder, ruby and bundler
+if ! hash rbenv 2>/dev/null; then
+  brew install rbenv
+  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+  rbenv install 2.3.1
+fi
+
+if ! hash bundler 2>/dev/null; then
+  gem install bundler
+  rbenv rehash
+fi
+
+## Install java
+if ! hash java 2>/dev/null; then
+  brew install java
+fi
+
 ## Install essential packages
 brew install coreutils
 brew install thefuck
 brew install vim
-brew install git
-brew install hub
-brew install git-lfs && git lfs install
 brew install watchman
 brew install youtube-dl
 brew install imagemagick
@@ -54,16 +80,13 @@ brew install xaric
 
 ## Install essential apps
 brew cask install lastpass
-brew cask install google-chrome
 brew cask install macvim
 # brew cask install desktime
 brew cask install atom
 brew cask install bettertouchtool
 brew cask install gitup
-brew cask install discord
 brew cask install the-unarchiver
 brew cask install flux
-brew cask install joinme
 brew cask install dropbox
 brew cask install google-drive
 brew cask install franz
@@ -73,14 +96,11 @@ brew cask install spotify
 brew cask install torbrowser
 brew cask install imageoptim
 brew cask install cd-to
-brew cask install gfxcardstatus
+brew cask install cyberduck
 brew cask install jdownloader
 brew cask install steam
 brew cask install gog-galaxy
 brew cask install openemu    # TODO: Script for backing up ROMs and save files.
-brew cask install onyx
-brew cask install filezilla
-brew cask install awareness
 # Paid
 # brew cask install atext
 brew cask install dash
@@ -90,36 +110,25 @@ brew cask install boom
 # brew cask install bartender2
 # brew cask install hopper
 # brew cask install photosweeper-X
-brew cask install sketch
+# brew cask install sketch
 # brew cask install transmit
 
 ## Install maintenance apps
 brew cask install malwarebytes-anti-malware
-brew cask install ccleaner
 brew cask install appcleaner
+brew cask install onyx
 
 ## Python and Python packages
 brew install python
 pip install -U subliminal
 
-## Ruby and Ruby packages
-curl -L https://get.rvm.io | bash
-rvm install ruby-2.1.1
-rvm use ruby-2.1.1 --default
-gem install bundler --no-ri --no-rdoc
-
 ## Install atom packages
 apm install vim-mode
-apm install merge-conflicts
-apm install git-plus
+apm install nuclide
 # TODO: Add all.
 
-## Install mobile development packages and apps
-sudo gem install cocoapods
-sudo gem install gym
-sudo gem install fastlane
-brew install xctool
-brew install android-sdk
+## Install development apps
+brew cask install eclipse-java
 brew cask install android-studio
 brew cask install genymotion
 brew cask install fabric
@@ -133,20 +142,13 @@ brew install nmap
 brew install theharvester
 brew cask install bit-slicer
 
-## Install nvm and the latest version of node
-if ! hash nvm 2>/dev/null; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
-  nvm install node
-  nvm alias default node
-fi
-
 ## Install essential node packages
+npm i -g yarn
 npm i -g npm-which
 npm i -g devtool
 npm i -g http-server
 npm i -g react-native-cli
 npm i -g code-push-cli
-npm i -g reploy-cli
 npm i -g eslint
 npm i -g eslint-plugin-react
 npm i -g eslint-config-airbnb
@@ -169,8 +171,4 @@ brew cask install webp-quicklook
 qlmanage -r
 
 ## Clean things up
-brew linkapps
-brew cleanup
-brew prune
-brew cask cleanup
-gem cleanup
+./cleanup.sh
