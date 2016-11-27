@@ -94,6 +94,7 @@ brew cask install dropbox
 brew cask install google-drive
 brew cask install franz
 brew cask install skype
+brew cask install microsoft-teams
 brew cask install vlc
 brew cask install spotify
 brew cask install torbrowser
@@ -134,7 +135,8 @@ apm install nuclide
 brew cask install eclipse-java
 brew cask install android-studio
 brew cask install genymotion
-brew cask install fabric
+# brew cask install fabric
+brew cask install charles
 
 ## Install security packages and apps
 # brew install otx
