@@ -48,6 +48,7 @@ brew install git-lfs && git lfs install
 ## Install nvm and node
 if ! hash nvm 2>/dev/null; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
+  source ~/.nvm/nvm.sh
   nvm install node
   nvm alias default node
 fi
