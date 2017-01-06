@@ -76,6 +76,3 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 
 # Add depot_tools binaries
 export PATH="$HOME/Projects/depot_tools:$PATH"
-
-# Add binaries in Dropbox
-export PATH="$HOME/Dropbox/bin:$PATH"

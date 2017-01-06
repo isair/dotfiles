@@ -90,7 +90,6 @@ brew cask install bettertouchtool
 brew cask install gitup
 brew cask install the-unarchiver
 brew cask install flux
-brew cask install dropbox
 brew cask install google-drive
 brew cask install franz
 brew cask install skype
