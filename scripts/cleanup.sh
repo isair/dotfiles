@@ -8,3 +8,4 @@ brew prune
 brew cask cleanup
 
 xcrun simctl delete unavailable
+sudo rm -rf ~/Library/Developer/Xcode/DerivedData
