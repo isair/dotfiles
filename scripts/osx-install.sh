@@ -82,39 +82,42 @@ brew install tree
 brew install xaric
 
 ## Install essential apps
-brew cask install lastpass
 brew cask install macvim
 # brew cask install desktime
 brew cask install atom
-brew cask install bettertouchtool
 brew cask install gitup
 brew cask install the-unarchiver
-brew cask install flux
-brew cask install google-drive
-brew cask install franz
-brew cask install skype
-brew cask install microsoft-teams
-brew cask install vlc
-brew cask install spotify
-brew cask install torbrowser
+brew cask install bettertouchtool
 brew cask install imageoptim
 brew cask install cd-to
 brew cask install cyberduck
 brew cask install jdownloader
-brew cask install steam
-brew cask install gog-galaxy
-brew cask install openemu    # TODO: Script for backing up ROMs and save files.
-# Paid
-# brew cask install atext
-brew cask install dash
-# brew cask install omnigraffle
-brew cask install daisydisk
-brew cask install boom
-# brew cask install bartender2
-# brew cask install hopper
-# brew cask install photosweeper-X
-# brew cask install sketch
-# brew cask install transmit
+if [ "$1" != "-vm" ]; then
+  brew cask install lastpass
+  brew cask install flux
+  brew cask install google-drive
+  brew cask install franz
+  brew cask install skype
+  brew cask install microsoft-teams
+  brew cask install vlc
+  brew cask install spotify
+  brew cask install torbrowser
+  brew cask install steam
+  brew cask install gog-galaxy
+  brew cask install openemu    # TODO: Script for backing up ROMs and save files.
+  # paid apps after this line
+  brew cask install dash
+  brew cask install daisydisk
+  brew cask install boom
+  # paid but not available on cask after this
+  # brew cask install atext
+  # brew cask install omnigraffle
+  # brew cask install bartender2
+  # brew cask install hopper
+  # brew cask install photosweeper-X
+  # brew cask install sketch
+  # brew cask install transmit
+fi
 
 ## Install maintenance apps
 brew cask install malwarebytes-anti-malware
