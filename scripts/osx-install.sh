@@ -41,7 +41,9 @@ brew tap caskroom/cask
 brew install brew-cask
 
 ## Install git
-brew install git
+brew install openssl
+brew install curl
+brew install git --with-brewed-curl --with-brewed-openssl
 brew install hub
 brew install git-lfs && git lfs install
 
