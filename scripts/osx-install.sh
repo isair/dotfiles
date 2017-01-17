@@ -69,7 +69,7 @@ fi
 
 ## Install java
 if ! hash java 2>/dev/null; then
-  brew install java
+  brew cask install java
 fi
 
 ## Install essential packages
@@ -139,7 +139,7 @@ apm install nuclide
 brew cask install eclipse-java
 brew cask install android-studio
 brew cask install genymotion
-# brew cask install fabric
+# brew cask install fabric # doesn't exist
 brew cask install charles
 
 ## Install security packages and apps
@@ -167,7 +167,7 @@ npm i -g flow-bin
 ## Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
 brew cask install betterzipql
-brew cask install cert-quicklook
+# brew cask install cert-quicklook # doesn't exist anymore
 brew cask install epubquicklook
 brew cask install qlcolorcode
 brew cask install qlmarkdown
@@ -176,7 +176,7 @@ brew cask install qlstephen
 brew cask install quicklook-csv
 brew cask install quicklook-json
 brew cask install suspicious-package
-brew cask install webp-quicklook
+# brew cask install webp-quicklook # doesn't exist anymore
 qlmanage -r
 
 ## Clean things up
