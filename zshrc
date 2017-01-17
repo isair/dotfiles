@@ -76,3 +76,33 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 
 # Add depot_tools binaries
 export PATH="$HOME/Projects/depot_tools:$PATH"
+
+# Command shortcuts
+alias .is="cd ~/Projects/isair"
+alias .mll="cd ~/Projects/movielala"
+alias .ot="cd ~/Projects/other"
+
+alias .gs="git status"
+alias .ga="git add"
+alias .gap="git add --patch"
+alias .gf="git fetch"
+alias .gb="git branch"
+alias .gba="git branch -a"
+alias .gch="git checkout"
+alias .grb="git rebase"
+alias .grbi="git rebase -i"
+alias .gcm="git commit"
+alias .gps="git push"
+alias .gl="git log"
+alias .glp="git log --pretty=\"oneline\""
+alias .gpl="git pull"
+alias .gplr="git pull --rebase"
+alias .gd="git diff"
+alias .gdc="git diff --cached"
+
+alias .bin="bundle install --path=vendor/bundle"
+alias .bup="bundle update"
+alias .bx="bundle exec"
+
+alias .pin="pod install"
+alias .pup="pod update"
