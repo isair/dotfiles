@@ -180,4 +180,4 @@ brew cask install suspicious-package
 qlmanage -r
 
 ## Clean things up
-./cleanup.sh
+"$PWD/scripts/cleanup.sh"
