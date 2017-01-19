@@ -99,6 +99,7 @@ alias .gpl="git pull"
 alias .gplr="git pull --rebase"
 alias .gd="git diff"
 alias .gdc="git diff --cached"
+alias .grup="git remote update --prune"
 
 alias .bin="bundle install --path=vendor/bundle"
 alias .bup="bundle update"
@@ -106,3 +107,5 @@ alias .bx="bundle exec"
 
 alias .pin="pod install"
 alias .pup="pod update"
+
+alias .ne="PATH=$(npm bin):$PATH"
