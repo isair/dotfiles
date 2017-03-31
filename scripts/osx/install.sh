@@ -59,7 +59,9 @@ fi
 if ! hash rbenv 2>/dev/null; then
   brew install rbenv
   git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-  rbenv install 2.3.1
+  latest_stable_ruby=$(rbenv install -l | grep -v - | tail -1)
+  rbenv install $latest_stable_ruby
+  rbenv global $latest_stable_ruby
 fi
 
 if ! hash bundler 2>/dev/null; then
