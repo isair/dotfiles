@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $(dirname "$0")/..
+cd $(dirname "$0")
 
 if ! hash xcode-select 2>/dev/null; then
   echo Xcode needs to be installed
@@ -180,4 +180,4 @@ brew cask install suspicious-package
 qlmanage -r
 
 ## Clean things up
-"$PWD/scripts/cleanup.sh"
+"$PWD/cleanup.sh"
