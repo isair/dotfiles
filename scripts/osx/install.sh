@@ -70,9 +70,7 @@ if ! hash bundler 2>/dev/null; then
 fi
 
 ## Install java
-if ! hash java 2>/dev/null; then
-  brew cask install java
-fi
+brew cask install java
 
 ## Install essential packages
 brew install coreutils
