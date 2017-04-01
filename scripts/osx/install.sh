@@ -87,16 +87,23 @@ brew install xaric
 
 ## Install essential apps
 brew cask install macvim
-# brew cask install desktime
-brew cask install atom
+brew cask install visual-studio-code
 brew cask install gitup
 brew cask install the-unarchiver
 brew cask install bettertouchtool
 brew cask install imageoptim
 brew cask install cd-to
+brew cask install charles
 brew cask install cyberduck
 brew cask install jdownloader
-if [ "$1" != "-vm" ]; then
+if [ "$1" != "-server" ]; then
+  brew cask install eclipse-java
+  brew cask install android-studio
+  brew cask install genymotion
+  # brew cask install fabric # doesn't exist
+fi
+if [ "$1" != "-vm" -a "$1" != "-server" ]; then
+  # brew cask install desktime
   brew cask install lastpass
   brew cask install flux
   brew cask install google-drive
@@ -130,19 +137,9 @@ brew cask install onyx
 
 ## Python and Python packages
 brew install python
-pip install -U subliminal
-
-## Install atom packages
-apm install vim-mode
-apm install nuclide
-# TODO: Add all.
-
-## Install development apps
-brew cask install eclipse-java
-brew cask install android-studio
-brew cask install genymotion
-# brew cask install fabric # doesn't exist
-brew cask install charles
+if [ "$1" != "-server" ]; then
+  pip install -U subliminal
+fi
 
 ## Install security packages and apps
 # brew install otx
@@ -158,13 +155,15 @@ npm i -g yarn
 npm i -g npm-which
 npm i -g devtool
 npm i -g http-server
-npm i -g react-native-cli
-npm i -g code-push-cli
-npm i -g eslint
-npm i -g eslint-plugin-react
-npm i -g eslint-config-airbnb
-npm i -g babel-eslint
-npm i -g flow-bin
+if [ "$1" != "-server" ]; then
+  npm i -g react-native-cli
+  npm i -g code-push-cli
+  npm i -g eslint
+  npm i -g eslint-plugin-react
+  npm i -g eslint-config-airbnb
+  npm i -g babel-eslint
+  npm i -g flow-bin
+fi
 
 ## Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
