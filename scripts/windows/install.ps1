@@ -33,10 +33,10 @@ choco install putty.install -y
 choco install filezilla -y
 choco install seer -y
 choco install autohotkey.install -y
-choco install gpmdp -y
 choco install gamesavemanager -y
 choco install charles -y
 choco install streamlink -y
+choco install windirstat -y
 # TODO: Add these when they install successfully through chocolatey: 7zip, turbotop, teamviewer, skype,
 # microsoft teams, logitech gaming software, desktime, blizzard app, steam, nvidia gefore experience,
 # razer cortex, ps4 remote play
