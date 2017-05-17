@@ -11,6 +11,9 @@ choco install git -y
 choco install git-lfs -y
 # TODO: Write .gitconfig
 
+## Install ptyhon
+choco install python2 -y
+
 ## Install nvm, node, and yarn
 choco install nvm -y
 refreshenv
@@ -37,6 +40,7 @@ choco install gamesavemanager -y
 choco install charles -y
 choco install streamlink -y
 choco install windirstat -y
+choco install lockhunter -y
 # TODO: Add these when they install successfully through chocolatey: 7zip, turbotop, teamviewer, skype,
 # microsoft teams, logitech gaming software, desktime, blizzard app, steam, nvidia gefore experience,
 # razer cortex, ps4 remote play
