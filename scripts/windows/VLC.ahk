@@ -35,8 +35,8 @@ WinSet_Click_Through(I, T="254") {
 SetTitleMatchMode, 2
 ID := WinExist("VLC media player")
 
-;set it to 60% transparent and unclickable
-WinSet_Click_Through(ID, 0.8 * 255)
+;set it to 75% transparent and unclickable
+WinSet_Click_Through(ID, 0.75 * 255)
 
 ;wait until the user quits, then show window again
 OnExit, AppEnd
