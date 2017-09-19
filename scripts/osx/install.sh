@@ -93,7 +93,6 @@ brew cask install imageoptim
 brew cask install cd-to
 brew cask install charles
 brew cask install cyberduck
-brew cask install jdownloader
 if [ "$1" != "-server" ]; then
   brew cask install eclipse-java
   brew cask install android-studio
@@ -103,6 +102,7 @@ fi
 if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   # brew cask install desktime
   brew cask install lastpass
+  brew cask install jdownloader
   brew cask install flux
   brew cask install google-drive
   brew cask install franz
