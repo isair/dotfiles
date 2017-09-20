@@ -82,6 +82,7 @@ brew install imagemagick
 brew install lynx
 brew install tree
 brew install xaric
+brew install clamav && open https://gist.github.com/gagarine/9168c1b7e4b5f55cb3254582e30d808e
 
 ## Install essential apps
 brew cask install macvim
