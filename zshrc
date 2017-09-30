@@ -98,7 +98,7 @@ alias .gplr="git pull --rebase"
 alias .gd="git diff"
 alias .gdc="git diff --cached"
 alias .grup="git remote update --prune"
-alias .gs="git show"
+alias .gsw="git show"
 alias .grt="git revert"
 alias .gcp="git cherry-pick"
 
