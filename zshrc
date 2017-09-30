@@ -57,8 +57,6 @@ eval "$(rbenv init -)"
 # Aliases
 alias git=hub
 alias lynx="lynx -cfg=$HOME/.lynxrc"
-alias vi="mvim -v"
-alias vim=vi
 
 # Heroku Toolbelt setup
 export PATH="/usr/local/heroku/bin:$PATH"
