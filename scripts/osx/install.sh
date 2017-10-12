@@ -85,7 +85,6 @@ brew install xaric
 brew install clamav && open https://gist.github.com/gagarine/9168c1b7e4b5f55cb3254582e30d808e
 
 ## Install essential apps
-brew cask install macvim
 brew cask install visual-studio-code
 brew cask install gitup
 brew cask install the-unarchiver
@@ -104,7 +103,6 @@ if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   # brew cask install desktime
   brew cask install lastpass
   brew cask install jdownloader
-  brew cask install flux
   brew cask install google-drive
   brew cask install franz
   brew cask install skype
@@ -119,7 +117,7 @@ if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   brew cask install dash
   brew cask install daisydisk
   brew cask install boom
-  # paid but not available on cask after this
+  # paid but not available on cask after this line
   # brew cask install atext
   # brew cask install omnigraffle
   # brew cask install bartender2
