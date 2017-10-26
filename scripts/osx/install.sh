@@ -74,34 +74,27 @@ brew cask install java
 
 ## Install essential packages
 brew install coreutils
-brew install thefuck
 brew install vim
 brew install watchman
 brew install youtube-dl
 brew install imagemagick
-brew install lynx
-brew install tree
 brew install xaric
-brew install clamav && open https://gist.github.com/gagarine/9168c1b7e4b5f55cb3254582e30d808e
 
 ## Install essential apps
 brew cask install visual-studio-code
 brew cask install gitup
 brew cask install the-unarchiver
-brew cask install bettertouchtool
-brew cask install imageoptim
 brew cask install cd-to
 brew cask install charles
-brew cask install cyberduck
+# brew cask install desktime
 if [ "$1" != "-server" ]; then
-  brew cask install eclipse-java
-  brew cask install android-studio
-  brew cask install genymotion
+  brew cask install imageoptim
   # brew cask install fabric # doesn't exist
 fi
 if [ "$1" != "-vm" -a "$1" != "-server" ]; then
-  # brew cask install desktime
+  brew cask install bettertouchtool
   brew cask install lastpass
+  brew cask install cyberduck
   brew cask install jdownloader
   brew cask install google-drive
   brew cask install franz
@@ -110,6 +103,9 @@ if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   brew cask install vlc
   brew cask install spotify
   brew cask install torbrowser
+  brew cask install eclipse-java
+  brew cask install android-studio
+  brew cask install genymotion
   brew cask install steam
   brew cask install gog-galaxy
   brew cask install openemu    # TODO: Script for backing up ROMs and save files.
@@ -179,3 +175,6 @@ qlmanage -r
 
 ## Clean things up
 "$PWD/cleanup.sh"
+
+## Symlink dotfiles
+"$PWD/symlink-dotfiles.sh"
