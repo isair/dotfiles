@@ -86,6 +86,7 @@ brew cask install disk-inventory-x
 
 # Install apps for vms and normal installations
 if [ "$1" != "-server" ]; then
+  brew cask install bettertouchtool
   brew cask install imageoptim
   # brew cask install desktime
   # brew cask install fabric # doesn't exist
@@ -93,7 +94,6 @@ fi
 
 # Install apps for normal installations only
 if [ "$1" != "-vm" -a "$1" != "-server" ]; then
-  brew cask install bettertouchtool
   brew cask install lastpass
   brew cask install cyberduck
   brew cask install jdownloader
