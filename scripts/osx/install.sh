@@ -82,6 +82,7 @@ brew cask install gitup
 brew cask install the-unarchiver
 brew cask install cd-to
 brew cask install charles
+brew cask install disk-inventory-x
 
 # Install apps for vms and normal installations
 if [ "$1" != "-server" ]; then
@@ -96,6 +97,7 @@ if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   brew cask install lastpass
   brew cask install cyberduck
   brew cask install jdownloader
+  brew cask install dropbox
   brew cask install google-drive
   brew cask install franz
   brew cask install skype
