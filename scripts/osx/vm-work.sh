@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 while true
 do
   VBoxManage controlvm Work keyboardputscancode 1c 9c
