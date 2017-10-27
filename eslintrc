@@ -1,9 +1,0 @@
-{
-  "extends": "airbnb",
-  "rules": {
-    "spaced-comment": [2, "always", {
-      "exceptions": ["-", "+"],
-      "markers": ["=", "!", ":", "global"]
-    }],
-  }
-}
