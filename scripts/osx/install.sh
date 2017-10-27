@@ -76,17 +76,21 @@ brew install youtube-dl
 brew install imagemagick
 brew install xaric
 
-## Install essential apps
+## Install apps for servers, vms, and normal installations
 brew cask install visual-studio-code
 brew cask install gitup
 brew cask install the-unarchiver
 brew cask install cd-to
 brew cask install charles
-# brew cask install desktime
+
+# Install apps for vms and normal installations
 if [ "$1" != "-server" ]; then
   brew cask install imageoptim
+  # brew cask install desktime
   # brew cask install fabric # doesn't exist
 fi
+
+# Install apps for normal installations only
 if [ "$1" != "-vm" -a "$1" != "-server" ]; then
   brew cask install bettertouchtool
   brew cask install lastpass
