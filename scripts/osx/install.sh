@@ -36,10 +36,6 @@ fi
 brew update
 brew upgrade
 
-## Install brew cask
-brew tap caskroom/cask
-brew install brew-cask
-
 ## Install git
 brew install openssl
 brew install curl
