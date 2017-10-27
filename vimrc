@@ -80,6 +80,10 @@ set relativenumber
 " Clean trailing whitespace characters in code and text files
 autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" Replace Windows style line endings with Unix style line endings in code and text files
+autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\r\n/\r/g
+
+
 " Indentation configuration
 set expandtab
 set shiftwidth=2
