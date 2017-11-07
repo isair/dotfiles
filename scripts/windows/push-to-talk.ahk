@@ -1,6 +1,8 @@
 #NoEnv
 #SingleInstance force
 
+SendMode Input
+
 *LAlt::
   Unmute()
   KeyWait, LAlt

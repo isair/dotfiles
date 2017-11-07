@@ -1,4 +1,6 @@
 ﻿#NoEnv
+#SingleInstance force
+#Persistent
 
 /*
 WinSet_Click_Through - Makes a window unclickable. Written by Wicked & SKAN.
@@ -28,8 +30,7 @@ WinSet_Click_Through(I, T="254") {
    Else
       Return 0
 }
-#SingleInstance force
-#Persistent
+
 ;app code starts here
 ;get window ID for a VLC instance
 SetTitleMatchMode, 2
