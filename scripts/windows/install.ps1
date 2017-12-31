@@ -6,6 +6,7 @@ Set-ExecutionPolicy RemoteSigned
 Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 
 ## Install packages via Chocolatey
+# TODO: Add these when they install successfully through chocolatey: turbotop, microsoft teams, logitech gaming software, desktime, blizzard app, steam, nvidia gefore experience, ps4 remote play
 choco install .\config\chocolatey-packages.config -y
 refreshenv
 
@@ -13,13 +14,6 @@ refreshenv
 
 ## Install the latest node release
 nvm install latest
-
-## Install essential apps
-choco install GoogleChrome -y
-choco install googledrive -y
-choco install vmware-workstation-player -y
-choco install seer -y
-# TODO: Add these when they install successfully through chocolatey: turbotop, microsoft teams, logitech gaming software, desktime, blizzard app, steam, nvidia gefore experience, razer cortex, ps4 remote play
 
 # TODO: Clone and run vmware player unlocker
 
