@@ -1,0 +1,2 @@
+# Launch Zsh
+exec zsh
