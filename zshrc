@@ -112,4 +112,4 @@ alias .pup="pod update"
 
 alias .ne="PATH=$(npm bin):$PATH"
 
-alias .changelog="git log --pretty=format:"[%an] %s%n%n%b%n-------"
+alias .changelog="git log --pretty=format:\"[%an] %s%n%n%b%n-------\""
