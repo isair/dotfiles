@@ -3,6 +3,9 @@
 ## Make sure everthing is up-to-date
 # TODO
 
+# Configure git
+git config --global core.autocrlf input
+
 ## Install Oh My Zsh
 if ! hash zsh 2>/dev/null; then
   sudo apt-get install zsh

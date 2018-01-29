@@ -10,6 +10,8 @@ Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-E
 choco install .\config\chocolatey-packages.config -y
 refreshenv
 
+## Configure git
+git config --global core.autocrlf true
 # TODO: Write .gitconfig
 
 ## Install the latest node release

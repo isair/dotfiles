@@ -43,6 +43,9 @@ brew install git --with-brewed-curl --with-brewed-openssl
 brew install hub
 brew install git-lfs && git lfs install
 
+# Configure git
+git config --global core.autocrlf input
+
 ## Install nvm and node
 if ! hash nvm 2>/dev/null; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
