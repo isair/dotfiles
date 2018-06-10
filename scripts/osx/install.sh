@@ -182,4 +182,4 @@ qlmanage -r
 "$PWD/cleanup.sh"
 
 ## Symlink dotfiles
-"$PWD/symlink-dotfiles.sh"
+"$PWD/../unix/symlink-dotfiles.sh"
