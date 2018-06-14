@@ -88,7 +88,7 @@ brew cask install charles
 brew cask install disk-inventory-x
 
 # Install apps for vms and normal installations
-if [ "$1" != "-server" ]; then
+if [ "$1" != "--server" ]; then
   brew cask install bettertouchtool
   brew cask install imageoptim
   # brew cask install desktime
@@ -96,7 +96,7 @@ if [ "$1" != "-server" ]; then
 fi
 
 # Install apps for normal installations only
-if [ "$1" != "-vm" -a "$1" != "-server" ]; then
+if [ "$1" != "--vm" -a "$1" != "--server" ]; then
   brew cask install lastpass
   brew cask install cyberduck
   brew cask install jdownloader
@@ -135,7 +135,7 @@ brew cask install onyx
 
 ## Python and Python packages
 brew install python
-if [ "$1" != "-server" ]; then
+if [ "$1" != "--server" ]; then
   pip install -U subliminal
 fi
 
@@ -153,7 +153,7 @@ npm i -g yarn
 npm i -g npm-which
 npm i -g devtool
 npm i -g http-server
-if [ "$1" != "-server" ]; then
+if [ "$1" != "--server" ]; then
   npm i -g react-native-cli
   npm i -g code-push-cli
   npm i -g eslint
