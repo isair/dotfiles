@@ -39,7 +39,7 @@ brew upgrade
 ## Install git
 brew install openssl
 brew install curl
-brew install git --with-brewed-curl --with-brewed-openssl
+brew install git --with-curl --with-openssl
 brew install hub
 brew install git-lfs && git lfs install
 
