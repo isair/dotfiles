@@ -32,6 +32,9 @@ if ! hash brew 2>/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+## Make sure brew cask has access to older versions of packages.
+brew tap caskroom/versions
+
 ## Make sure packages and their definitions are up-to-date
 brew update
 brew upgrade
@@ -165,7 +168,7 @@ fi
 
 ## Install QuickLook plugins
 # Source: https://github.com/sindresorhus/quick-look-plugins
-brew cask install betterzipql
+# brew cask install betterzipql # doesn't exist anymore
 # brew cask install cert-quicklook # doesn't exist anymore
 brew cask install epubquicklook
 brew cask install qlcolorcode
