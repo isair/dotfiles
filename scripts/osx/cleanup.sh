@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-rm -rf "~/Library/Application Support/MobileSync/Backup"
+rm -rf "$HOME/Library/Application Support/MobileSync/Backup"
 
-brew linkapps
 brew cleanup
 brew prune
 brew cask cleanup
