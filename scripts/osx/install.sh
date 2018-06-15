@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $(dirname "$0")
+cd "$(dirname "$0")" || exit 1
 
 if ! hash xcode-select 2>/dev/null; then
   echo Xcode needs to be installed
@@ -103,8 +103,7 @@ if [ "$1" != "--vm" -a "$1" != "--server" ]; then
   brew cask install lastpass
   brew cask install cyberduck
   brew cask install jdownloader
-  brew cask install dropbox
-  brew cask install google-drive
+  brew cask install syncthing-bar
   brew cask install franz
   brew cask install skype
   brew cask install microsoft-teams
