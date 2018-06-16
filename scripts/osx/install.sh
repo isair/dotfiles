@@ -74,6 +74,9 @@ fi
 ## Install java
 brew cask install java
 
+## Install Android SDK
+brew cask install android-sdk
+
 ## Install essential packages
 brew install coreutils
 brew install vim
