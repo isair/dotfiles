@@ -84,6 +84,8 @@ brew install watchman
 brew install youtube-dl
 brew install imagemagick
 brew install xaric
+brew install mkcert
+brew install nss
 
 ## Install apps for servers, vms, and normal installations
 brew cask install visual-studio-code
