@@ -48,9 +48,6 @@ export REACT_EDITOR='code'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# travis gem setup
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
-
 #
 # Other
 #
@@ -58,9 +55,6 @@ eval "$(rbenv init -)"
 # Aliases
 alias git=hub
 alias lynx="lynx -cfg=$HOME/.lynxrc"
-
-# Heroku Toolbelt setup
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # Use brew binaries before system binaries
 export PATH="/usr/local/bin:$PATH"
