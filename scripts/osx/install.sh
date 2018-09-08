@@ -110,8 +110,6 @@ if [ "$1" != "--vm" -a "$1" != "--server" ]; then
   brew cask install jdownloader
   brew cask install syncthing-bar
   brew cask install franz
-  brew cask install skype
-  brew cask install microsoft-teams
   brew cask install vlc
   brew cask install spotify
   brew cask install torbrowser
