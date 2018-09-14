@@ -11,6 +11,6 @@ scoop export | ForEach-Object {
     $packageData = $_ -split "\s+"
     $packageName = $packageData[0]
     return $packageName
-} > "$backupPath\scoop-packages.txt"
+} | Out-File "$backupPath\scoop-packages.txt" -Encoding UTF8
 
 Write-Output "Successfully backed up packages under $backupPath"
