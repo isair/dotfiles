@@ -20,9 +20,21 @@ scoop bucket add versions
 ## Install packages
 & "$PSScriptRoot\Install-Packages.ps1" $backupPath
 
+## TODO: Symlink dotfiles, set $Profile, etc.
+
 ## Configure git
 git config --global core.autocrlf true
 # TODO: Write .gitconfig
+
+## Install VIM Plug
+mkdir ~\vimfiles\autoload
+$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+(New-Object Net.WebClient).DownloadFile(
+  $uri,
+  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+    "~\vimfiles\autoload\plug.vim"
+  )
+)
 
 ## Install the latest node release
 nvm install latest
