@@ -19,6 +19,14 @@ zstyle ':completion:*' matcher-list \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
 #
+# Homebrew
+#
+
+# Use brew binaries before system binaries
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+#
 # Rust
 #
 
@@ -55,10 +63,6 @@ eval "$(rbenv init -)"
 # Aliases
 alias git=hub
 alias lynx="lynx -cfg=$HOME/.lynxrc"
-
-# Use brew binaries before system binaries
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
 
 # thefuck setup
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
