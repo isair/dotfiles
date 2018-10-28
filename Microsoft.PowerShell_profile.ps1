@@ -23,6 +23,7 @@ function .gf { git fetch $args }
 function .gfap { git fetch --all --prune $args }
 function .gb { git branch $args }
 function .gba { git branch -a $args }
+function .gch { git checkout $args }
 function .grb { git rebase $args }
 function .grbi { git rebase -i $args }
 function .gcm { git commit $args }
