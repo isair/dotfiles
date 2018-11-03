@@ -61,7 +61,6 @@ eval "$(rbenv init -)"
 #
 
 # Aliases
-alias git=hub
 alias lynx="lynx -cfg=$HOME/.lynxrc"
 
 # thefuck setup
