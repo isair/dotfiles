@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 ## Make sure everthing is up-to-date
-# TODO
+sudo apt-get update
+sudo apt-get upgrade
+
+# Install some initial essentials
+sudo apt-get install curl
 
 # Configure git
 git config --global core.autocrlf input
@@ -16,6 +20,7 @@ fi
 ## Install nvm and node
 if ! hash nvm 2>/dev/null; then
   # TODO
+  echo "TODO"
 fi
 
 ## Install rbenv, ruby-builder, ruby and bundler
@@ -36,17 +41,16 @@ fi
 
 ## Install essential node packages
 npm i -g yarn
-npm i -g npm-which
-npm i -g devtool
-npm i -g http-server
+yarn global add npm-which
+yarn global add devtool
+yarn global add http-server
 if [ "$1" != "-server" ]; then
-  npm i -g react-native-cli
-  npm i -g code-push-cli
-  npm i -g eslint
-  npm i -g eslint-plugin-react
-  npm i -g eslint-config-airbnb
-  npm i -g babel-eslint
-  npm i -g flow-bin
+  yarn global add react-native-cli
+  yarn global add eslint
+  yarn global add eslint-plugin-react
+  yarn global add eslint-config-airbnb
+  yarn global add babel-eslint
+  yarn global add flow-bin
 fi
 
 ## Clean things up
