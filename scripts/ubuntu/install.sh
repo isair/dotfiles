@@ -28,6 +28,7 @@ if ! hash rbenv 2>/dev/null; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
   git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
   export PATH="$HOME/.rbenv/bin:$PATH"
+  sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
   eval "$(rbenv init -)"
   latest_stable_ruby=$(rbenv install -l | grep -v - | tail -1)
   rbenv install $latest_stable_ruby
@@ -39,8 +40,12 @@ if ! hash bundler 2>/dev/null; then
   rbenv rehash
 fi
 
+## Install yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+
 ## Install essential node packages
-npm i -g yarn
 yarn global add npm-which
 yarn global add devtool
 yarn global add http-server
