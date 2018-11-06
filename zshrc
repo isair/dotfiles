@@ -11,6 +11,10 @@ export PATH="/usr/local/bin:$PATH"
 
 source "$ZSH/oh-my-zsh.sh"
 
+# Set VIM as default editor
+export VISUAL=vim
+export EDITOR="${VISUAL}"
+
 # Fuzzy auto-completion
 zstyle ':completion:*' matcher-list \
   '' \
