@@ -40,9 +40,9 @@ if ! hash bundler 2>/dev/null; then
   rbenv rehash
 fi
 
-## Install Java 8
+## Install Java 8 and set it as default
 sudo add-apt-repository ppa:webupd8team/java
-sudo apt install oracle-java8-installer
+sudo apt install oracle-java8-installer oracle-java8-set-default
 
 ## Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
