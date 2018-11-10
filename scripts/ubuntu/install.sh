@@ -44,23 +44,20 @@ fi
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt install oracle-java8-installer oracle-java8-set-default
 
+# Install Charles (web debugging proxy)
+wget -q -O - https://www.charlesproxy.com/packages/apt/PublicKey | sudo apt-key add -
+sudo sh -c 'echo deb https://www.charlesproxy.com/packages/apt/ charles-proxy main > /etc/apt/sources.list.d/charles.list'
+sudo apt-get install charles-proxy
+
 ## Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 ## Install essential node packages
-yarn global add npm-which
-yarn global add devtool
-yarn global add http-server
-if [ "$1" != "-server" ]; then
-  yarn global add react-native-cli
-  yarn global add eslint
-  yarn global add eslint-plugin-react
-  yarn global add eslint-config-airbnb
-  yarn global add babel-eslint
-  yarn global add flow-bin
-fi
+npm install --global npm-which
+npm install --global devtool
+npm install --global http-server
 
 ## Clean things up
 # TODO
