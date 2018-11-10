@@ -27,6 +27,10 @@ Plug 'ervandew/supertab' " Insert mode completions with tab key
 Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
 Plug 'rizzatti/dash.vim' " Dash (code docs) support
 Plug 'wkentaro/conque.vim' " shell inside vim buffer
+Plug 'danro/rename.vim' " Adds a :rename command
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
 
 call plug#end()
 
