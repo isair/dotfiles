@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # Install some initial essentials
-sudo apt-get install curl vim
+sudo apt-get install curl vim xsel
 
 # Configure git
 git config --global core.autocrlf input
