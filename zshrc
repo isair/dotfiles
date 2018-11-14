@@ -72,7 +72,7 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 # Android SDK (installed via homebrew)
 export ANDROID_HOME=/usr/local/share/android-sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 # Add depot_tools binaries
 export PATH="$HOME/Projects/depot_tools:$PATH"
