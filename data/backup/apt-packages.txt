@@ -12,6 +12,7 @@ fonts-indic
 git-flow
 git-lfs
 git
+gnome-contacts
 gpick
 gradle
 grep
