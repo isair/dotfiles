@@ -58,6 +58,7 @@ sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 npm install --global npm-which
 npm install --global devtool
 npm install --global http-server
+npm install --global rimraf
 
 ## Clean things up
 # TODO
