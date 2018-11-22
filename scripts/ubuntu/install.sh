@@ -61,7 +61,7 @@ npm install --global http-server
 npm install --global rimraf
 
 ## Clean things up
-# TODO
+"$PWD/cleanup.sh"
 
 ## Symlink dotfiles
 "$PWD/symlink-dotfiles.sh"
