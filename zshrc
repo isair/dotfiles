@@ -79,7 +79,8 @@ export PATH="$HOME/Projects/depot_tools:$PATH"
 
 # Command shortcuts
 alias .is="cd ~/Projects/isair"
-alias .mll="cd ~/Projects/movielala"
+alias .mj="cd ~/Projects/mojilala-mobile"
+alias .fx="cd ~/Projects/fairfx"
 alias .ot="cd ~/Projects/other"
 
 alias .gs="git status"
