@@ -31,6 +31,12 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 #
+# Java
+#
+
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+
+#
 # Rust
 #
 
