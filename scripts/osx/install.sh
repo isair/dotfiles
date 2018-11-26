@@ -71,8 +71,9 @@ if ! hash bundler 2>/dev/null; then
   rbenv rehash
 fi
 
-## Install java
+## Install Java
 brew cask install java
+brew cask install java8
 
 ## Install Android SDK
 brew cask install android-sdk
@@ -105,17 +106,14 @@ fi
 
 # Install apps for normal installations only
 if [ "$1" != "--vm" -a "$1" != "--server" ]; then
-  brew cask install lastpass
-  brew cask install cyberduck
+  brew cask install keepassxc
+  brew cask install filezilla
   brew cask install jdownloader
-  brew cask install syncthing-bar
   brew cask install franz
   brew cask install vlc
   brew cask install spotify
   brew cask install torbrowser
-  brew cask install eclipse-java
   brew cask install android-studio
-  brew cask install genymotion
   brew cask install steam
   brew cask install gog-galaxy
   brew cask install openemu    # TODO: Script for backing up ROMs and save files.
@@ -134,7 +132,7 @@ if [ "$1" != "--vm" -a "$1" != "--server" ]; then
 fi
 
 ## Install maintenance apps
-brew cask install malwarebytes-anti-malware
+brew cask install malwarebytes
 brew cask install appcleaner
 brew cask install onyx
 
@@ -160,12 +158,6 @@ npm i -g devtool
 npm i -g http-server
 if [ "$1" != "--server" ]; then
   npm i -g react-native-cli
-  npm i -g code-push-cli
-  npm i -g eslint
-  npm i -g eslint-plugin-react
-  npm i -g eslint-config-airbnb
-  npm i -g babel-eslint
-  npm i -g flow-bin
 fi
 
 ## Install QuickLook plugins
