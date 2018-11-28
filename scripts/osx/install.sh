@@ -109,7 +109,8 @@ if [ "$1" != "--vm" -a "$1" != "--server" ]; then
   brew cask install keepassxc
   brew cask install filezilla
   brew cask install jdownloader
-  brew cask install franz
+  brew cask install franz # for personal messaging
+  brew cask install station # for work accounts & messaging
   brew cask install vlc
   brew cask install spotify
   brew cask install torbrowser
