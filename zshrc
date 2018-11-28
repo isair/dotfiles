@@ -34,7 +34,9 @@ export PATH="/usr/local/sbin:$PATH"
 # Java
 #
 
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+if [[ "${OSTYPE}" == darwin* ]]; then
+  export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+fi
 
 #
 # Rust
