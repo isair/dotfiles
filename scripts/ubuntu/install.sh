@@ -49,6 +49,10 @@ wget -q -O - https://www.charlesproxy.com/packages/apt/PublicKey | sudo apt-key 
 sudo sh -c 'echo deb https://www.charlesproxy.com/packages/apt/ charles-proxy main > /etc/apt/sources.list.d/charles.list'
 sudo apt-get install charles-proxy
 
+## Install certbot for generating SSL certificates for your domains
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt install python-certbot-apache
+
 ## Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
