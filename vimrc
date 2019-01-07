@@ -78,6 +78,7 @@ let g:syntastic_javascript_eslint_exec = StrTrim(system('npm-which eslint'))
 let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_typescript_tslint_exec = StrTrim(system('npm-which tslint'))
+let g:syntastic_typescript_tsc_exec = StrTrim(system('npm-which tsc'))
 let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 
 set statusline+=%#warningmsg#
