@@ -29,23 +29,29 @@ Plug 'rizzatti/dash.vim' " Dash (code docs) support
 Plug 'wkentaro/conque.vim' " shell inside vim buffer
 Plug 'danro/rename.vim' " Adds a :rename command
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
+\ 'do': 'yarn install',
+\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
 Plug 'flowtype/vim-flow', {
-  \ 'autoload': {
-  \   'filetypes': 'javascript'
-  \ }}
+\ 'autoload': {
+\   'filetypes': 'javascript'
+\ }}
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim', {
 \ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+\   'windows' : 'tools\\update-dll-mingw',
+\   'cygwin' : 'make -f make_cygwin.mak',
+\   'mac' : 'make -f make_mac.mak',
+\   'linux' : 'make',
+\   'unix' : 'gmake',
+\ }}
 Plug 'quramy/tsuquyomi'
+Plug 'rafi/vim-unite-issue', {
+\  'directory': 'unite-issue',
+\  'unite_sources': [ 'issue' ]
+\  'depends': [
+\    'mattn/webapi-vim', 'tyru/open-browser.vim', 'Shougo/unite.vim'
+\  ]
+\ }
 
 call plug#end()
 
@@ -153,3 +159,9 @@ autocmd FileType make setlocal noexpandtab
 
 " eclim + supertab
 let g:SuperTabDefaultCompletionType = 'context'
+
+" vim-unite-issue
+let g:github_token = '0123456789'
+let g:jira_url = 'https://bugs.acme.com'
+let g:jira_username = 'roadrunner'
+let g:jira_password = 'meemeep'
