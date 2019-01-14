@@ -57,7 +57,7 @@ call plug#end()
 
 " CtrlP setup
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|bundler)|\_site|node_modules|ruby_gems|bundler)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn|bundler)|\_site|node_modules|ruby_gems|bundler|build)$',
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
 let g:ctrlp_working_path_mode = 'r'
