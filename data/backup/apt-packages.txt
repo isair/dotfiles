@@ -63,6 +63,7 @@ nvidia-384
 oracle-java8-set-default
 os-prober
 powertop
+psensor
 python-certbot-apache
 python3-pip
 scrot
