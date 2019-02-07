@@ -117,6 +117,7 @@ alias .grup="git remote update --prune"
 alias .gsw="git show"
 alias .grt="git revert"
 alias .gcp="git cherry-pick"
+alias .gdm="git branch --merged | egrep -v \"(^\*|master|dev|develop)\" | xargs git branch -d"
 
 alias .bin="bundle install --path=vendor/bundle"
 alias .bup="bundle update"
