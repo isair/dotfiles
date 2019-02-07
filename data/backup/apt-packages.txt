@@ -7,6 +7,7 @@ charles-proxy
 cpu-checker
 curl
 dash
+ddgr
 dehydrated
 diffutils
 filezilla
@@ -17,6 +18,7 @@ giblib1
 git-flow
 git-lfs
 git
+gitk
 gnome-contacts
 gnome-sushi
 google-chrome-stable
@@ -32,6 +34,7 @@ grub2-common
 gthumb
 gzip
 hostname
+imagemagick
 init
 keepassxc
 language-pack-en-base
@@ -66,6 +69,7 @@ powertop
 psensor
 python-certbot-apache
 python3-pip
+python3
 scrot
 shellcheck
 shim-signed
@@ -75,6 +79,7 @@ streamer
 sublime-merge
 teamviewer
 tlp
+trimage
 ubuntu-desktop
 ubuntu-minimal
 ubuntu-restricted-addons
