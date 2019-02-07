@@ -11,7 +11,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " Sensible defaults
-Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
 Plug 'kien/ctrlp.vim' " Fuzzy file finder
 Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
@@ -139,10 +139,8 @@ while i <= 9
 endwhile
 
 " Set colors
-let g:solarized_termcolors=256
 syntax enable
-set background=dark
-colorscheme solarized
+colorscheme afterglow
 
 " MacVim
 set guifont=Monaco:h13
