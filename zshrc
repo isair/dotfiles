@@ -129,3 +129,5 @@ alias .pup="pod update"
 alias .ne="PATH=$(npm bin):$PATH"
 
 alias .changelog="git log --no-merges --pretty=format:\"[%an] %s%n%n%b%n-------\""
+
+alias .s="ddgr"
