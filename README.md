@@ -2,11 +2,11 @@
 
 Easily set up a new computer, restore your configurations and files, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
 
+To simplify instructions, the paths provided in this README are for Ubuntu scripts. However, these all have their counterparts for other OSs. You just need to replace the 'ubuntu' part in the paths and, based on the OS, the extension of the script. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
+
 ## Setting Up After a Fresh Install
 
 The following steps assume that you are doing the setup on a freshly formatted computer. Therefore you don't even have your SSH keys or anything set up.
-
-### Ubuntu & OS X
 
 Open the Terminal app and enter the commands below.
 
@@ -19,17 +19,11 @@ cd dotfiles
 
 Before typing the following line, make sure you check the files under the `data` folder and modify them to personalise your setup.
 
-For Ubuntu:
 ```
 ./scripts/ubuntu/install.sh
 ```
 
-For OS X:
-```
-./scripts/osx/install.sh
-```
-
-### Automating Backup & Cleanup
+## Automating Backup & Cleanup
 
 One way to automate backup and cleanup is to add cron jobs for these scripts.
 
@@ -44,11 +38,14 @@ Append the following line, changing the path as necessary.
 
 This will update your package list but you'll still need to commit and push yourself, or write a script for it.
 
+
 ```
 sudo crontab -e
 ```
 
 Append the following line, changing the path if needed again.
 ```
-30 9 * * * /users/owner/projects/dotfiles/scripts/ubuntu/cleanup.sh
+30 9 * * * /home/owner/projects/dotfiles/scripts/ubuntu/cleanup.sh
 ```
+
+Your computer will now do a clean-up in the morning, to open up space that you might need during the day. At 15:00, it will do backups.
