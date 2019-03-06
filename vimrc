@@ -97,6 +97,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Prettier config
+
+let g:prettier#exec_cmd_path = StrTrim(system('npm-which prettier'))
+let g:prettier#autoformat = 0
+
+autocmd BufWritePre *.{js,jsx,ts,tsx,json,css,scss,less,graphql,html,yml} PrettierAsync
+
 " Airline setup
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
