@@ -16,11 +16,6 @@ fi
 ## Make sure everthing is up-to-date
 sudo softwareupdate -i -a
 
-## Link airport binary
-if ! hash airport 2>/dev/null; then
-  sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-fi
-
 ## Install Oh My Zsh
 if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g')"
@@ -40,10 +35,8 @@ brew update
 brew upgrade
 
 ## Install git
-brew install openssl
-brew install curl
-brew install git --with-curl --with-openssl
-brew install hub
+brew install git
+brew install git-credential-osxkeychain helper
 brew install git-lfs && git lfs install
 
 # Configure git
