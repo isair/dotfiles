@@ -120,6 +120,15 @@ autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autoc
 " Replace Windows style line endings with Unix style line endings in code and text files
 autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\r\n/\r/ge
 
+" Automatically reload buffer when files change on disk
+
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
 " Indentation configuration
 set expandtab
 set shiftwidth=2
