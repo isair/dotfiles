@@ -1,10 +1,12 @@
 7kaa
 afflib-tools
+anbox-modules-dkms
 apt-transport-https
 baobab
 base-passwd
 bleachbit
 charles-proxy
+chrome-remote-desktop
 cpu-checker
 curl
 dash
@@ -15,13 +17,13 @@ dotnet-sdk-2.2
 filezilla
 findutils
 firefox-locale-en
-flexihub
 fonts-indic
 giblib1
 git
 git-flow
 gitk
 git-lfs
+gnome-chess
 gnome-contacts
 gnome-sushi
 google-chrome-stable
@@ -80,6 +82,7 @@ python3
 python3-pip
 python-certbot-apache
 reactotron-app
+screen
 scrot
 shellcheck
 shim-signed
@@ -87,7 +90,6 @@ ssh
 steam-launcher
 streamer
 sublime-merge
-teamviewer
 tlp
 trimage
 ubuntu-desktop
@@ -97,6 +99,7 @@ ubuntu-standard
 ubuntu-wallpapers
 vagrant
 vim
+vinagre
 virtualbox
 virtualbox-ext-pack
 wireshark-qt
