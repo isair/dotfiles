@@ -64,6 +64,10 @@ npm install --global devtool
 npm install --global http-server
 npm install --global rimraf
 
+# TODO: Install backed up packages and snaps
+
+# TODO: Add backup script to cron
+
 ## Clean things up
 "$PWD/cleanup.sh"
 
