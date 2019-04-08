@@ -131,6 +131,7 @@ brew cask install onyx
 brew install python
 if [ "$1" != "--server" ]; then
   pip install -U subliminal
+  pip install -U vncdotool
 fi
 
 ## Install security packages and apps
