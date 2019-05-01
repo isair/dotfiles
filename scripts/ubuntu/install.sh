@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+DEFAULT_PROFILE="personal"
+PROFILE_PATH="../../profiles/${1:-$DEFAULT_PROFILE}"
+
 ## Make sure everthing is up-to-date
 sudo apt-get update
 sudo apt-get upgrade
@@ -64,9 +67,11 @@ npm install --global devtool
 npm install --global http-server
 npm install --global rimraf
 
-# TODO: Install backed up packages and snaps
+# Install backed up packages.
+xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
+xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
 
-# TODO: Add backup script to cron
+# TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 
 ## Clean things up
 "$PWD/cleanup.sh"
