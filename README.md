@@ -1,8 +1,18 @@
 # dotfiles
 
-Easily set up a new computer, restore your configurations and files, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
+Easily set up a new computer, restore your packages, applications, configurations, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
 
 To simplify instructions, the paths provided in this README are for Ubuntu scripts. However, these all have their counterparts for other OSs. You just need to replace the 'ubuntu' part in the paths and, based on the OS, the extension of the script. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
+
+All installations and backups work by providing a profile name for them for easy management of different setups. If you provide no profile name to a script, they'll use the default `personal` profile.
+
+Example use:
+```
+install.sh # Set up your new machine quickly using the default personal profile
+# Assume you're customising your installation here by installing new packages, editing shell configuration, etc
+backup.sh my-work-ci-server
+# Now if you're working on your own fork, you can commit this profile and later use it to set up new machines or make reinstallations way easier!
+```
 
 ## Setting Up After a Fresh Install
 
@@ -17,7 +27,7 @@ git clone https://github.com/isair/dotfiles.git
 cd dotfiles
 ```
 
-Before typing the following line, make sure you check the files under the `data` folder and modify them to personalise your setup.
+Before typing the following line, make sure you check the files under the `profiles/personal` folder and modify them to personalise your setup.
 
 ```
 ./scripts/ubuntu/install.sh

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-cd $(dirname "$0")/../..
+DEFAULT_PROFILE="personal"
+
+cd $(dirname "$0")/../../profiles/"${1:-$DEFAULT_PROFILE}"/configurations
 
 rm ~/.bashrc
 ln -s "$PWD/bashrc" ~/.bashrc
