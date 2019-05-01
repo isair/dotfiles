@@ -77,6 +77,7 @@ brew install imagemagick
 brew install xaric
 brew install mkcert
 brew install nss
+brew install thefuck
 
 ## Install apps for servers, vms, and normal installations
 brew cask install visual-studio-code

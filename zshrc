@@ -95,7 +95,7 @@ eval "$(rbenv init -)"
 alias lynx="lynx -cfg=$HOME/.lynxrc"
 
 # thefuck setup
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+eval "$(thefuck --alias -r)" 
 
 # Android SDK (installed via Android Studio)
 export ANDROID_HOME="${HOME}"/Library/Android/sdk
