@@ -16,6 +16,7 @@ imageoptim
 java
 java8
 jdownloader
+libreoffice
 megasync
 nomachine
 onyx
