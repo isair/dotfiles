@@ -14,8 +14,7 @@ if ! hash xcode-select 2>/dev/null; then
 fi
 
 # Install command line tools
-xcode-select -p
-if [[ $? -ne 0 ]]; then
+if [[ $(xcode-select -p) -ne 0 ]]; then
   xcode-select --install
 fi
 
@@ -102,4 +101,4 @@ fi
 "$PWD/../unix/symlink-dotfiles.sh" "${PROFILE}"
 
 # Switch shell
-chsh -s $(grep /zsh$ /etc/shells | tail -1)
+chsh -s "$(grep /zsh$ /etc/shells | tail -1)"

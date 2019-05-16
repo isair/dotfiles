@@ -39,16 +39,6 @@ if [[ "${OSTYPE}" == darwin* ]]; then
 fi
 
 #
-# Rust
-#
-
-## Add rust packages
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Racer setup
-export RUST_SRC_PATH="$HOME/Projects/other/rustc-1.6.0/src/"
-
-#
 # JavaScript
 #
 
@@ -95,21 +85,14 @@ eval "$(rbenv init -)"
 alias lynx="lynx -cfg=$HOME/.lynxrc"
 
 # thefuck setup
-eval "$(thefuck --alias -r)" 
+eval "$(thefuck --alias -r)"
 
 # Android SDK (installed via Android Studio)
 export ANDROID_HOME="${HOME}"/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
 
-# Add depot_tools binaries
-export PATH="$HOME/Projects/depot_tools:$PATH"
-
 # Command shortcuts
-alias .is="cd ~/Projects/isair"
-alias .mj="cd ~/Projects/mojilala-mobile"
-alias .fx="cd ~/Projects/fairfx"
-alias .il="cd ~/Projects/ilyssa"
-alias .ot="cd ~/Projects/other"
+alias .p="cd ~/Projects"
 
 alias .gs="git status"
 alias .ga="git add"
@@ -151,7 +134,6 @@ alias .pup="pod update"
 alias .ne="PATH=$(npm bin):$PATH"
 
 alias .changelog="git log --no-merges --pretty=format:\"[%an] %s%n%n%b%n-------\""
-alias .changelogme="git log --no-merges --pretty=format:\"- %s%n%n%b\""
 
 alias .s="ddgr"
 
