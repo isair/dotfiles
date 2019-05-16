@@ -1,5 +1,6 @@
 aircrack-ng
 coreutils
+ddgr
 gdb
 ghostscript
 git
