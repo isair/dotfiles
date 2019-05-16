@@ -1,0 +1,15 @@
+coreutils
+ddgr
+ghostscript
+git
+git-flow
+git-lfs
+gradle
+graphicsmagick
+imagemagick
+p7zip
+rbenv
+shellcheck
+thefuck
+vim
+watchman
