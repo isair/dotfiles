@@ -6,6 +6,7 @@ charles
 daisydisk
 dash
 disk-inventory-x
+dotnet-sdk
 epubquicklook
 figma
 gimp
