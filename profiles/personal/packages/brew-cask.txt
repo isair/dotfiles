@@ -1,5 +1,4 @@
 android-studio
-anydesk
 appcleaner
 bit-slicer
 boom-3d
@@ -21,6 +20,7 @@ jdownloader
 libreoffice
 logisim
 megasync
+nomachine
 onyx
 qlcolorcode
 qlmarkdown
