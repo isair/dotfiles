@@ -1,6 +1,8 @@
 aircrack-ng
+clamav
 coreutils
 ddgr
+dehydrated
 gdb
 ghostscript
 git
@@ -10,13 +12,16 @@ gradle
 graphicsmagick
 highlight
 imagemagick
+jython
 mkcert
+nikto
 nmap
 nss
 p7zip
 rbenv
 reaver
 shellcheck
+sqlmap
 thefuck
 theharvester
 vim

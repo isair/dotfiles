@@ -2,6 +2,7 @@ android-studio
 appcleaner
 bit-slicer
 boom-3d
+burp-suite
 charles
 daisydisk
 dash
@@ -9,7 +10,6 @@ disk-inventory-x
 dotnet-sdk
 epubquicklook
 figma
-firefox
 gimp
 gitup
 graphiql
@@ -22,6 +22,8 @@ logisim
 megasync
 nomachine
 onyx
+opera
+owasp-zap
 qlcolorcode
 qlmarkdown
 qlprettypatch
@@ -41,3 +43,4 @@ unity-hub
 viscosity
 visual-studio-code
 vlc
+wireshark
