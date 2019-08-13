@@ -11,7 +11,10 @@ git-lfs
 gradle
 graphicsmagick
 highlight
+hub
+hydra
 imagemagick
+jq
 jython
 mkcert
 nikto

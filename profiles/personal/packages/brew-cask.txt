@@ -24,6 +24,7 @@ nomachine
 onyx
 opera
 owasp-zap
+playonmac
 qlcolorcode
 qlmarkdown
 qlprettypatch
@@ -44,3 +45,4 @@ viscosity
 visual-studio-code
 vlc
 wireshark
+zoomus
