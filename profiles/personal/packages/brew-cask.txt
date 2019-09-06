@@ -1,9 +1,11 @@
+alfred
 android-studio
 appcleaner
 bit-slicer
 boom-3d
 burp-suite
 charles
+clockify
 daisydisk
 dash
 disk-inventory-x
@@ -12,6 +14,7 @@ epubquicklook
 figma
 gimp
 gitup
+google-chrome
 graphiql
 imageoptim
 java
@@ -22,7 +25,6 @@ logisim
 megasync
 nomachine
 onyx
-opera
 owasp-zap
 playonmac
 qlcolorcode
@@ -31,10 +33,13 @@ qlprettypatch
 qlstephen
 quicklook-csv
 quicklook-json
+react-native-debugger
 reactotron
 recordit
+rescuetime
 slack
 soundnode
+sourcetree
 spark
 spotify
 station
