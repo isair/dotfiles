@@ -48,9 +48,18 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Racer setup
 export RUST_SRC_PATH="$HOME/Projects/other/rustc-1.6.0/src/"
 
+
+#
+# Flutter
+#
+
+export PATH="$PATH:${HOME}/flutter/bin"
+
 #
 # JavaScript
 #
+
+function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
 
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
