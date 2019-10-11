@@ -1,13 +1,15 @@
-$repoPath = "$PSScriptRoot\..\.."
-$backupPath = Get-Content "$repoPath\data\config\windows-backup-path.txt"
+param([string]$profileName="")
 
-if ([string]::IsNullOrEmpty($backupPath)) {
-    $backupPath = "$repoPath\data\backup"
+if ([string]::IsNullOrEmpty($profileName)) {
+    $profileName = "personal"
 }
 
+$repoPath = "$PSScriptRoot\..\.."
+$backupPath = "$repoPath\profiles\$profileName"
 $backupPath = $backupPath.Trim()
 
-& "$PSScriptRoot\Backup-Packages.ps1" $backupPath
-& "$PSScriptRoot\Backup-WindowsKey.ps1" $backupPath
+& "$PSScriptRoot\Backup-Configurations.ps1" "$backupPath\configurations"
+& "$PSScriptRoot\Backup-Packages.ps1" "$backupPath\packages"
+& "$PSScriptRoot\Backup-WindowsKey.ps1" "$backupPath\secure\licenses"
 # TODO: Check if Putty is installed.
-& "$PSScriptRoot\Backup-Putty.ps1" $backupPath
+& "$PSScriptRoot\Backup-Putty.ps1" "$backupPath\secure\connections"
