@@ -59,3 +59,11 @@ Append the following line, changing the path if needed again.
 ```
 
 Your computer will now do a clean-up in the morning, to open up space that you might need during the day. At 15:00, it will do backups.
+
+## Development
+
+Commit scopes:
+- configs
+- profiles
+- scripts
+- repo
