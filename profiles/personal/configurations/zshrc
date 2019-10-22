@@ -63,8 +63,6 @@ export PATH="$PATH:${HOME}/flutter/bin"
 # JavaScript
 #
 
-function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
-
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -113,9 +111,6 @@ eval "$(thefuck --alias -r)"
 # Android SDK (installed via Android Studio)
 export ANDROID_HOME="${HOME}"/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
-
-# Add depot_tools binaries
-export PATH="$HOME/Projects/depot_tools:$PATH"
 
 # Command shortcuts
 alias .is="cd ~/Projects/isair"
