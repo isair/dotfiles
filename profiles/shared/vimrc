@@ -1,0 +1,156 @@
+set nocompatible
+
+" vim-plug
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-sensible' " Sensible defaults
+Plug 'flazz/vim-colorschemes' " A solid collection of popular colorschemes
+Plug 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
+Plug 'kien/ctrlp.vim' " Fuzzy file finder
+Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
+Plug 'sheerun/vim-polyglot' " Syntax and indentation for all
+Plug 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
+Plug 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
+Plug 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
+Plug 'airblade/vim-gitgutter' " Show git diff in sign column
+Plug 'haya14busa/incsearch.vim'
+Plug 'bling/vim-airline' " Better tabs
+Plug 'ervandew/supertab' " Insert mode completions with tab key
+Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
+Plug 'rizzatti/dash.vim' " Dash (code docs) support
+Plug 'wkentaro/conque.vim' " Shell inside vim buffer
+Plug 'danro/rename.vim' " Adds a :rename command
+Plug 'prettier/vim-prettier', {
+\ 'do': 'yarn install',
+\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
+Plug 'dense-analysis/ale' " Real-time auto-completion, linting, fixing, etc tool
+Plug 'Shougo/vimproc.vim', {
+\ 'build' : {
+\   'windows' : 'tools\\update-dll-mingw',
+\   'cygwin' : 'make -f make_cygwin.mak',
+\   'mac' : 'make -f make_mac.mak',
+\   'linux' : 'make',
+\   'unix' : 'gmake',
+\ }}
+
+call plug#end()
+
+" ALE setup
+let b:ale_fixers = {
+\ 'javascript': [
+\   'prettier',
+\   'eslint'
+\ ],
+\ 'typescript': [
+\   'prettier',
+\   'tslint',
+\   'tsserver'
+\ ]}
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_sign_column_always = 1
+
+" CtrlP setup
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn|bundler)|\_site|node_modules|ruby_gems|bundler|build)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+let g:ctrlp_working_path_mode = 'r'
+
+nmap <leader>p :CtrlP<cr>
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+" Buffergator setup
+let g:buffergator_viewport_split_policy = 'R'
+let g:buffergator_suppress_keymaps = 1
+
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+nmap <leader>bl :BuffergatorOpen<cr>
+
+" Prettier config
+
+let g:prettier#exec_cmd_path = trim(system('npm-which prettier'))
+let g:prettier#autoformat = 0
+
+autocmd BufWritePre *.{js,jsx,ts,tsx,json,css,scss,less,graphql,html,yml} PrettierAsync
+
+" Airline setup
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" \d to search word under cursor in Dash
+nmap <silent> <leader>d <Plug>DashSearch
+
+" Show relative line numbers
+set relativenumber
+
+" Clean trailing whitespace characters in code and text files
+autocmd FileType ts,tsx,txt,c,h,m,mm,cpp,java,php,swift,js,jsx,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" Replace Windows style line endings with Unix style line endings in code and text files
+autocmd FileType ts,tsx,txt,c,h,m,mm,cpp,java,php,swift,js,jsx,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\r\n/\r/ge
+
+" Automatically reload buffer when files change on disk
+
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" Indentation configuration
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+" Allow modified buffers to be hidden
+set hidden
+
+" Ctrl + C for deleting buffer without closing split
+nnoremap <C-c> :bp\|bd #<CR>
+
+" \t for opening a new buffer
+nmap <leader>t :enew<cr>
+
+" Ctrl + S to open sidebar (NERDTree)
+nnoremap <C-s> :NERDTree<CR>
+
+" \x where x is a number to move to window #x
+let i = 1
+while i <= 9
+  execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+  let i = i + 1
+endwhile
+
+" Set colors
+syntax enable
+set background=dark
+colorscheme gruvbox
+
+" MacVim
+set guifont=Monaco:h13
+
+" Fix for gitgutter
+highlight clear SignColumn
+
+" Highlight background of lines longer than 80 characters
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%>80v.\+/
+
+" Don't expand tabs for Makefile
+autocmd FileType make setlocal noexpandtab
+
+" eclim + supertab
+let g:SuperTabDefaultCompletionType = 'context'
