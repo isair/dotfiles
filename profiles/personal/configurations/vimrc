@@ -11,7 +11,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " Sensible defaults
-Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes' " A solid collection of popular colorschemes
 Plug 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
 Plug 'kien/ctrlp.vim' " Fuzzy file finder
 Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
@@ -21,21 +21,16 @@ Plug 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line ar
 Plug 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
 Plug 'airblade/vim-gitgutter' " Show git diff in sign column
 Plug 'haya14busa/incsearch.vim'
-Plug 'scrooloose/syntastic' " Compiler/interpreter error/warning display
 Plug 'bling/vim-airline' " Better tabs
 Plug 'ervandew/supertab' " Insert mode completions with tab key
 Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
 Plug 'rizzatti/dash.vim' " Dash (code docs) support
-Plug 'wkentaro/conque.vim' " shell inside vim buffer
+Plug 'wkentaro/conque.vim' " Shell inside vim buffer
 Plug 'danro/rename.vim' " Adds a :rename command
 Plug 'prettier/vim-prettier', {
 \ 'do': 'yarn install',
 \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
-Plug 'flowtype/vim-flow', {
-\ 'autoload': {
-\   'filetypes': 'javascript'
-\ }}
-Plug 'leafgarland/typescript-vim'
+Plug 'dense-analysis/ale' " Real-time auto-completion, linting, fixing, etc tool
 Plug 'Shougo/vimproc.vim', {
 \ 'build' : {
 \   'windows' : 'tools\\update-dll-mingw',
@@ -44,9 +39,24 @@ Plug 'Shougo/vimproc.vim', {
 \   'linux' : 'make',
 \   'unix' : 'gmake',
 \ }}
-Plug 'quramy/tsuquyomi'
 
 call plug#end()
+
+" ALE setup
+let b:ale_fixers = {
+\ 'javascript': [
+\   'prettier',
+\   'eslint'
+\ ],
+\ 'typescript': [
+\   'prettier',
+\   'tslint',
+\   'tsserver'
+\ ]}
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_sign_column_always = 1
 
 " CtrlP setup
 let g:ctrlp_custom_ignore = {
@@ -68,28 +78,6 @@ nmap <leader>jj :BuffergatorMruCyclePrev<cr>
 nmap <leader>kk :BuffergatorMruCycleNext<cr>
 nmap <leader>bl :BuffergatorOpen<cr>
 
-" Syntastic setup
-function! StrTrim(txt)
-  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-endfunction
-
-let g:syntastic_javascript_eslint_exec = StrTrim(system('npm-which eslint'))
-let g:syntastic_javascript_checkers = ['eslint']
-
-let g:syntastic_typescript_tslint_exec = StrTrim(system('npm-which tslint'))
-let g:syntastic_typescript_tsc_exec = StrTrim(system('npm-which tsc'))
-let g:syntastic_typescript_checkers = ['tslint', 'tsc']
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Prettier config
 
 let g:prettier#exec_cmd_path = StrTrim(system('npm-which prettier'))
@@ -108,10 +96,10 @@ nmap <silent> <leader>d <Plug>DashSearch
 set relativenumber
 
 " Clean trailing whitespace characters in code and text files
-autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ts,tsx,txt,c,h,m,mm,cpp,java,php,swift,js,jsx,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Replace Windows style line endings with Unix style line endings in code and text files
-autocmd FileType txt,c,h,m,mm,cpp,java,php,swift,js,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\r\n/\r/ge
+autocmd FileType ts,tsx,txt,c,h,m,mm,cpp,java,php,swift,js,jsx,json,css,py,rb,feature autocmd BufWritePre <buffer> :%s/\r\n/\r/ge
 
 " Automatically reload buffer when files change on disk
 
@@ -148,7 +136,8 @@ endwhile
 
 " Set colors
 syntax enable
-colorscheme afterglow
+set background=dark
+colorscheme gruvbox
 
 " MacVim
 set guifont=Monaco:h13
