@@ -80,7 +80,7 @@ nmap <leader>bl :BuffergatorOpen<cr>
 
 " Prettier config
 
-let g:prettier#exec_cmd_path = StrTrim(system('npm-which prettier'))
+let g:prettier#exec_cmd_path = trim(system('npm-which prettier'))
 let g:prettier#autoformat = 0
 
 autocmd BufWritePre *.{js,jsx,ts,tsx,json,css,scss,less,graphql,html,yml} PrettierAsync
