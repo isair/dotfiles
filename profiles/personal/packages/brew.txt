@@ -1,6 +1,7 @@
 aircrack-ng
 wix/brew/applesimutils
 automake
+awscli
 clamav
 cmake
 cocoapods
@@ -27,6 +28,7 @@ nmap
 nss
 open-mpi
 p7zip
+pipenv
 rbenv
 reaver
 scrcpy
