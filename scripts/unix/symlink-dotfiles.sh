@@ -6,15 +6,15 @@ cd $(dirname "$0")/../../profiles/"${1:-$DEFAULT_PROFILE}"/configurations
 
 if [ -f bashrc ]; then
   rm ~/.bashrc
-  ln -s bashrc ~/.bashrc
+  ln -s "${PWD}"/bashrc ~/.bashrc
 fi
 
 if [ -f zshrc ]; then
   rm ~/.zshrc
-  ln -s zshrc ~/.zshrc
+  ln -s "${PWD}"/zshrc ~/.zshrc
 fi
 
 if [ -f vimrc ]; then
   rm ~/.vimrc
-  ln -s vimrc ~/.vimrc
+  ln -s "${PWD}"/vimrc ~/.vimrc
 fi
