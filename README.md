@@ -1,6 +1,7 @@
 # dotfiles
 
 [![Gitter chat](https://img.shields.io/gitter/room/isair/dotfiles?style=flat-square)](https://gitter.im/isair/dotfiles)
+![GitHub last commit](https://img.shields.io/github/last-commit/isair/dotfiles?style=flat-square)
 
 Easily set up a new computer, restore your packages, applications, configurations, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
 
