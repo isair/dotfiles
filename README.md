@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Gitter chat](https://img.shields.io/gitter/room/isair/dotfiles?style=flat-square)](https://gitter.im/isair/dotfiles)
+
 Easily set up a new computer, restore your packages, applications, configurations, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
 
 To simplify instructions, the paths provided in this README are for Ubuntu scripts. However, these all have their counterparts for other OSs. You just need to replace the 'ubuntu' part in the paths and, based on the OS, the extension of the script. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
