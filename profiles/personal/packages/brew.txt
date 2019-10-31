@@ -2,6 +2,9 @@ aircrack-ng
 wix/brew/applesimutils
 automake
 awscli
+bison
+chruby
+circleci
 clamav
 cmake
 cocoapods
@@ -29,8 +32,9 @@ nss
 open-mpi
 p7zip
 pipenv
-rbenv
+pkg-config
 reaver
+ruby-install
 scrcpy
 shellcheck
 sqlmap
