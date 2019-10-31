@@ -94,9 +94,9 @@ export REACT_EDITOR='code'
 # Ruby
 #
 
-# rbenv setup
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# chruby setup
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 #
 # Other

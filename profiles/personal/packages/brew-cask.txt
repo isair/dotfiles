@@ -3,7 +3,6 @@ android-studio
 appcleaner
 bit-slicer
 boom-3d
-brave-browser
 burp-suite
 ccleaner
 cd-to-terminal
@@ -21,6 +20,7 @@ flux
 gimp
 gitup
 google-backup-and-sync
+google-chrome
 graphiql
 imageoptim
 java
@@ -30,7 +30,6 @@ keepingyouawake
 kitematic
 libreoffice
 logisim
-nomachine
 onyx
 playonmac
 protonmail-bridge
@@ -43,9 +42,8 @@ quicklook-json
 react-native-debugger
 reactotron
 recordit
-rescuetime
 slack
-spark
+soundnode
 spotify
 station
 suspicious-package

@@ -1,7 +1,1 @@
-INCLUDE:/etc/lynx/lynx.cfg
-
-SET_COOKIES:TRUE
-ACCEPT_ALL_COOKIES:TRUE
-PERSISTENT_COOKIES:TRUE
-COOKIE_FILE:~/.lynx.cookies
-STARTFILE:https://duckduckgo.com
+shared/lynxrc
