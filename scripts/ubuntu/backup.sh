@@ -5,7 +5,9 @@ set -eu
 cd "$(dirname "$0")" || exit 1
 
 DEFAULT_PROFILE="personal"
-BACKUP_PATH="../../profiles/${1:-$DEFAULT_PROFILE}"
+BACKUP_PATH=../../profiles/"${1:-$DEFAULT_PROFILE}"/packages
+
+mkdir -p "${BACKUP_PATH}"
 
 apt-mark showmanual | sort | grep -v -F -f <(apt show "$(apt-mark showmanual)" 2> /dev/null | grep -e ^Depends -e ^Pre-Depends | sed 's/^Depends: //; s/^Pre-Depends: //; s/(.*)//g; s/:any//g' | tr -d ',|' | tr ' ' '\n' | grep -v ^$ | sort -u) > "${BACKUP_PATH}"/apt.txt
 
