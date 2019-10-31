@@ -60,10 +60,27 @@ Append the following line, changing the path if needed again.
 
 Your computer will now do a clean-up in the morning, to open up space that you might need during the day. At 15:00, it will do backups.
 
+## Supported Package Managers
+
+The back-up scripts support the following package managers.
+
+### OS X
+
+- brew
+- brew cask
+
+### Ubuntu
+
+- apt
+- snap
+
+### Windows
+
+- scoop
+
 ## Development
 
 Commit scopes:
-- configs
 - profiles
 - scripts
 - repo
