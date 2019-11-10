@@ -89,9 +89,6 @@ autocmd BufWritePre *.{js,jsx,ts,tsx,json,css,scss,less,graphql,html,yml} Pretti
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" \d to search word under cursor in Dash
-nmap <silent> <leader>d <Plug>DashSearch
-
 " Show relative line numbers
 set relativenumber
 
@@ -124,8 +121,14 @@ nnoremap <C-c> :bp\|bd #<CR>
 " \t for opening a new buffer
 nmap <leader>t :enew<cr>
 
-" Ctrl + S to open sidebar (NERDTree)
-nnoremap <C-s> :NERDTree<CR>
+" \s to open sidebar (NERDTree)
+nnoremap <leader>s :NERDTree<CR>
+
+" \g to go to definition (NERDTree)
+nnoremap <leader>d :ALEGoToDefinition<CR>
+
+" \d to search word under cursor in Dash
+nmap <silent> <leader>d <Plug>DashSearch
 
 " \x where x is a number to move to window #x
 let i = 1
