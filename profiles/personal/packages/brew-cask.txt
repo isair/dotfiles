@@ -23,6 +23,7 @@ google-backup-and-sync
 google-chrome
 graphiql
 imageoptim
+inkscape
 java
 java8
 jdownloader
