@@ -33,6 +33,7 @@ open-mpi
 p7zip
 pipenv
 pkg-config
+python@2
 reaver
 ruby-install
 scrcpy

@@ -1,4 +1,5 @@
 alfred
+android-platform-tools
 android-studio
 appcleaner
 bit-slicer
@@ -22,7 +23,9 @@ gitup
 google-backup-and-sync
 google-chrome
 graphiql
+hyper
 imageoptim
+inkscape
 java
 java8
 jdownloader
@@ -39,9 +42,11 @@ qlprettypatch
 qlstephen
 quicklook-csv
 quicklook-json
+r
 react-native-debugger
 reactotron
 recordit
+rstudio
 slack
 soundnode
 spotify

@@ -24,6 +24,9 @@ sudo softwareupdate -i -a
 # Install Oh My Zsh
 if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g')"
+  ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins
+  mkdir -p "${ZSH_PLUGINS_PATH}"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
 fi
 
 # Install Homebrew

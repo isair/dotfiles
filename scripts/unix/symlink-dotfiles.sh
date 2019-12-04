@@ -18,3 +18,8 @@ if [ -f vimrc ]; then
   rm ~/.vimrc
   ln -s "${PWD}"/vimrc ~/.vimrc
 fi
+
+if [ -f hyper.js ]; then
+  rm ~/.hyper.js
+  ln -s "${PWD}"/hyper.js ~/.hyper.js
+fi
