@@ -109,6 +109,7 @@ The back-up scripts support the following package managers.
 
 - bash
 - zshell
+- hyper.js
 - vim
 
 ## Development
