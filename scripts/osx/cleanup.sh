@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 CLEAN_DEEP=0
 
 while test $# -gt 0
