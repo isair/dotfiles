@@ -155,13 +155,11 @@ module.exports = {
     'hyperterm-paste',
     'hyperline',
     'hyperpower',
-    "hyper-savetext",
-    "hyper-confirm",
-    "hyper-quit",
-    "hypergoogle",
-    "hyperdocs",
-    "hyper-alt-click",
-    "hyper-fileio"
+    'hyper-savetext',
+    'hyper-confirm',
+    'hyper-quit',
+    'hyper-alt-click',
+    'hyper-fileio',
   ],
 
   // in development, you can create a directory under
