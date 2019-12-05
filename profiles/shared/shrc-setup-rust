@@ -1,0 +1,5 @@
+# Add rust packages
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Racer setup
+export RUST_SRC_PATH="$HOME/Projects/other/rustc-1.6.0/src/"

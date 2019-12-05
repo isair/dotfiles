@@ -4,6 +4,9 @@ DEFAULT_PROFILE="personal"
 
 cd $(dirname "$0")/../../profiles/"${1:-$DEFAULT_PROFILE}"/configurations
 
+rm -rf ~/.dotfiles-shared
+ln -s "${PWD}"/../../shared ~/.dotfiles-shared
+
 if [ -f bashrc ]; then
   rm ~/.bashrc
   ln -s "${PWD}"/bashrc ~/.bashrc

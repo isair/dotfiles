@@ -1,0 +1,3 @@
+# Use brew binaries before system binaries
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
