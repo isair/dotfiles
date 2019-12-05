@@ -60,7 +60,7 @@ let g:ale_sign_column_always = 1
 
 " CtrlP setup
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|bundler)|\_site|node_modules|ruby_gems|bundler|build)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn|bundler)|\_site|node_modules|ruby_gems|bundler|build|dist)$',
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
 let g:ctrlp_working_path_mode = 'r'
