@@ -16,9 +16,9 @@ Next add the following lines to your cron jobs via `crontab -e`:
 0 15 * * * ~/projects/dotfiles/scripts/osx/backup.sh
 ```
 
-Then add the following to your admin cron jobs via `sudo crontab -e`:
+Then add the following to your admin cron jobs via `sudo crontab -e`, replacing `owner` with your username:
 ```
-30 9 * * * /home/owner/projects/dotfiles/scripts/ubuntu/cleanup.sh
+30 9 * * * /home/owner/projects/dotfiles/scripts/osx/cleanup.sh
 ```
 
 Launch `Android Studio` and install Android SDK using the recommended options, accept any licenses.
