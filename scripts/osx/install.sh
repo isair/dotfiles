@@ -58,18 +58,11 @@ if ! hash nvm 2>/dev/null; then
   nvm alias default node
 fi
 
-# Install rbenv, ruby-builder, ruby and bundler
-if ! hash rbenv 2>/dev/null; then
-  brew install rbenv
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-  LATEST_STABLE_RUBY=$(rbenv install -l | grep -v - | tail -1)
-  rbenv install "${LATEST_STABLE_RUBY}"
-  rbenv global "${LATEST_STABLE_RUBY}"
-fi
-
-if ! hash bundler 2>/dev/null; then
-  gem install bundler
-  rbenv rehash
+# Install chruby, ruby-install, and latest ruby
+# TODO: Switch to latest ruby, install latest bundler, shell should use latest ruby as well
+if [ "$(command -v chruby)" = "" ]; then
+  brew install chruby ruby-install
+  ruby-install --latest ruby
 fi
 
 # Install Brew packages in the profile.
@@ -79,21 +72,15 @@ while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/p
 # Reload QuickLook plugins
 qlmanage -r
 
-# Python and Python packages
+# Python, TODO: python global packages backup and install
 brew install python
-if [ "$1" != "--server" ]; then
-  pip install -U subliminal
-  pip install -U vncdotool
-fi
 
-# Install essential node packages
+# Install essential node packages, TODO: node global packages backup and sync
 npm i -g yarn
-npm i -g npm-which
-npm i -g devtool
-npm i -g http-server
-if [ "$1" != "--server" ]; then
-  npm i -g react-native-cli
-fi
+# npm i -g npm-which
+# npm i -g devtool
+# npm i -g http-server
+# npm i -g react-native-cli
 
 # TODO: Add scripts to cron and symlink to /usr/local/bin
 
