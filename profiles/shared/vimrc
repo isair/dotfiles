@@ -112,6 +112,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" Use system clipboard for yanking and pasting
+set clipboard=unnamed
+
 " Allow modified buffers to be hidden
 set hidden
 
