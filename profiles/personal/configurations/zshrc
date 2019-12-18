@@ -17,7 +17,7 @@ source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 # Add flutter binaries to path
 export PATH="$PATH:${HOME}/flutter/bin"
 
-# Use Java 1.8 by default
+# Use Java 1.8 by default, because react-native
 if [[ "${OSTYPE}" == darwin* ]]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 fi
@@ -55,3 +55,9 @@ alias .s="ddgr"
 #
 
 source "$HOME"/.dotfiles-shared/shrc-utility
+
+#
+# Custom Shell Prompt
+#
+
+eval "$(starship init zsh)"

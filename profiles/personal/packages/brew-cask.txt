@@ -17,7 +17,6 @@ docker
 dotnet-sdk
 epubquicklook
 figma
-flux
 gimp
 gitup
 google-backup-and-sync
@@ -33,6 +32,7 @@ keepingyouawake
 kitematic
 libreoffice
 logisim
+ngrok
 onyx
 playonmac
 protonmail-bridge
