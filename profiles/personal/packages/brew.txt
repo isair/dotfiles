@@ -47,6 +47,7 @@ thefuck
 theharvester
 vim
 watchman
+weechat
 xaric
 yarn
 youtube-dl
