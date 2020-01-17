@@ -18,7 +18,9 @@ Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
 Plug 'sheerun/vim-polyglot' " Syntax and indentation for all
 Plug 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
 Plug 'brow/vim-xctool' " xctool from vim. Define a JSON array of command line arguments in .xctool-args, use with :make
-Plug 'motemen/git-vim' " Git commands from vim, but I mainly use it for my custom status line
+Plug 'zivyangll/git-blame.vim' " Show git blame for current line in status bar
+Plug 'tpope/vim-fugitive' " git wrapper with lots of goodies
+Plug 'powerline/powerline' " best statusline plugin
 Plug 'airblade/vim-gitgutter' " Show git diff in sign column
 Plug 'haya14busa/incsearch.vim'
 Plug 'bling/vim-airline' " Better tabs

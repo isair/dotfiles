@@ -17,6 +17,7 @@ docker
 dotnet-sdk
 epubquicklook
 figma
+folx
 gimp
 gitup
 google-backup-and-sync
