@@ -14,7 +14,7 @@ if ! hash xcode-select 2>/dev/null; then
 fi
 
 # Install command line tools
-if [[ $(xcode-select -p) -ne 0 ]]; then
+if [ ! "$(xcode-select -p)" = "" ]; then
   xcode-select --install
 fi
 
