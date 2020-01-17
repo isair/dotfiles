@@ -12,6 +12,7 @@ jenkins
 lynx
 p7zip
 shellcheck
+starship
 thefuck
 vim
 watchman

@@ -47,3 +47,9 @@ alias .s="ddgr"
 #
 
 source "$HOME"/.dotfiles-shared/shrc-utility
+
+#
+# Custom Shell Prompt
+#
+
+eval "$(starship init zsh)"
