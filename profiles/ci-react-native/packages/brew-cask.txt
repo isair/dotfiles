@@ -1,3 +1,4 @@
+adoptopenjdk
 android-studio
 appcleaner
 bit-slicer

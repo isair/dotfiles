@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eux
+
 DEFAULT_PROFILE="personal"
 PROFILE="${1:-$DEFAULT_PROFILE}"
 PROFILE_PATH="../../profiles/${PROFILE}"
@@ -59,15 +61,15 @@ if ! hash nvm 2>/dev/null; then
 fi
 
 # Install chruby, ruby-install, and latest ruby
-# TODO: Switch to latest ruby, install latest bundler, shell should use latest ruby as well
+# TODO: Install latest bundler using latest ruby
 if [ "$(command -v chruby)" = "" ]; then
   brew install chruby ruby-install
   ruby-install --latest ruby
 fi
 
 # Install Brew packages in the profile.
-while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/packages/brew-cask.txt
+while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 
 # Reload QuickLook plugins
 qlmanage -r
