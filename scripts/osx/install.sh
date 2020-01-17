@@ -55,9 +55,9 @@ git config --global core.autocrlf input
 
 # Install nvm and node
 if ! hash nvm 2>/dev/null; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
-  source "${HOME}"/.nvm/nvm.sh
-  nvm install node
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
+  export NVM_DIR="${HOME}"/.nvm
+  source "${NVM_DIR}"/nvm.sh --install node
   nvm alias default node
 fi
 
