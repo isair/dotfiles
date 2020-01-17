@@ -17,6 +17,8 @@ fi
 
 # Install command line tools
 if [ ! "$(xcode-select -p)" = "" ]; then
+  # TODO: This will fail if already installed, so we do `|| true`, but we should
+  # do some actual verification instead.
   xcode-select --install || true
 fi
 
@@ -46,7 +48,6 @@ brew upgrade
 
 # Install git
 brew install git
-brew install git-credential-osxkeychain helper
 brew install git-lfs && git lfs install
 
 # Configure git
