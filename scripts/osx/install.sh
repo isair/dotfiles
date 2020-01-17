@@ -17,7 +17,7 @@ fi
 
 # Install command line tools
 if [ ! "$(xcode-select -p)" = "" ]; then
-  xcode-select --install
+  xcode-select --install || true
 fi
 
 # Make sure everthing is up-to-date
