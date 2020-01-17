@@ -36,7 +36,7 @@ if ! hash brew 2>/dev/null; then
 fi
 
 # Make sure brew cask has access to older versions of packages.
-brew tap caskroom/versions
+brew tap homebrew/cask-versions
 
 # Make sure packages and their definitions are up-to-date
 brew update
