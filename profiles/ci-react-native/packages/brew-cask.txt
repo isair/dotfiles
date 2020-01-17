@@ -1,4 +1,4 @@
-adoptopenjdk
+homebrew/cask-versions/adoptopenjdk8
 android-studio
 appcleaner
 bit-slicer
