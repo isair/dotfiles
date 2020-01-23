@@ -26,7 +26,8 @@ fi
 rm -rf "${HOME}/Library/Developer/Xcode/Archives"
 rm -rf "${HOME}/Library/Developer/Xcode/Products"
 rm -rf "${HOME}/Library/Developer/Xcode/DerivedData"
-find -E "${HOME}"/{projects,.jenkins} -maxdepth 6 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +
+find -E "${HOME}"/projects -maxdepth 6 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +
+find -E "${HOME}"/.jenkins/workspace -maxdepth 3 -type d -regex ".*/(ios|android)" -exec git clean -xdf -- {} +
 
 brew cleanup --prune-prefix
 sudo xcrun simctl delete unavailable
