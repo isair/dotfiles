@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eux
+
 DEFAULT_PROFILE="personal"
 PROFILE="${1:-$DEFAULT_PROFILE}"
 PROFILE_PATH="../../profiles/${PROFILE}"
@@ -14,8 +16,10 @@ if ! hash xcode-select 2>/dev/null; then
 fi
 
 # Install command line tools
-if [[ $(xcode-select -p) -ne 0 ]]; then
-  xcode-select --install
+if [ ! "$(xcode-select -p)" = "" ]; then
+  # TODO: This will fail if already installed, so we do `|| true`, but we should
+  # do some actual verification instead.
+  xcode-select --install || true
 fi
 
 # Make sure everthing is up-to-date
@@ -23,7 +27,7 @@ sudo softwareupdate -i -a
 
 # Install Oh My Zsh
 if [ ! -d "${HOME}"/.oh-my-zsh ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g')"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended --skip-chsh"
   ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins
   mkdir -p "${ZSH_PLUGINS_PATH}"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
@@ -36,7 +40,7 @@ if ! hash brew 2>/dev/null; then
 fi
 
 # Make sure brew cask has access to older versions of packages.
-brew tap caskroom/versions
+brew tap homebrew/cask-versions
 
 # Make sure packages and their definitions are up-to-date
 brew update
@@ -44,7 +48,6 @@ brew upgrade
 
 # Install git
 brew install git
-brew install git-credential-osxkeychain helper
 brew install git-lfs && git lfs install
 
 # Configure git
@@ -52,48 +55,35 @@ git config --global core.autocrlf input
 
 # Install nvm and node
 if ! hash nvm 2>/dev/null; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
-  source "${HOME}"/.nvm/nvm.sh
-  nvm install node
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
+  export NVM_DIR="${HOME}"/.nvm
+  source "${NVM_DIR}"/nvm.sh --install node
   nvm alias default node
 fi
 
-# Install rbenv, ruby-builder, ruby and bundler
-if ! hash rbenv 2>/dev/null; then
-  brew install rbenv
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-  LATEST_STABLE_RUBY=$(rbenv install -l | grep -v - | tail -1)
-  rbenv install "${LATEST_STABLE_RUBY}"
-  rbenv global "${LATEST_STABLE_RUBY}"
-fi
-
-if ! hash bundler 2>/dev/null; then
-  gem install bundler
-  rbenv rehash
+# Install chruby, ruby-install, and latest ruby
+# TODO: Install latest bundler using latest ruby
+if [ "$(command -v chruby)" = "" ]; then
+  brew install chruby ruby-install
+  ruby-install --latest ruby
 fi
 
 # Install Brew packages in the profile.
-while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/packages/brew-cask.txt
+while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 
 # Reload QuickLook plugins
 qlmanage -r
 
-# Python and Python packages
+# Python, TODO: python global packages backup and install
 brew install python
-if [ "$1" != "--server" ]; then
-  pip install -U subliminal
-  pip install -U vncdotool
-fi
 
-# Install essential node packages
+# Install essential node packages, TODO: node global packages backup and sync
 npm i -g yarn
-npm i -g npm-which
-npm i -g devtool
-npm i -g http-server
-if [ "$1" != "--server" ]; then
-  npm i -g react-native-cli
-fi
+# npm i -g npm-which
+# npm i -g devtool
+# npm i -g http-server
+# npm i -g react-native-cli
 
 # TODO: Add scripts to cron and symlink to /usr/local/bin
 

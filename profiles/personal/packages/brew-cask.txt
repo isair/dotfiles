@@ -17,7 +17,7 @@ docker
 dotnet-sdk
 epubquicklook
 figma
-flux
+folx
 gimp
 gitup
 google-backup-and-sync
@@ -33,6 +33,8 @@ keepingyouawake
 kitematic
 libreoffice
 logisim
+ngrok
+nomachine
 onyx
 playonmac
 protonmail-bridge
@@ -58,6 +60,7 @@ virtualbox
 viscosity
 visual-studio-code
 vlc
+vnc-viewer
 whatsapp
 wireshark
 zoomus

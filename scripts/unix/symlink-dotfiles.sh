@@ -7,6 +7,11 @@ cd $(dirname "$0")/../../profiles/"${1:-$DEFAULT_PROFILE}"/configurations
 rm -rf ~/.dotfiles-shared
 ln -s "${PWD}"/../../shared ~/.dotfiles-shared
 
+if [ -f profile ]; then
+  rm ~/.profile
+  ln -s "${PWD}"/profile ~/.profile
+fi
+
 if [ -f bashrc ]; then
   rm ~/.bashrc
   ln -s "${PWD}"/bashrc ~/.bashrc

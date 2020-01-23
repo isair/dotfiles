@@ -23,9 +23,12 @@ hub
 hydra
 ideviceinstaller
 imagemagick
+jenkins
 jq
 jython
+lynx
 mkcert
+mutt
 nikto
 nmap
 nss
@@ -39,10 +42,12 @@ ruby-install
 scrcpy
 shellcheck
 sqlmap
+starship
 thefuck
 theharvester
 vim
 watchman
+weechat
 xaric
 yarn
 youtube-dl
