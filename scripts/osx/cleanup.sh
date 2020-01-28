@@ -26,14 +26,17 @@ fi
 rm -rf "${HOME}/Library/Developer/Xcode/Archives"
 rm -rf "${HOME}/Library/Developer/Xcode/Products"
 rm -rf "${HOME}/Library/Developer/Xcode/DerivedData"
-find -E "${HOME}"/projects -maxdepth 6 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +
-find -E "${HOME}"/.jenkins/workspace -maxdepth 3 -type d -regex ".*/(ios|android)" -exec git clean -xdf -- {} +
+find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +
+find -E "${HOME}"/.jenkins/workspace -maxdepth 3 -type d -regex ".*/(ios)" -exec git clean -xdf -- {} +
 
 brew cleanup --prune-prefix
 sudo xcrun simctl delete unavailable
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
+  if hash yarn 2>/dev/null; then
+    yarn cache clean
+  fi
   rm -rf "${HOME}/.jenkins/workspace"
-  find -E "${HOME}/projects" -maxdepth 6 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} +
+  find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} +
   sudo rm -rf "${HOME}/Library/Application Support/MobileSync/Backup"
 fi

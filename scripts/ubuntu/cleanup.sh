@@ -31,8 +31,11 @@ sudo snap list --all | awk '/disabled/{print $1, $3}' |
         sudo snap remove "$snapname" --revision="$revision"
     done
 
-find -E "${HOME}/projects" -maxdepth 6 -type d -regex ".*/build" -exec rm -rf {} +
+find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/build" -exec rm -rf {} +
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
-  find -E "${HOME}/projects" -maxdepth 6 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} +
+  if hash yarn 2>/dev/null; then
+    yarn cache clean
+  fi
+  find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} +
 fi
