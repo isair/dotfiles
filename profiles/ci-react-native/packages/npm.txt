@@ -1,0 +1,11 @@
+appcenter-cli
+detox-cli
+expo-cli
+firebase-tools
+ios-deploy
+node-gyp
+node-pre-gyp
+npm
+npm-which
+rimraf
+yarn

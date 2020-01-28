@@ -10,8 +10,6 @@ google-chrome
 graphiql
 imageoptim
 java
-java8
-jdownloader
 nomachine
 onyx
 qlcolorcode

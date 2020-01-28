@@ -29,6 +29,7 @@ inkscape
 java
 java8
 jdownloader
+keepassxc
 keepingyouawake
 kitematic
 libreoffice
@@ -36,7 +37,6 @@ logisim
 ngrok
 nomachine
 onyx
-playonmac
 protonmail-bridge
 qlcolorcode
 qlmarkdown
@@ -50,7 +50,6 @@ reactotron
 recordit
 rstudio
 slack
-soundnode
 spotify
 station
 suspicious-package
