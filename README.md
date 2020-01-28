@@ -5,7 +5,7 @@
 
 Easily set up a new computer, restore your packages, applications, configurations, and keep your computer automatically maintained and backed up! Complete with bonus convenience scripts and sensible defaults.
 
-To simplify instructions, the paths provided in this README are for Ubuntu scripts. However, these all have their counterparts for other OSs. You just need to replace the 'ubuntu' part in the paths and, based on the OS, the extension of the script. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
+To simplify instructions, the paths provided in this README are for OS X scripts. However, these all have their counterparts for other OSs. You just need to replace the 'osx' part in the paths and, based on the OS, the extension of the script. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
 
 All installations and backups work by providing a profile name for them for easy management of different setups. If you provide no profile name to a script, they'll use the default `personal` profile.
 
@@ -37,7 +37,7 @@ cd dotfiles
 Before typing the following line, make sure you check the files under the `profiles/personal` folder and modify them to personalise your setup.
 
 ```sh
-./scripts/ubuntu/install.sh
+./scripts/osx/install.sh
 ```
 
 ### On an Existing Setup
@@ -45,7 +45,7 @@ Before typing the following line, make sure you check the files under the `profi
 First, fork this repository and clone it on your machine. Then:
 
 ```sh
-<project-dir>/scripts/ubuntu/backup.sh <profile-name>
+<project-dir>/scripts/osx/backup.sh <profile-name>
 ```
 
 This will back-up your packages and apps to the profile you've given, `personal` by default. Creating the profile as necessary if it doesn't exist.
@@ -71,7 +71,7 @@ crontab -e
 
 Append the following line, changing the path as necessary.
 ```sh
-0 15 * * * ~/projects/dotfiles/scripts/ubuntu/backup.sh
+0 15 * * * ~/projects/dotfiles/scripts/osx/backup.sh
 ```
 
 This will update your package list but you'll still need to commit and push yourself, or write a script for it.
@@ -82,7 +82,7 @@ sudo crontab -e
 
 Append the following line, changing the path if needed again.
 ```sh
-30 9 * * * /home/owner/projects/dotfiles/scripts/ubuntu/cleanup.sh
+30 9 * * * /home/owner/projects/dotfiles/scripts/osx/cleanup.sh
 ```
 
 Your computer will now do a clean-up in the morning, to open up space that you might need during the day. At 15:00, it will do backups.
@@ -95,11 +95,15 @@ The back-up scripts support the following package managers.
 
 - brew
 - brew cask
+- npm
+- pip
 
 ### Ubuntu
 
 - apt
 - snap
+- npm
+- pip
 
 ### Windows
 
