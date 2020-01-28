@@ -69,15 +69,11 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
-# Install essential node packages, TODO: Node package list backup
-npm install --global npm-which
-npm install --global devtool
-npm install --global http-server
-npm install --global rimraf
-
 # Install backed up packages.
 xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
 xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+pip install -r "${PROFILE_PATH}"/packages/python.txt
 
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 

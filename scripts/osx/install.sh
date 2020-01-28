@@ -12,13 +12,12 @@ cd "$(dirname "$0")" || exit 1
 # Check for Xcode installation
 if ! hash xcode-select 2>/dev/null; then
   echo Xcode needs to be installed
-  exit
+  exit 1
 fi
 
 # Install command line tools
 if [ ! "$(xcode-select -p)" = "" ]; then
-  # TODO: This will fail if already installed, so we do `|| true`, but we should
-  # do some actual verification instead.
+  # TODO: This will fail if already installed, so we do `|| true`, but we should do some actual verification instead.
   xcode-select --install || true
 fi
 
@@ -31,6 +30,8 @@ if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
   mkdir -p "${ZSH_PLUGINS_PATH}"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
+  sudo chown -R "$(whoami)" /usr/local/share/zsh
+  chmod -R g-w,o-w /usr/local/share/zsh usr/local/share/zsh/site-functions
 fi
 
 # Install Homebrew
@@ -62,28 +63,27 @@ if ! hash nvm 2>/dev/null; then
 fi
 
 # Install chruby, ruby-install, and latest ruby
-# TODO: Install latest bundler using latest ruby
 if [ "$(command -v chruby)" = "" ]; then
   brew install chruby ruby-install
+  # TODO: Fix
   ruby-install --latest ruby
+  # TODO: Install latest bundler using latest ruby
 fi
 
-# Install Brew packages in the profile.
+# Install python.
+brew install python
+
+# Install backed up packages.
+# TODO: Fix gradle - adoptopenjdk
 while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/packages/brew-cask.txt
 while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
+xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+pip install -r "${PROFILE_PATH}"/packages/python.txt
+
+# TODO: python global packages backup and install
 
 # Reload QuickLook plugins
 qlmanage -r
-
-# Python, TODO: python global packages backup and install
-brew install python
-
-# Install essential node packages, TODO: node global packages backup and sync
-npm i -g yarn
-# npm i -g npm-which
-# npm i -g devtool
-# npm i -g http-server
-# npm i -g react-native-cli
 
 # TODO: Add scripts to cron and symlink to /usr/local/bin
 
