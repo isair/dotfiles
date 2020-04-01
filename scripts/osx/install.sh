@@ -31,7 +31,7 @@ if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   mkdir -p "${ZSH_PLUGINS_PATH}"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
   sudo chown -R "$(whoami)" /usr/local/share/zsh
-  chmod -R g-w,o-w /usr/local/share/zsh usr/local/share/zsh/site-functions
+  chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 fi
 
 # Install Homebrew
@@ -55,7 +55,7 @@ brew install git-lfs && git lfs install
 git config --global core.autocrlf input
 
 # Install nvm and node
-if ! hash nvm 2>/dev/null; then
+if [ "$(command -v nvm)" = "" ]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
   export NVM_DIR="${HOME}"/.nvm
   source "${NVM_DIR}"/nvm.sh --install node
@@ -88,10 +88,13 @@ qlmanage -r
 # TODO: Add scripts to cron and symlink to /usr/local/bin
 
 # Clean things up
-"$PWD/cleanup.sh"
+"${PWD}"/cleanup.sh
 
 # Symlink dotfiles
-"$PWD/../unix/symlink-dotfiles.sh" "${PROFILE}"
+"${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"
+
+# Create secrets file if it doesn't exist
+touch "${HOME}"/.secrets
 
 # Switch shell
 chsh -s "$(grep /zsh$ /etc/shells | tail -1)"

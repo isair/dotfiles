@@ -25,14 +25,16 @@ if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   mkdir -p "${ZSH_PLUGINS_PATH}"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
   sudo chown -R "$(whoami)" /usr/local/share/zsh
-  chmod -R g-w,o-w /usr/local/share/zsh usr/local/share/zsh/site-functions
+  chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 fi
 
 # Install some essential cli stuff, TODO: Make them optional
-curl -fsSL https://starship.rs/install.sh | bash
+if [ "$(command -v starship)" = "" ]; then
+  curl -fsSL https://starship.rs/install.sh | bash
+fi
 
-# Install nvm and node
-if ! hash nvm 2>/dev/null; then
+# Install nvm and node, TODO: Fix detection
+if [ "$(command -v nvm)" = "" ]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
   export NVM_DIR="${HOME}"/.nvm
   source "${NVM_DIR}"/nvm.sh --install node
@@ -42,13 +44,14 @@ fi
 # Install chruby
 if [ "$(command -v chruby)" = "" ]; then
   # TODO
+  echo TODO
 fi
 
 # TODO: Install ruby-install
 
 # Install Java 8 and set it as default, TODO: Make this optional, fix not working in VS Online
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt install oracle-java8-installer oracle-java8-set-default
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt install oracle-java8-installer oracle-java8-set-default
 
 # Install yarn, TODO: Optional
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -57,9 +60,11 @@ sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
 xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
-xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+if hash snap 2>/dev/null; then
+  xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+fi
 xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
-pip install -r "${PROFILE_PATH}"/packages/python.txt
+sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
 
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 
@@ -69,10 +74,16 @@ if hash git 2>/dev/null; then
 fi
 
 # Clean things up
-"$PWD/cleanup.sh"
+"${PWD}"/cleanup.sh
 
 # Symlink dotfiles
-"$PWD/symlink-dotfiles.sh"
+"${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"
+
+# Ensure we can switch shell, TODO: Regex for empty space
+sudo sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/g' /etc/pam.d/chsh
+
+# Create secrets file if it doesn't exist
+touch "${HOME}"/.secrets
 
 # Switch shell
-chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
+chsh -s "$(/usr/bin/env zsh)"

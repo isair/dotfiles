@@ -1,12 +1,8 @@
 android-sdk
 curl
-ddgr
 git
 git-lfs
-oracle-java8-set-default
-python3
-python3-pip
-python3-setuptools
+python
 vim
 xsel
 zsh

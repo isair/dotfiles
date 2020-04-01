@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 DEFAULT_PROFILE="personal"
+PROFILE="${1:-$DEFAULT_PROFILE}"
 
-cd $(dirname "$0")/../../profiles/"${1:-$DEFAULT_PROFILE}"/configurations
+cd $(dirname "$0")/../../profiles/"${PROFILE}"/configurations
 
 rm -rf ~/.dotfiles-shared
 ln -s "${PWD}"/../../shared ~/.dotfiles-shared
