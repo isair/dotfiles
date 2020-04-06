@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -u
 
 CLEAN_DEEP=0
 
@@ -26,16 +26,18 @@ fi
 sudo apt autoremove
 sudo apt clean
 
-sudo snap list --all | awk '/disabled/{print $1, $3}' |
-    while read snapname revision; do
-        sudo snap remove "$snapname" --revision="$revision"
-    done
+if hash snap 2>/dev/null; then
+  sudo snap list --all | awk '/disabled/{print $1, $3}' |
+      while read snapname revision; do
+          sudo snap remove "$snapname" --revision="$revision"
+      done
+fi
 
-find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/build" -exec rm -rf {} +
+find "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/build" -exec rm -rf {} + 2>/dev/null
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
   if hash yarn 2>/dev/null; then
     yarn cache clean
   fi
-  find -E "${HOME}"/projects -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} +
+  find "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} + 2>/dev/null
 fi

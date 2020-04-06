@@ -1,11 +1,12 @@
 appcenter-cli
-detox-cli
 expo-cli
 firebase-tools
-ios-deploy
+http-server
 node-gyp
 node-pre-gyp
 npm
 npm-which
+react-native-create-library
 rimraf
+yalc
 yarn
