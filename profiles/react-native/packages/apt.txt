@@ -1,6 +1,7 @@
 android-sdk
 curl
 git
+git-flow
 git-lfs
 python
 vim
