@@ -1,2 +1,6 @@
 source /usr/local/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+if [[ "${OSTYPE}" == darwin* ]]; then
+  source /usr/local/opt/chruby/share/chruby/auto.sh
+else
+  source /usr/local/share/chruby/auto.sh
+fi
