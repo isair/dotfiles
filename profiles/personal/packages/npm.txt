@@ -4,6 +4,7 @@ detox-cli
 devtool
 expo-cli
 firebase-tools
+flow
 http-server
 ios-deploy
 node-gyp
@@ -16,3 +17,4 @@ rimraf
 trelew
 yalc
 yarn
+yarn-check

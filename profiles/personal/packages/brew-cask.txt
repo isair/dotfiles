@@ -4,7 +4,6 @@ android-studio
 appcleaner
 bit-slicer
 blender
-boom-3d
 burp-suite
 ccleaner
 cd-to-terminal
