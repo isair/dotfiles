@@ -3,7 +3,8 @@ android-platform-tools
 android-studio
 appcleaner
 bit-slicer
-boom-3d
+blender
+bluestacks
 burp-suite
 ccleaner
 cd-to-terminal
@@ -20,10 +21,10 @@ figma
 folx
 gimp
 gitup
+godot
 google-backup-and-sync
 google-chrome
 graphiql
-hyper
 imageoptim
 inkscape
 java
@@ -37,6 +38,7 @@ logisim
 ngrok
 nomachine
 onyx
+postman
 protonmail-bridge
 qlcolorcode
 qlmarkdown
@@ -47,10 +49,11 @@ quicklook-json
 r
 react-native-debugger
 reactotron
-recordit
 rstudio
+shadow
 slack
 spotify
+sqlectron
 station
 suspicious-package
 the-unarchiver

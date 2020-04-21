@@ -1,68 +1,57 @@
 #!/usr/bin/env bash
 
+set -eux
+
 DEFAULT_PROFILE="personal"
-PROFILE_PATH="../../profiles/${1:-$DEFAULT_PROFILE}"
+PROFILE="${1:-$DEFAULT_PROFILE}"
+PROFILE_PATH="../../profiles/${PROFILE}"
+
+# Set working directory to the root of this script.
+cd "$(dirname "$0")" || exit 1
 
 # Make sure everthing is up-to-date
 sudo apt-get update
 sudo apt-get upgrade
 
-# Install some initial essentials
-sudo apt-get install curl vim xsel
-
-# Configure git
-git config --global core.autocrlf input
-
-# Install Oh My Zsh
+# Install zsh
 if ! hash zsh 2>/dev/null; then
   sudo apt-get install zsh
-  chsh -s $(which zsh)
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# Install Oh My Zsh
+if [ ! -d "${HOME}"/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended --skip-chsh"
+  ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
+  mkdir -p "${ZSH_PLUGINS_PATH}"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
+  sudo chown -R "$(whoami)" /usr/local/share/zsh
+  chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 fi
 
 # Install some essential cli stuff, TODO: Make them optional
-curl -fsSL https://starship.rs/install.sh | bash
+if [ "$(command -v starship)" = "" ]; then
+  curl -fsSL https://starship.rs/install.sh | bash
+fi
 
-sudo apt install python3-dev python3-pip python3-setuptools
-sudo pip3 install thefuck
+# Install nvm and node, TODO: Fix detection
+if [ "$(command -v nvm)" = "" ]; then
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
+  export NVM_DIR="${HOME}"/.nvm
+  source "${NVM_DIR}"/nvm.sh --install node
+  nvm alias default node
+fi
 
-git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
-
-# Install nvm and node
-if ! hash nvm 2>/dev/null; then
+# Install chruby
+if [ "$(command -v chruby)" = "" ]; then
   # TODO
-  echo "TODO"
+  echo TODO
 fi
 
-# Install rbenv, ruby-builder, ruby and bundler, TODO: Switch to chruby
-if ! hash rbenv 2>/dev/null; then
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-  eval "$(rbenv init -)"
-  latest_stable_ruby=$(rbenv install -l | grep -v - | tail -1)
-  rbenv install $latest_stable_ruby
-  rbenv global $latest_stable_ruby
-fi
+# TODO: Install ruby-install
 
-if ! hash bundler 2>/dev/null; then
-  gem install bundler
-  rbenv rehash
-fi
-
-# Install Java 8 and set it as default, TODO: Make this optional
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt install oracle-java8-installer oracle-java8-set-default
-
-# Install Charles (web debugging proxy), TODO: Optional
-wget -q -O - https://www.charlesproxy.com/packages/apt/PublicKey | sudo apt-key add -
-sudo sh -c 'echo deb https://www.charlesproxy.com/packages/apt/ charles-proxy main > /etc/apt/sources.list.d/charles.list'
-sudo apt-get install charles-proxy
-
-# Install certbot for generating SSL certificates for your domains, TODO: Optional
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt install python-certbot-apache
+# Install Java 8 and set it as default, TODO: Make this optional, fix not working in VS Online
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt install oracle-java8-installer oracle-java8-set-default
 
 # Install yarn, TODO: Optional
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -71,14 +60,30 @@ sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
 xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
-xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+if hash snap 2>/dev/null; then
+  xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+fi
 xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
-pip install -r "${PROFILE_PATH}"/packages/python.txt
+sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
 
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 
+# Configure git
+if hash git 2>/dev/null; then
+  git config --global core.autocrlf input
+fi
+
 # Clean things up
-"$PWD/cleanup.sh"
+"${PWD}"/cleanup.sh
 
 # Symlink dotfiles
-"$PWD/symlink-dotfiles.sh"
+"${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"
+
+# Ensure we can switch shell, TODO: Regex for empty space
+sudo sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/g' /etc/pam.d/chsh
+
+# Create secrets file if it doesn't exist
+touch "${HOME}"/.secrets
+
+# Switch shell
+chsh -s "$(/usr/bin/env zsh)"
