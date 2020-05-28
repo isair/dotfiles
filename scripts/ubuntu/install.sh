@@ -59,7 +59,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
-xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
+xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
 if hash snap 2>/dev/null; then
   xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
 fi
