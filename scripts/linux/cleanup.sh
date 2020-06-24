@@ -23,8 +23,12 @@ else
   echo "Doing shallow clean..."
 fi
 
-sudo apt autoremove
-sudo apt clean
+brew cleanup --prune-prefix
+
+if hash apt-get 2>/dev/null; then
+  sudo apt autoremove
+  sudo apt clean
+fi
 
 if hash snap 2>/dev/null; then
   sudo snap list --all | awk '/disabled/{print $1, $3}' |
