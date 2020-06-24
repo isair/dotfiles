@@ -41,6 +41,8 @@ fi
 # Install backed up packages.
 while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 if hash apt-get 2>/dev/null; then
+  # TODO: Better way to install locales
+  sudo apt-get --yes --force-yes install locales && sudo localedef -i en_US -f UTF-8 en_US.UTF-8
   xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
 fi
 if hash snap 2>/dev/null; then
