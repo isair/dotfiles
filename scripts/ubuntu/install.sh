@@ -33,6 +33,14 @@ if [ "$(command -v starship)" = "" ]; then
   curl -fsSL https://starship.rs/install.sh | bash
 fi
 
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+if hash apt-get 2>/dev/null; then
+  sudo apt-get install build-essential
+elif hash yum 2>/dev/null; then
+  sudo yum groupinstall 'Development Tools'
+fi
+
 # Install nvm and node, TODO: Fix detection
 if [ "$(command -v nvm)" = "" ]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
@@ -67,7 +75,9 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
-xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
+if hash apt-get 2>/dev/null; then
+  xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
+fi
 if hash snap 2>/dev/null; then
   xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
 fi
