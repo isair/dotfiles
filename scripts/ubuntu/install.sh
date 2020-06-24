@@ -51,7 +51,15 @@ if [ "$(command -v chruby)" = "" ]; then
   rm -rf chruby-0.3.9 chruby-0.3.9.tar.gz
 fi
 
-# TODO: Install ruby-install
+# Install ruby-install
+if [ "$(command -v ruby-install)" = "" ]; then
+  wget -O ruby-install-0.7.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz
+  tar -xzvf ruby-install-0.7.0.tar.gz
+  cd ruby-install-0.7.0
+  sudo make install
+  cd ..
+  rm -rf ruby-install-0.7.0 ruby-install-0.7.0.tar.gz
+fi
 
 # Install Java 8 and set it as default, TODO: Make this optional, fix not working in VS Online
 # sudo add-apt-repository ppa:webupd8team/java
