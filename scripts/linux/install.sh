@@ -56,6 +56,7 @@ if [ -d /usr/lib/android-sdk ]; then
   wget https://dl.google.com/android/repository/commandlinetools-linux-6514223_latest.zip
   unzip commandlinetools-linux-6514223_latest.zip
   sudo cp -r tools/* /usr/lib/android-sdk/tools/
+  rm -rf tools commandlinetools-linux-6514223_latest.zip
 fi
 
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
