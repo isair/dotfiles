@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eux
+set -ux
 
 DEFAULT_PROFILE="personal"
 PROFILE="${1:-$DEFAULT_PROFILE}"
@@ -43,8 +43,12 @@ fi
 
 # Install chruby
 if [ "$(command -v chruby)" = "" ]; then
-  # TODO
-  echo TODO
+  wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+  tar -xzvf chruby-0.3.9.tar.gz
+  cd chruby-0.3.9
+  sudo make install
+  cd ..
+  rm -rf chruby-0.3.9 chruby-0.3.9.tar.gz
 fi
 
 # TODO: Install ruby-install
