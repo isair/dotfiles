@@ -51,6 +51,13 @@ fi
 xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
 sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
 
+# Fix Android SDK
+if [ -d /usr/lib/android-sdk ]; then
+  wget https://dl.google.com/android/repository/commandlinetools-linux-6514223_latest.zip
+  unzip commandlinetools-linux-6514223_latest.zip
+  sudo cp -r tools/* /usr/lib/android-sdk/tools/
+fi
+
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 
 # Configure git
