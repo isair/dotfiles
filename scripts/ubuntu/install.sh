@@ -61,10 +61,6 @@ if [ "$(command -v ruby-install)" = "" ]; then
   rm -rf ruby-install-0.7.0 ruby-install-0.7.0.tar.gz
 fi
 
-# Install Java 8 and set it as default, TODO: Make this optional, fix not working in VS Online
-# sudo add-apt-repository ppa:webupd8team/java
-# sudo apt install oracle-java8-installer oracle-java8-set-default
-
 # Install yarn, TODO: Optional
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list

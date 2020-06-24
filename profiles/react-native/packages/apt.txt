@@ -3,6 +3,7 @@ curl
 git
 git-flow
 git-lfs
+openjdk-8-jre
 python
 vim
 xsel
