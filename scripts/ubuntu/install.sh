@@ -28,53 +28,18 @@ if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 fi
 
-# Install some essential cli stuff, TODO: Make them optional
-if [ "$(command -v starship)" = "" ]; then
-  curl -fsSL https://starship.rs/install.sh | bash
-fi
-
 # Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-if hash apt-get 2>/dev/null; then
-  sudo apt-get install build-essential
-elif hash yum 2>/dev/null; then
-  sudo yum groupinstall 'Development Tools'
+if ! hash brew 2>/dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  if hash apt-get 2>/dev/null; then
+    sudo apt-get install build-essential
+  elif hash yum 2>/dev/null; then
+    sudo yum groupinstall 'Development Tools'
+  fi
 fi
-
-# Install nvm and node, TODO: Fix detection
-if [ "$(command -v nvm)" = "" ]; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
-  export NVM_DIR="${HOME}"/.nvm
-  source "${NVM_DIR}"/nvm.sh --install node
-  nvm alias default node
-fi
-
-# Install chruby
-if [ "$(command -v chruby)" = "" ]; then
-  wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
-  tar -xzvf chruby-0.3.9.tar.gz
-  cd chruby-0.3.9
-  sudo make install
-  cd ..
-  rm -rf chruby-0.3.9 chruby-0.3.9.tar.gz
-fi
-
-# Install ruby-install
-if [ "$(command -v ruby-install)" = "" ]; then
-  wget -O ruby-install-0.7.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz
-  tar -xzvf ruby-install-0.7.0.tar.gz
-  cd ruby-install-0.7.0
-  sudo make install
-  cd ..
-  rm -rf ruby-install-0.7.0 ruby-install-0.7.0.tar.gz
-fi
-
-# Install yarn, TODO: Optional
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
+while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 if hash apt-get 2>/dev/null; then
   xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
 fi

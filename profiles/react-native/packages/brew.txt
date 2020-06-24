@@ -1,1 +1,6 @@
 gcc
+nvm
+chruby
+ruby-install
+yarn
+starship
