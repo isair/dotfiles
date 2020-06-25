@@ -1,0 +1,8 @@
+gcc
+nvm
+chruby
+gradle
+ruby-install
+yarn
+starship
+watchman

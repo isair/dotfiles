@@ -15,4 +15,4 @@ zstyle ':completion:*' matcher-list \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
 # Fix permissions of any insecure directories
-compaudit | xargs chmod g-w,o-w
+compaudit | xargs chmod g-w,o-w 2>/dev/null

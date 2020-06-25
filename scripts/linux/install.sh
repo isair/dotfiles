@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eux
+set -ux
 
 DEFAULT_PROFILE="personal"
 PROFILE="${1:-$DEFAULT_PROFILE}"
@@ -28,43 +28,36 @@ if [ ! -d "${HOME}"/.oh-my-zsh ]; then
   chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
 fi
 
-# Install some essential cli stuff, TODO: Make them optional
-if [ "$(command -v starship)" = "" ]; then
-  curl -fsSL https://starship.rs/install.sh | bash
+# Install homebrew
+if ! hash brew 2>/dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  if hash apt-get 2>/dev/null; then
+    sudo apt-get install build-essential
+  elif hash yum 2>/dev/null; then
+    sudo yum groupinstall 'Development Tools'
+  fi
 fi
-
-# Install nvm and node, TODO: Fix detection
-if [ "$(command -v nvm)" = "" ]; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
-  export NVM_DIR="${HOME}"/.nvm
-  source "${NVM_DIR}"/nvm.sh --install node
-  nvm alias default node
-fi
-
-# Install chruby
-if [ "$(command -v chruby)" = "" ]; then
-  # TODO
-  echo TODO
-fi
-
-# TODO: Install ruby-install
-
-# Install Java 8 and set it as default, TODO: Make this optional, fix not working in VS Online
-# sudo add-apt-repository ppa:webupd8team/java
-# sudo apt install oracle-java8-installer oracle-java8-set-default
-
-# Install yarn, TODO: Optional
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 # Install backed up packages.
-xargs sudo apt-get install < "${PROFILE_PATH}"/packages/apt.txt
+while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
+if hash apt-get 2>/dev/null; then
+  # TODO: Better way to install locales
+  sudo apt-get --yes --force-yes install locales && sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+  xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
+fi
 if hash snap 2>/dev/null; then
   xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
 fi
 xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
 sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+
+# Fix Android SDK
+if [ -d /usr/lib/android-sdk ]; then
+  wget https://dl.google.com/android/repository/commandlinetools-linux-6514223_latest.zip
+  unzip commandlinetools-linux-6514223_latest.zip
+  sudo cp -r tools/* /usr/lib/android-sdk/tools/
+  rm -rf tools commandlinetools-linux-6514223_latest.zip
+fi
 
 # TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 

@@ -98,8 +98,9 @@ The back-up scripts support the following package managers.
 - npm
 - pip
 
-### Ubuntu
+### Linux
 
+- brew
 - apt
 - snap
 - npm

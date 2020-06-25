@@ -6,6 +6,7 @@ source "$HOME/.secrets"
 # Setup
 #
 
+source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
 source "$HOME"/.dotfiles-shared/shrc-setup-zsh
 source "$HOME"/.dotfiles-shared/shrc-setup-thefuck
 source "$HOME"/.dotfiles-shared/shrc-setup-nvm
