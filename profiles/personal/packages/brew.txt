@@ -12,7 +12,6 @@ coreutils
 ddgr
 dehydrated
 gdb
-ghostscript
 git
 git-flow
 git-lfs
@@ -24,11 +23,11 @@ hub
 hydra
 ideviceinstaller
 imagemagick
-jenkins
 jq
 jython
 lynx
 mkcert
+mosh
 mutt
 nikto
 nmap
@@ -36,7 +35,6 @@ nss
 open-mpi
 p7zip
 pipenv
-pkg-config
 python@2
 reaver
 ruby-install
@@ -51,5 +49,4 @@ vim
 watchman
 weechat
 xaric
-yarn
 youtube-dl
