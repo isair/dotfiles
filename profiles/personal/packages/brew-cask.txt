@@ -28,7 +28,6 @@ inkscape
 java
 java8
 jdownloader
-keepassxc
 keepingyouawake
 kitematic
 libreoffice
@@ -46,7 +45,6 @@ quicklook-csv
 quicklook-json
 r
 react-native-debugger
-reactotron
 shadow
 slack
 spotify
