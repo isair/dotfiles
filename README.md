@@ -18,7 +18,7 @@ backup.sh <profile-name>
 
 ## Getting Started
 
-To simplify instructions, the paths provided in this README are for macOS scripts. However, these all have their counterparts for other OSs. You just need to replace the 'osx' part with `linux` or `windows`. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
+To simplify instructions, the paths provided in this README are for macOS scripts. However, these all have their counterparts for other OSs. You just need to replace the `osx` part with `linux` or `windows`. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
 
 ### Creating a Profile
 

@@ -38,7 +38,8 @@ if ! hash brew 2>/dev/null; then
   fi
 fi
 
-# Install backed up packages.
+# Install backed up packages
+
 while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
 
 if hash apt-get 2>/dev/null; then
@@ -51,9 +52,13 @@ if hash snap 2>/dev/null; then
   xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
 fi
 
-xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+if hash npm 2>/dev/null; then
+  xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+fi
 
-sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+if hash pip 2>/dev/null; then
+  sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+fi
 
 # Fix Android SDK
 if [ -d /usr/lib/android-sdk ]; then
@@ -62,8 +67,6 @@ if [ -d /usr/lib/android-sdk ]; then
   sudo cp -r tools/* /usr/lib/android-sdk/tools/
   rm -rf tools commandlinetools-linux-6514223_latest.zip
 fi
-
-# TODO: Symlink scripts to /usr/local/bin and add cron jobs for them.
 
 # Configure git
 if hash git 2>/dev/null; then

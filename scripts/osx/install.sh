@@ -47,14 +47,7 @@ brew tap homebrew/cask-versions
 brew update
 brew upgrade
 
-# Install git
-brew install git
-brew install git-lfs && git lfs install
-
-# Configure git
-git config --global core.autocrlf input
-
-# Install nvm and node
+# Install nvm and node TODO: Make this optional.
 if [ "$(command -v nvm)" = "" ]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
   export NVM_DIR="${HOME}"/.nvm
@@ -62,30 +55,28 @@ if [ "$(command -v nvm)" = "" ]; then
   nvm alias default node
 fi
 
-# Install chruby, ruby-install, and latest ruby
-if [ "$(command -v chruby)" = "" ]; then
-  brew install chruby ruby-install
-  # TODO: Fix
-  ruby-install --latest ruby
-  # TODO: Install latest bundler using latest ruby
-fi
-
-# Install python.
-brew install python
-
 # Install backed up packages.
+
+while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
+
 # TODO: Fix gradle - adoptopenjdk
 while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/packages/brew-cask.txt
-while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
-xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
-pip install -r "${PROFILE_PATH}"/packages/python.txt
 
-# TODO: python global packages backup and install
+if hash npm 2>/dev/null; then
+  xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+fi
+
+if hash pip 2>/dev/null; then
+  pip install -r "${PROFILE_PATH}"/packages/python.txt
+fi
 
 # Reload QuickLook plugins
 qlmanage -r
 
-# TODO: Add scripts to cron and symlink to /usr/local/bin
+# Configure git
+if hash git 2>/dev/null; then
+  git config --global core.autocrlf input
+fi
 
 # Clean things up
 "${PWD}"/../unix/cleanup.sh
