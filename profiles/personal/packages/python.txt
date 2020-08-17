@@ -15,7 +15,7 @@ Flask==1.1.1
 funcsigs==1.0.2
 future==0.17.1
 gevent==1.4.0
-gpg==1.13.1
+gpg==1.14.0
 greenlet==0.4.15
 gym==0.14.0
 itsdangerous==1.1.0

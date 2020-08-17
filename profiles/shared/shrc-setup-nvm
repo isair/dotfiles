@@ -3,7 +3,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [[ "${SHELL}" == *zsh ]]; then
+if [ "$(ps h -p $$ -o args='' | cut -f1 -d' ')" == zsh ]; then
   autoload -U add-zsh-hook
   load-nvmrc() {
     local node_version="$(nvm version)"
