@@ -49,7 +49,7 @@ if hash brew 2>/dev/null; then
   brew cleanup --prune-prefix
 fi
 
-if [[ "${OSTYPE}" == darwin-* ]]; then
+if [[ "${OSTYPE}" == darwin* ]]; then
   # macOS shallow clean-up
   rm -rf "${HOME}/Library/Developer/Xcode/Archives"
   rm -rf "${HOME}/Library/Developer/Xcode/Products"
