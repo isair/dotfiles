@@ -40,7 +40,7 @@ $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvm install latest
 
 ## Run AHK scripts at startup
-& "$PSScriptRoot\Make-Shortcut.ps1" keyboard-shortcuts.ahk "C:\Users\$env:USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\keyboard-shortcuts.lnk"
+& "$PSScriptRoot\utils\Make-Shortcut.ps1" keyboard-shortcuts.ahk "C:\Users\$env:USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\keyboard-shortcuts.lnk"
 
 ## Install essential node packages
 yarn global add react-native-cli

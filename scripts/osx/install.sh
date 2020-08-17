@@ -88,7 +88,7 @@ qlmanage -r
 # TODO: Add scripts to cron and symlink to /usr/local/bin
 
 # Clean things up
-"${PWD}"/cleanup.sh
+"${PWD}"/../unix/cleanup.sh
 
 # Symlink dotfiles
 "${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"

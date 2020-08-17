@@ -67,7 +67,7 @@ if hash git 2>/dev/null; then
 fi
 
 # Clean things up
-"${PWD}"/cleanup.sh
+"${PWD}"/../unix/cleanup.sh
 
 # Symlink dotfiles
 "${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"
