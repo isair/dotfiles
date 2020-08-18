@@ -2,7 +2,11 @@
 
 set -eu
 
-cd "$(dirname "$0")"/../.. || exit 1
+cd "$(dirname "$0")" || exit 1
+
+source ./utils/helpers.sh
+
+cd ../.. || exit 1
 
 # Keep profiles up to date
 
@@ -19,10 +23,17 @@ fi
 
 # Keep system and installed packages up to date
 
-if hash brew 2>/dev/null; then
-  brew update && brew upgrade
+if hasBinary softwareupdate; then
+  sudo softwareupdate -i -a
 fi
 
-if hash softwareupdate 2>/dev/null; then
-  sudo softwareupdate -i -a
+if hasBinary apt-get; then
+  sudo apt-get update
+  sudo apt-get upgrade
+fi
+
+# TODO: yum support
+
+if hasBinary brew; then
+  brew update && brew upgrade
 fi

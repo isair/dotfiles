@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-set -u
+set -u # TODO: set -eu after silencing find errors
+
+cd "$(dirname "$0")" || exit 1
+
+source ./utils/helpers.sh
+
+# Parse arguments
 
 CLEAN_DEEP=0
 
@@ -18,35 +24,35 @@ do
 done
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
-  echo "Doing deep clean..."
+  printf "Doing deep clean... "
 else
-  echo "Doing shallow clean..."
+  printf "Doing shallow clean... "
 fi
 
 # Package manager garbage collection
 
-if hash nix-env 2>/dev/null; then
-  if [ "${CLEAN_DEEP}" = 1 ]; then
-    nix-env --delete-generations +1
-  else
-    nix-env --delete-generations 30d
-  fi
-fi
-
-if hash apt-get 2>/dev/null; then
+if hasBinary apt-get; then
   sudo apt autoremove
   sudo apt clean
 fi
 
-if hash snap 2>/dev/null; then
+if hasBinary snap; then
   sudo snap list --all | awk '/disabled/{print $1, $3}' |
       while read snapname revision; do
           sudo snap remove "$snapname" --revision="$revision"
       done
 fi
 
-if hash brew 2>/dev/null; then
+if hasBinary brew; then
   brew cleanup --prune-prefix
+fi
+
+if hasBinary nix-env; then
+  if [ "${CLEAN_DEEP}" = 1 ]; then
+    nix-env --delete-generations +1
+  else
+    nix-env --delete-generations 30d
+  fi
 fi
 
 if [[ "${OSTYPE}" == darwin* ]]; then
@@ -65,10 +71,14 @@ fi
 # Deep clean of caches and user owned programming projects
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
-  if hash yarn 2>/dev/null; then
+  if hasBinary yarn; then
     yarn cache clean
   fi
   find "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} + 2>/dev/null
   rm -rf "${HOME}/.jenkins/workspace"
   sudo rm -rf "${HOME}/Library/Application Support/MobileSync/Backup"
 fi
+
+# Notify of success
+
+echo "done!"

@@ -4,23 +4,26 @@
 # UNIFY LINUX AND MACOS INSTALLATION SCRIPTS. DO NOT USE THIS
 # AT THE MOMENT.
 
-set -eux
+set -e
 
-DEFAULT_PROFILE="personal"
-PROFILE="${1:-$DEFAULT_PROFILE}"
-PROFILE_PATH="../../profiles/${PROFILE}"
-
-# Set working directory to the root of this script.
 cd "$(dirname "$0")" || exit 1
 
+source ./utils/helpers.sh
+
+abortIfSudo
+
+setProfileEnv "$1"
+
+set -u
+
 # Make sure everthing is up-to-date TODO: Other system package managers
-if hash apt-get 2>/dev/null; then
+if hasBinary apt-get; then
   sudo apt-get update
   sudo apt-get upgrade
-elif hash softwareupdate 2>/dev/null; then
+elif hasBinary softwareupdate; then
   sudo softwareupdate -i -a
   # Check for Xcode installation
-  if ! hash xcode-select 2>/dev/null; then
+  if ! hasBinary xcode-select; then
     echo Xcode needs to be installed
     exit 1
   fi
@@ -45,16 +48,16 @@ xargs nix-env -i < "${PROFILE_PATH}"/packages/nix.txt
 
 # Install backed up packages of tools installed via nix.
 
-if hash npm 2>/dev/null; then
+if hasBinary npm; then
   xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
 fi
 
-if hash pip 2>/dev/null; then
+if hasBinary pip; then
   sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
 fi
 
 # Configure git TODO: Do this via nix home-manager
-if hash git 2>/dev/null; then
+if hasBinary git; then
   git config --global core.autocrlf input
 fi
 
@@ -73,4 +76,4 @@ sudo sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/g' /etc/pam.d
 # Create secrets file if it doesn't exist
 touch "${HOME}"/.secrets
 
-# TODO: Schedule backup and cleanup
+# TODO: Schedule backup and cleaning

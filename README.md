@@ -18,14 +18,14 @@ backup.sh <profile-name>
 
 ## Getting Started
 
-To simplify instructions, the paths provided in this README are for macOS scripts. However, these all have their counterparts for other OSs. You just need to replace the `osx` part with `linux` or `windows`. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
+To simplify instructions, the paths provided in this README are for macOS scripts. However, these all have their counterparts for other OSs. You just need to replace the `macos` part with `linux` or `windows`, or `unix` part with `windows`. Sometimes additional minor changes to the path are required as well but it should all be clear and intuitive.
 
 ### Creating a Profile
 
 First, fork this repository and clone it on your machine. Then:
 
 ```sh
-<project-dir>/scripts/osx/backup.sh <profile-name>
+<project-dir>/scripts/unix/backup.sh <profile-name>
 ```
 
 This will back-up your packages and apps to the profile you've given - `personal` if left blank. Creating the profile as necessary if it doesn't exist.
@@ -60,7 +60,7 @@ If your setup does not come with `git`, download this project from its GitHub pa
 Before typing the following line, make sure you check the various profiles under the `profiles` directory and pick one that suits your needs.
 
 ```sh
-./scripts/osx/install.sh <profile-name>
+./scripts/macos/install.sh <profile-name>
 ```
 
 ## Automating Backup, Cleanup & Updates
@@ -73,7 +73,7 @@ crontab -e
 
 Append the following line, changing the path as necessary.
 ```sh
-0 15 * * * ~/projects/dotfiles/scripts/osx/backup.sh
+0 15 * * * ~/projects/dotfiles/scripts/unix/backup.sh
 ```
 
 This will update your package list but you'll still need to commit and push yourself, or write a script for it.
