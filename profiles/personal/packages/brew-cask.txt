@@ -37,10 +37,7 @@ nomachine
 onyx
 postman
 protonmail-bridge
-qlcolorcode
-qlmarkdown
 qlprettypatch
-qlstephen
 quicklook-csv
 quicklook-json
 r
@@ -51,7 +48,6 @@ spotify
 sqlectron
 station
 steam
-suspicious-package
 the-unarchiver
 unity-hub
 virtualbox

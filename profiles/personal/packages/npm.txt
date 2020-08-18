@@ -1,3 +1,4 @@
 expo-cli
 npm
+react-native-kill-packager
 yarn
