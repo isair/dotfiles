@@ -14,7 +14,7 @@ set -u
 
 # Check for Xcode installation
 if ! hasBinary xcode-select; then
-  echoError 'Error: Xcode needs to be installed'
+  echoError 'Xcode needs to be installed'
 fi
 
 # Install command line tools
@@ -64,33 +64,32 @@ fi
 
 if hasPackages brew; then
   if ! hasBinary brew; then
-    echoError 'Error: This profile has homebrew packages but brew could not be found in path'
+    echoError 'This profile has homebrew packages but brew could not be found in path'
   fi
-  while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
+  brew install `cat "${PACKAGES_PATH}"/brew.txt | tr '\n' ' '`
 fi
 
 if hasPackages brew-cask; then
   if ! hasBinary brew; then
-    echoError 'Error: This profile has homebrew casks but brew could not be found in path'
+    echoError 'This profile has homebrew casks but brew could not be found in path'
   fi
-  # TODO: Fix gradle - adoptopenjdk
-  while read -r CASK ; do brew cask install "${CASK}" ; done < "${PROFILE_PATH}"/packages/brew-cask.txt
+  brew cask install `cat "${PACKAGES_PATH}"/brew-cask.txt | tr '\n' ' '`
 fi
 
 ## TODO: If nvm is installed, make sure a node version is installed
 
 if hasPackages npm; then
-  ## TODO: Move nvm stuff here.
-  if hasBinary npm; then
-    xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+  if ! hasBinary npm; then
+    echoError 'This profile has npm packages but npm could not be found in path'
   fi
+  npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
 fi
 
 if hasPackages python; then
   if ! hasBrewBinary pip; then # Enforce brew as default macOS python requires sudo
-    echoError 'Error: This profile has python packages but does not install pip via homebrew'
+    echoError 'This profile has python packages but does not install pip via homebrew'
   fi
-  pip install -r "${PROFILE_PATH}"/packages/python.txt
+  pip install -r "${PACKAGES_PATH}"/python.txt
 fi
 
 # Reload QuickLook plugins

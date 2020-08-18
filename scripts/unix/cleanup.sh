@@ -55,7 +55,7 @@ if hasBinary nix-env; then
   fi
 fi
 
-if [[ "${OSTYPE}" == darwin* ]]; then
+if isMac; then
   # macOS shallow clean-up
   rm -rf "${HOME}/Library/Developer/Xcode/Archives"
   rm -rf "${HOME}/Library/Developer/Xcode/Products"

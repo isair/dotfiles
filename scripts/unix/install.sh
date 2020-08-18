@@ -16,16 +16,14 @@ setProfileEnv "$1"
 
 set -u
 
-# Make sure everthing is up-to-date TODO: Other system package managers
-if hasBinary apt-get; then
-  sudo apt-get update
-  sudo apt-get upgrade
-elif hasBinary softwareupdate; then
-  sudo softwareupdate -i -a
+# Make sure everthing is up-to-date
+
+"${PWD}"/../unix/update.sh
+
+if isMac; then
   # Check for Xcode installation
   if ! hasBinary xcode-select; then
-    echo Xcode needs to be installed
-    exit 1
+    echoError 'Xcode needs to be installed'
   fi
   # Install command line tools
   if [ ! "$(xcode-select -p)" = "" ]; then
@@ -37,28 +35,27 @@ fi
 sudo umount /proc/{cpuinfo,diskstats,meminfo,stat,uptime}
 curl -L https://nixos.org/nix/install | sh
 
-# Install and set up a modern shell TODO: Make this work for zsh system too.
-nix-env -i starship
-echo "eval \"$(starship init bash)\"\n" >> "${HOME}"/.profile
-
 # Install backed up nix packages.
-xargs nix-env -i < "${PROFILE_PATH}"/packages/nix.txt
-
-# TODO: Configure nix packages.
+nix-env -i `cat "${PACKAGES_PATH}"/nix.txt | tr '\n' ' '`
 
 # Install backed up packages of tools installed via nix.
 
 if hasBinary npm; then
-  xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+  npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
 fi
 
 if hasBinary pip; then
-  sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+  sudo pip install -r "${PACKAGES_PATH}"/python.txt
 fi
 
 # Configure git TODO: Do this via nix home-manager
 if hasBinary git; then
   git config --global core.autocrlf input
+fi
+
+# Configure starship TODO: Do this via nix home-manager
+if hasBinary starship; then
+  echo "eval \"$(starship init bash)\"\n" >> "${HOME}"/.profile
 fi
 
 # Symlink scripts

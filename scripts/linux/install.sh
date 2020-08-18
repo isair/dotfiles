@@ -27,49 +27,49 @@ fi
 
 # Install backed up packages
 
-if hasPackages apt; then
+if hasPackages apt-get; then
   if ! hasBinary apt-get; then
-    echoError 'Error: This profile has apt packages but apt could not be found in path'
+    echoError 'This profile has apt packages but apt could not be found in path'
   fi
   # TODO: Better way to install locales
   sudo apt-get --yes --force-yes install locales && sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  xargs sudo apt-get --yes --force-yes install < "${PROFILE_PATH}"/packages/apt.txt
+  sudo apt-get --yes --force-yes install `cat "${PACKAGES_PATH}"/apt.txt | tr '\n' ' '`
 fi
 
 # TODO: yum support
 
 if hasPackages snap; then
   if ! hasBinary snap; then
-    echoError 'Error: This profile has snap packages but snap could not be found in path'
+    echoError 'This profile has snap packages but snap could not be found in path'
   fi
-  xargs sudo snap install < "${PROFILE_PATH}"/packages/snap.txt
+  sudo snap install `cat "${PACKAGES_PATH}"/snap.txt | tr '\n' ' '`
 fi
 
 if hasPackages brew; then
   if ! hasBinary brew; then
-    echoError 'Error: This profile has homebrew packages but brew could not be found in path'
+    echoError 'This profile has homebrew packages but brew could not be found in path'
   fi
-  while read -r PACKAGE ; do brew install "${PACKAGE}" ; done < "${PROFILE_PATH}"/packages/brew.txt
+  brew install `cat "${PACKAGES_PATH}"/brew.txt | tr '\n' ' '`
 fi
 
 if hasPackages npm; then
   ## TODO: If nvm is installed, make sure a node version is installed
   if hasBinary npm; then
-    xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+    npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
   fi
 fi
 
 if hasPackages python; then
   if ! hasBinary pip; then
-    echoError 'Error: This profile has python packages but does not install pip'
+    echoError 'This profile has python packages but does not install pip'
   fi
-  sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+  sudo pip install -r "${PACKAGES_PATH}"/python.txt
 fi
 
 # Configure zsh
 if hasConfig zsh; then
   if ! hasBinary zsh; then
-    echoError 'Error: This profile has a zsh configuration file but does not install zsh itself'
+    echoError 'This profile has a zsh configuration file but does not install zsh itself'
   fi
 
   # Install Oh My Zsh

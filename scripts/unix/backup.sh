@@ -32,7 +32,7 @@ fi
 
 if hasBinary brew; then
   brew leaves > "${PACKAGES_PATH}"/brew.txt
-  if [[ "${OSTYPE}" == darwin* ]]; then
+  if isMac; then
     brew cask list > "${PACKAGES_PATH}"/brew-cask.txt
   fi
 fi

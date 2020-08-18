@@ -1,7 +1,7 @@
 PROFILES_PATH="$(dirname "$0")"/../../profiles
 
 function echoError() {
-  cat <<< "$@" 1>&2;
+  cat <<< "Error: $@" 1>&2;
   exit 1
 }
 
@@ -19,7 +19,7 @@ function setProfileEnv() {
   PACKAGES_PATH="${PROFILE_PATH}"/packages
 }
 
-function packagesPath() {
+function packagePath() {
   echo "${PROFILES_PATH}"/"${PROFILE}"/packages/"$1".txt
 }
 
@@ -32,7 +32,7 @@ function hasConfig() {
 }
 
 function hasPackages() {
-  [ -f "$(packagesPath "$1")" ]
+  [ -f "$(packagePath "$1")" ]
 }
 
 function hasBinary() {
@@ -41,4 +41,8 @@ function hasBinary() {
 
 function hasBrewBinary() {
   hasBinary /usr/local/bin/"$1"
+}
+
+function isMac() {
+  [[ "${OSTYPE}" == darwin* ]]
 }
