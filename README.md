@@ -28,18 +28,7 @@ First, fork this repository and clone it on your machine. Then:
 <project-dir>/scripts/unix/backup.sh <profile-name>
 ```
 
-This will back-up your packages and apps to the profile you've given - `personal` if left blank. Creating the profile as necessary if it doesn't exist.
-
-The next step is to symlink your configuration files so that any changes to them are picked up by git. You will only need to do this once.
-
-```sh
-# Run the lines that apply to your setup
-cp ~/.bashrc <project-dir>/profiles/<profile-name>/configurations/bashrc
-cp ~/.zshrc <project-dir>/profiles/<profile-name>/configurations/zshrc
-cp ~/.vimrc <project-dir>/profiles/<profile-name>/configurations/vimrc
-# Then run the following line to symlink these files.
-<project-dir>/scripts/unix/symlink-dotfiles.sh <profile-name>
-```
+This will back-up your packages, apps, and configurations to the profile you've given - `personal` if left blank. Creating the profile as necessary if it doesn't exist.
 
 ### Installing a Profile
 

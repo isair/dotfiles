@@ -17,6 +17,7 @@ function setProfileEnv() {
   PROFILES_PATH=../../profiles
   PROFILE_PATH="${PROFILES_PATH}/${PROFILE}"
   PACKAGES_PATH="${PROFILE_PATH}"/packages
+  CONFIGS_PATH="${PROFILE_PATH}"/configurations
 }
 
 function packagePath() {

@@ -49,5 +49,29 @@ if hasBinary pip; then
   pip freeze > "${PACKAGES_PATH}"/python.txt
 fi
 
+# Back-up configurations.
+
+if [ -f ~/.profile ]; then
+  cp -L ~/.profile "${CONFIGS_PATH}"/profile | true
+fi
+
+if [ -f ~/.bashrc ]; then
+  cp -L ~/.bashrc "${CONFIGS_PATH}"/bashrc | true
+fi
+
+if [ -f ~/.zshrc ]; then
+  cp -L ~/.zshrc "${CONFIGS_PATH}"/zshrc | true
+fi
+
+if [ -f ~/.vimrc ]; then
+  cp -L ~/.vimrc "${CONFIGS_PATH}"/vimrc | true
+fi
+
+if [ -f ~/.hyper.js ]; then
+  cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js | true
+fi
+
+./symlink-dotfiles.sh
+
 # Notify of success
 echo "done!"
