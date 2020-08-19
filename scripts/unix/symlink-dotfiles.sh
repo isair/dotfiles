@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
-DEFAULT_PROFILE="personal"
-PROFILE="${1:-$DEFAULT_PROFILE}"
+set -e
 
-cd $(dirname "$0")/../../profiles/"${PROFILE}"/configurations
+cd "$(dirname "$0")" || exit 1
+
+source ./utils/helpers.sh
+
+abortIfSudo
+
+setProfileEnv "$1"
+
+abortIfProfileNotFound
+
+set -u
+
+cd "${CONFIGS_PATH}"
 
 rm -rf ~/.dotfiles-shared
 ln -s "${PWD}"/../../shared ~/.dotfiles-shared
