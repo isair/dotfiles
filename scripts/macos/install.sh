@@ -10,6 +10,8 @@ abortIfSudo
 
 setProfileEnv "$1"
 
+abortIfProfileNotFound
+
 set -u
 
 # Check for Xcode installation

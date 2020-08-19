@@ -10,6 +10,8 @@ abortIfSudo
 
 setProfileEnv "$1"
 
+abortIfProfileNotFound
+
 set -u
 
 # Make sure everthing is up-to-date

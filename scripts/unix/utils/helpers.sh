@@ -11,6 +11,12 @@ function abortIfSudo() {
   fi
 }
 
+function abortIfProfileNotFound() {
+  if [ ! -d "${PROFILE_PATH}" ]; then
+    echoError No profile named "${PROFILE}" has been found
+  fi
+}
+
 function setProfileEnv() {
   DEFAULT_PROFILE=personal
   PROFILE="${1:-$DEFAULT_PROFILE}"
