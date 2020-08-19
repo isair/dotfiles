@@ -73,7 +73,7 @@ if [ -f ~/.hyper.js ]; then
   cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js | true
 fi
 
-./symlink-dotfiles.sh
+./symlink-dotfiles.sh "${PROFILE}"
 
 # Notify of success
 echo "done!"
