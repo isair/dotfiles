@@ -51,6 +51,8 @@ fi
 
 # Back-up configurations.
 
+mkdir -p "${CONFIGS_PATH}"
+
 if [ -f ~/.profile ]; then
   cp -L ~/.profile "${CONFIGS_PATH}"/profile | true
 fi
