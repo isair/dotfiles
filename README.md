@@ -62,7 +62,7 @@ crontab -e
 
 Append the following line, changing the path as necessary.
 ```sh
-0 15 * * * ~/projects/dotfiles/scripts/unix/backup.sh
+0 15 * * * ~/projects/dotfiles/scripts/unix/backup.sh <profile-name>
 ```
 
 This will update your package list but you'll still need to commit and push yourself, or write a script for it.
