@@ -4,25 +4,26 @@
 # UNIFY LINUX AND MACOS INSTALLATION SCRIPTS. DO NOT USE THIS
 # AT THE MOMENT.
 
-set -eux
+set -e
 
-DEFAULT_PROFILE="personal"
-PROFILE="${1:-$DEFAULT_PROFILE}"
-PROFILE_PATH="../../profiles/${PROFILE}"
-
-# Set working directory to the root of this script.
 cd "$(dirname "$0")" || exit 1
 
-# Make sure everthing is up-to-date TODO: Other system package managers
-if hash apt-get 2>/dev/null; then
-  sudo apt-get update
-  sudo apt-get upgrade
-elif hash softwareupdate 2>/dev/null; then
-  sudo softwareupdate -i -a
+source ./utils/helpers.sh
+
+abortIfSudo
+
+setProfileEnv "$1"
+
+set -u
+
+# Make sure everthing is up-to-date
+
+"${PWD}"/../unix/update.sh
+
+if isMac; then
   # Check for Xcode installation
-  if ! hash xcode-select 2>/dev/null; then
-    echo Xcode needs to be installed
-    exit 1
+  if ! hasBinary xcode-select; then
+    echoError 'Xcode needs to be installed'
   fi
   # Install command line tools
   if [ ! "$(xcode-select -p)" = "" ]; then
@@ -34,28 +35,27 @@ fi
 sudo umount /proc/{cpuinfo,diskstats,meminfo,stat,uptime}
 curl -L https://nixos.org/nix/install | sh
 
-# Install and set up a modern shell TODO: Make this work for zsh system too.
-nix-env -i starship
-echo "eval \"$(starship init bash)\"\n" >> "${HOME}"/.profile
-
 # Install backed up nix packages.
-xargs nix-env -i < "${PROFILE_PATH}"/packages/nix.txt
-
-# TODO: Configure nix packages.
+nix-env -i `cat "${PACKAGES_PATH}"/nix.txt | tr '\n' ' '`
 
 # Install backed up packages of tools installed via nix.
 
-if hash npm 2>/dev/null; then
-  xargs npm install --global < "${PROFILE_PATH}"/packages/npm.txt
+if hasBinary npm; then
+  npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
 fi
 
-if hash pip 2>/dev/null; then
-  sudo pip install -r "${PROFILE_PATH}"/packages/python.txt
+if hasBinary pip; then
+  sudo pip install -r "${PACKAGES_PATH}"/python.txt
 fi
 
 # Configure git TODO: Do this via nix home-manager
-if hash git 2>/dev/null; then
+if hasBinary git; then
   git config --global core.autocrlf input
+fi
+
+# Configure starship TODO: Do this via nix home-manager
+if hasBinary starship; then
+  echo "eval \"$(starship init bash)\"\n" >> "${HOME}"/.profile
 fi
 
 # Symlink scripts
@@ -73,4 +73,4 @@ sudo sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/g' /etc/pam.d
 # Create secrets file if it doesn't exist
 touch "${HOME}"/.secrets
 
-# TODO: Schedule backup and cleanup
+# TODO: Schedule backup and cleaning

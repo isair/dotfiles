@@ -18,6 +18,7 @@ git-lfs
 go
 gradle
 graphicsmagick
+guile
 highlight
 hub
 hydra
@@ -31,6 +32,7 @@ mosh
 mutt
 nikto
 nmap
+node
 nss
 open-mpi
 p7zip
