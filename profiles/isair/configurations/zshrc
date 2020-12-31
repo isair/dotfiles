@@ -36,7 +36,6 @@ source "$HOME"/.dotfiles-shared/shrc-alias-git
 alias lynx="lynx -cfg=$HOME/.lynxrc"
 
 alias .is="cd ~/Projects/isair"
-alias .mj="cd ~/Projects/mojilala-mobile"
 alias .fx="cd ~/Projects/fairfx"
 alias .il="cd ~/Projects/ilyssa"
 alias .ot="cd ~/Projects/other"

@@ -1,6 +1,4 @@
-nektos/tap/act
 aircrack-ng
-wix/brew/applesimutils
 automake
 awscli
 bison
@@ -15,10 +13,11 @@ gdb
 git
 git-flow
 git-lfs
+gnu-sed
 go
 gradle
 graphicsmagick
-guile
+heroku/brew/heroku
 highlight
 hub
 hydra
@@ -26,10 +25,12 @@ ideviceinstaller
 imagemagick
 jq
 jython
+libimobiledevice
 lynx
 mkcert
 mosh
 mutt
+nektos/tap/act
 nikto
 nmap
 node
@@ -50,5 +51,6 @@ theharvester
 vim
 watchman
 weechat
+wix/brew/applesimutils
 xaric
 youtube-dl
