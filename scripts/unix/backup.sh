@@ -33,7 +33,7 @@ fi
 if hasBinary brew; then
   brew leaves > "${PACKAGES_PATH}"/brew.txt
   if isMac; then
-    brew cask list > "${PACKAGES_PATH}"/brew-cask.txt
+    brew list --cask > "${PACKAGES_PATH}"/brew-cask.txt
   fi
 fi
 
