@@ -19,7 +19,7 @@ export PATH="$PATH:${HOME}/flutter/bin"
 
 # Use Java 1.8 by default, because react-native
 if [[ "${OSTYPE}" == darwin* ]]; then
-  export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+  export JAVA_HOME="$(/usr/libexec/java_home -v 1.8 | grep jdk)"
 fi
 
 # Set default editors
