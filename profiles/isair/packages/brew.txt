@@ -1,11 +1,14 @@
 aircrack-ng
+aspell
 automake
 awscli
+bfg
 bison
 chruby
 circleci
 clamav
 cmake
+code-server
 coreutils
 ddgr
 dehydrated
@@ -30,10 +33,10 @@ lynx
 mkcert
 mosh
 mutt
+ncurses
 nektos/tap/act
 nikto
 nmap
-node
 nss
 open-mpi
 p7zip
@@ -50,7 +53,6 @@ thefuck
 theharvester
 vim
 watchman
-weechat
 wix/brew/applesimutils
 xaric
 youtube-dl

@@ -3,6 +3,7 @@ alfred
 android-platform-tools
 android-studio
 appcleaner
+bettertouchtool
 bit-slicer
 bitwarden
 blender
@@ -10,6 +11,7 @@ burp-suite
 cd-to-terminal
 charles
 clockify
+cool-retro-term
 cyberduck
 daisydisk
 dash
@@ -33,10 +35,11 @@ java8
 jdownloader
 keepingyouawake
 kitematic
+krita
 libreoffice
 logisim
 ngrok
-nomachine
+obs
 onyx
 postman
 protonmail-bridge
@@ -46,6 +49,7 @@ quicklook-json
 r
 react-native-debugger
 shadow
+shotcut
 slack
 spotify
 station
@@ -58,4 +62,4 @@ vlc
 vnc-viewer
 whatsapp
 wireshark
-zoomus
+zoom
