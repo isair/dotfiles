@@ -8,16 +8,16 @@ source ./utils/helpers.sh
 
 cd ../.. || exit 1
 
+USER="$(getInstallationUser)"
+PROJECT_DIR="$(realpath "$(dirname "$0")")"/../..
+
 # Keep profiles up to date
 
 if [ -d .git ]; then
   if [ -z "$(git status --porcelain)" ]; then
-    git pull
+    su - "${USER}" -c "cd ${PROJECT_DIR} && git pull --rebase"
   else
-    git add .
-    git stash
-    git pull
-    git stash pop
+    su - "${USER}" -c "cd ${PROJECT_DIR} && git add . && git stash && git pull --rebase && git stash pop"
   fi
 fi
 
@@ -35,5 +35,5 @@ fi
 # TODO: yum support
 
 if hasBinary brew; then
-  brew update && brew upgrade
+  su - "${USER}" -c 'brew update && brew upgrade'
 fi

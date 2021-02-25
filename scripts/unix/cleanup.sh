@@ -6,6 +6,10 @@ cd "$(dirname "$0")" || exit 1
 
 source ./utils/helpers.sh
 
+cd ../.. || exit 1
+
+USER="$(getInstallationUser)"
+
 # Parse arguments
 
 CLEAN_DEEP=0
@@ -44,39 +48,39 @@ if hasBinary snap; then
 fi
 
 if hasBinary brew; then
-  brew cleanup --prune-prefix
+  su - "${USER}" -c 'brew cleanup --prune-prefix'
 fi
 
 if hasBinary nix-env; then
   if [ "${CLEAN_DEEP}" = 1 ]; then
-    nix-env --delete-generations +1
+    su - "${USER}" -c 'nix-env --delete-generations +1'
   else
-    nix-env --delete-generations 30d
+    su - "${USER}" -c 'nix-env --delete-generations 30d'
   fi
 fi
 
 if isMac; then
   # macOS shallow clean-up
-  rm -rf "${HOME}/Library/Developer/Xcode/Archives"
-  rm -rf "${HOME}/Library/Developer/Xcode/Products"
-  rm -rf "${HOME}/Library/Developer/Xcode/DerivedData"
-  find -E "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +
-  find -E "${HOME}"/.jenkins/workspace -maxdepth 3 -type d -regex ".*/(ios|android)" -execdir git clean -xdf -- {} +
+  su - "${USER}" -c 'rm -rf ~/Library/Developer/Xcode/Archives'
+  su - "${USER}" -c 'rm -rf ~/Library/Developer/Xcode/Products'
+  su - "${USER}" -c 'rm -rf ~/Library/Developer/Xcode/DerivedData'
+  su - "${USER}" -c 'find -E ~/{projects,workspace} -maxdepth 4 -type d -regex ".*/(DerivedData|build)" -exec rm -rf {} +'
+  su - "${USER}" -c 'find -E ~/.jenkins/workspace -maxdepth 3 -type d -regex ".*/(ios|android)" -execdir git clean -xdf -- {} +'
   sudo xcrun simctl delete unavailable
 else
   # Linux shallow clean-up of user owned programming projects
-  find "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/build" -exec rm -rf {} + 2>/dev/null
+  su - "${USER}" -c 'find ~/{projects,workspace} -maxdepth 4 -type d -regex ".*/build" -exec rm -rf {} + 2>/dev/null'
 fi
 
 # Deep clean of caches and user owned programming projects
 
 if [ "${CLEAN_DEEP}" = 1 ]; then
   if hasBinary yarn; then
-    yarn cache clean
+    su - "${USER}" -c 'yarn cache clean'
   fi
-  find "${HOME}"/{projects,workspace} -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} + 2>/dev/null
-  rm -rf "${HOME}/.jenkins/workspace"
-  sudo rm -rf "${HOME}/Library/Application Support/MobileSync/Backup"
+  su - "${USER}" -c 'find ~/{projects,workspace} -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} + 2>/dev/null'
+  su - "${USER}" -c 'rm -rf ~/.jenkins/workspace'
+  su - "${USER}" -c 'sudo rm -rf "~/Library/Application Support/MobileSync/Backup"'
 fi
 
 # Notify of success

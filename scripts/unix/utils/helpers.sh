@@ -53,3 +53,7 @@ function hasBrewBinary() {
 function isMac() {
   [[ "${OSTYPE}" == darwin* ]]
 }
+
+function getInstallationUser() {
+  realpath "$0" | cut -d / -f 3
+}
