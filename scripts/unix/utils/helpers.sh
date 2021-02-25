@@ -55,5 +55,5 @@ function isMac() {
 }
 
 function getInstallationUser() {
-  realpath "$0" | cut -d / -f 3
+  ls -ld "$(realpath "$0")" | awk '{print $3}'
 }
