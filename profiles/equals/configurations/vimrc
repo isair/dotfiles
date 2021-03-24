@@ -52,7 +52,7 @@ let b:ale_fixers = {
 \ ],
 \ 'typescript': [
 \   'prettier',
-\   'tslint',
+\   'eslint',
 \   'tsserver'
 \ ]}
 let g:ale_fix_on_save = 1
