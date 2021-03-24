@@ -9,7 +9,7 @@ source ./utils/helpers.sh
 cd ../.. || exit 1
 
 USER="$(getInstallationUser)"
-PROJECT_DIR="$(realpath "$(dirname "$0")")"/../..
+PROJECT_DIR="$(universalRealPath "$(dirname "$0")")"/../..
 
 # Keep profiles up to date
 
