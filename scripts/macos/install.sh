@@ -103,7 +103,7 @@ if hasBinary git; then
 fi
 
 # Clean things up
-"${PWD}"/../unix/cleanup.sh
+sudo "${PWD}"/../unix/cleanup.sh
 
 # Symlink dotfiles
 "${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"
