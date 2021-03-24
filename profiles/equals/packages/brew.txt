@@ -9,4 +9,5 @@ scrcpy
 starship
 thefuck
 vim
+zsh-autosuggestions
 watchman
