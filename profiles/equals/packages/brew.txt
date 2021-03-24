@@ -1,0 +1,15 @@
+awscli
+bfg
+circleci
+code-server
+gdb
+git
+git-flow
+git-lfs
+gnu-sed
+gradle
+scrcpy
+starship
+thefuck
+vim
+watchman
