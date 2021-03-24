@@ -8,7 +8,7 @@ bit-slicer
 bitwarden
 blender
 burp-suite
-cd-to-terminal
+cd-to
 charles
 clockify
 cool-retro-term

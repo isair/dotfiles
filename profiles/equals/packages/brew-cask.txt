@@ -6,7 +6,7 @@ bettertouchtool
 bit-slicer
 bitwarden
 burp-suite
-cd-to-terminal
+cd-to
 charles
 cyberduck
 figma
