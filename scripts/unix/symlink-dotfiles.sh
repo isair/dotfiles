@@ -20,26 +20,26 @@ rm -rf ~/.dotfiles-shared
 ln -s "${PWD}"/../../shared ~/.dotfiles-shared
 
 if [ -f profile ]; then
-  rm ~/.profile
+  rm ~/.profile 2>/dev/null
   ln -s "${PWD}"/profile ~/.profile
 fi
 
 if [ -f bashrc ]; then
-  rm ~/.bashrc
+  rm ~/.bashrc 2>/dev/null
   ln -s "${PWD}"/bashrc ~/.bashrc
 fi
 
 if [ -f zshrc ]; then
-  rm ~/.zshrc
+  rm ~/.zshrc 2>/dev/null
   ln -s "${PWD}"/zshrc ~/.zshrc
 fi
 
 if [ -f vimrc ]; then
-  rm ~/.vimrc
+  rm ~/.vimrc 2>/dev/null
   ln -s "${PWD}"/vimrc ~/.vimrc
 fi
 
 if [ -f hyper.js ]; then
-  rm ~/.hyper.js
+  rm ~/.hyper.js 2>/dev/null
   ln -s "${PWD}"/hyper.js ~/.hyper.js
 fi
