@@ -75,7 +75,7 @@ if hasPackages brew-cask; then
   if ! hasBinary brew; then
     echoError 'This profile has homebrew casks but brew could not be found in path'
   fi
-  brew cask install `cat "${PACKAGES_PATH}"/brew-cask.txt | tr '\n' ' '`
+  brew install --cask `cat "${PACKAGES_PATH}"/brew-cask.txt | tr '\n' ' '`
 fi
 
 ## TODO: If nvm is installed, make sure a node version is installed
@@ -103,7 +103,7 @@ if hasBinary git; then
 fi
 
 # Clean things up
-"${PWD}"/../unix/cleanup.sh
+sudo "${PWD}"/../unix/cleanup.sh
 
 # Symlink dotfiles
 "${PWD}"/../unix/symlink-dotfiles.sh "${PROFILE}"

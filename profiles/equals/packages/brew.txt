@@ -1,0 +1,13 @@
+awscli
+bfg
+circleci
+git
+git-flow
+git-lfs
+gradle
+scrcpy
+starship
+thefuck
+vim
+zsh-autosuggestions
+watchman

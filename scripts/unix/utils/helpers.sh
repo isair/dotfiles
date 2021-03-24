@@ -54,6 +54,23 @@ function isMac() {
   [[ "${OSTYPE}" == darwin* ]]
 }
 
+function universalRealPath() {
+  if isMac; then
+    OURPWD=$PWD
+    cd "$(dirname "$1")"
+    LINK=$(readlink "$(basename "$1")")
+    while [ "$LINK" ]; do
+      cd "$(dirname "$LINK")"
+      LINK=$(readlink "$(basename "$1")")
+    done
+    REALPATH="$PWD/$(basename "$1")"
+    cd "$OURPWD"
+    echo "$REALPATH"
+  else
+    realpath "$1"
+  fi
+}
+
 function getInstallationUser() {
-  ls -ld "$(realpath "$0")" | awk '{print $3}'
+  ls -ld "$(universalRealPath "$0")" | awk '{print $3}'
 }
