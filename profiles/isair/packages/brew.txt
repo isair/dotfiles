@@ -37,6 +37,7 @@ ncurses
 nektos/tap/act
 nikto
 nmap
+node
 nss
 open-mpi
 p7zip
@@ -52,8 +53,8 @@ starship
 thefuck
 theharvester
 vim
-zsh-autosuggestions
 watchman
 wix/brew/applesimutils
 xaric
 youtube-dl
+yulrizka/tap/pushtotalk
