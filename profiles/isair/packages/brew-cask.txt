@@ -11,7 +11,6 @@ brave-browser
 burp-suite
 cd-to-terminal
 charles
-clockify
 cyberduck
 daisydisk
 discord
@@ -51,6 +50,7 @@ qlvideo
 quicklook-csv
 quicklook-json
 quicklookase
+raycast
 rectangle
 shadow
 shotcut

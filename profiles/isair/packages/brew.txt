@@ -25,6 +25,7 @@ highlight
 hub
 hydra
 ideviceinstaller
+ilmbase
 imagemagick
 jq
 jython
@@ -44,12 +45,14 @@ p7zip
 pipenv
 python@2
 reaver
+rtmpdump
 ruby-install
 scons
 scrcpy
 shellcheck
 sqlmap
 starship
+the_silver_searcher
 thefuck
 theharvester
 vim

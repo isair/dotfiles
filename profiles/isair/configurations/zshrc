@@ -49,6 +49,10 @@ alias .pup="pod update"
 
 alias .s="ddgr"
 
+alias .nr="npm run"
+
+alias gyb="~/bin/gyb/gyb"
+
 #
 # Utility Functions
 #
@@ -60,3 +64,10 @@ source "$HOME"/.dotfiles-shared/shrc-utility
 #
 
 eval "$(starship init zsh)"
+
+
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+
