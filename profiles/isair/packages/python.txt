@@ -20,7 +20,7 @@ funcsigs==1.0.2
 future==0.17.1
 futures==3.3.0
 gevent==1.4.0
-gpg==1.15.1
+gpg==1.16.0
 greenlet==0.4.15
 gym==0.14.0
 idna==2.10

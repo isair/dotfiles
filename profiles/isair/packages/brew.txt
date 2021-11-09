@@ -1,3 +1,4 @@
+adns
 aircrack-ng
 aspell
 automake
@@ -34,7 +35,6 @@ lynx
 mkcert
 mosh
 mutt
-ncurses
 nektos/tap/act
 nikto
 nmap

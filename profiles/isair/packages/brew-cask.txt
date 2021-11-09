@@ -4,10 +4,10 @@ android-platform-tools
 android-studio
 apparency
 appcleaner
+authy
 bit-slicer
 bitwarden
 blender
-brave-browser
 burp-suite
 cd-to-terminal
 charles
@@ -36,7 +36,10 @@ keepingyouawake
 kitematic
 libreoffice
 logisim
+microsoft-auto-update
+microsoft-edge
 ngrok
+nordvpn
 nvidia-geforce-now
 obs
 onyx
