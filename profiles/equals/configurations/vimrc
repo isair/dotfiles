@@ -14,6 +14,8 @@ Plug 'tpope/vim-sensible' " Sensible defaults
 Plug 'flazz/vim-colorschemes' " A solid collection of popular colorschemes
 Plug 'scrooloose/nerdtree' " File system navigation inside vim, :NERDTree
 Plug 'kien/ctrlp.vim' " Fuzzy file finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy text finder
+Plug 'junegunn/fzf.vim' " Fuzzy text finder
 Plug 'jeetsukumaran/vim-buffergator' " Better buffer management
 Plug 'sheerun/vim-polyglot' " Syntax and indentation for all
 Plug 'tokorom/xcode-actions.vim' " Control Xcode without leaving vim, :XcodeAction...
@@ -29,9 +31,6 @@ Plug 'tpope/vim-endwise' " Automatically end code blocks in some languages
 Plug 'rizzatti/dash.vim' " Dash (code docs) support
 Plug 'wkentaro/conque.vim' " Shell inside vim buffer
 Plug 'danro/rename.vim' " Adds a :rename command
-Plug 'prettier/vim-prettier', {
-\ 'do': 'yarn install',
-\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml'] }
 Plug 'dense-analysis/ale' " Real-time auto-completion, linting, fixing, etc tool
 Plug 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -45,16 +44,17 @@ Plug 'Shougo/vimproc.vim', {
 call plug#end()
 
 " ALE setup
-let b:ale_fixers = {
-\ 'javascript': [
-\   'prettier',
-\   'eslint'
-\ ],
-\ 'typescript': [
-\   'prettier',
-\   'eslint',
-\   'tsserver'
-\ ]}
+let g:ale_linters = {
+\ 'javascript': ['xo'],
+\ 'typescript': ['xo'],
+\}
+let g:ale_fixers = {
+\ 'javascript': ['xo'],
+\ 'typescript': ['xo'],
+\}
+let g:ale_linter_aliases = {
+\ 'typescriptreact': 'typescript'
+\}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
@@ -79,13 +79,6 @@ let g:buffergator_suppress_keymaps = 1
 nmap <leader>jj :BuffergatorMruCyclePrev<cr>
 nmap <leader>kk :BuffergatorMruCycleNext<cr>
 nmap <leader>bl :BuffergatorOpen<cr>
-
-" Prettier config
-
-let g:prettier#exec_cmd_path = trim(system('npm-which prettier'))
-let g:prettier#autoformat = 0
-
-autocmd BufWritePre *.{js,jsx,ts,tsx,json,css,scss,less,graphql,html,yml} PrettierAsync
 
 " Airline setup
 let g:airline#extensions#tabline#enabled = 1
@@ -130,7 +123,7 @@ nmap <leader>t :enew<cr>
 nnoremap <leader>s :NERDTree<CR>
 
 " \g to go to definition (NERDTree)
-nnoremap <leader>d :ALEGoToDefinition<CR>
+nnoremap <leader>g :ALEGoToDefinition<CR>
 
 " \d to search word under cursor in Dash
 nmap <silent> <leader>d <Plug>DashSearch
@@ -144,18 +137,16 @@ endwhile
 
 " Set colors
 syntax enable
+set t_Co=256
 set background=dark
-colorscheme gruvbox
-
-" MacVim
-set guifont=Monaco:h13
+colorscheme PaperColor
 
 " Fix for gitgutter
 highlight clear SignColumn
 
-" Highlight background of lines longer than 80 characters
+" Highlight background of lines longer than 120 characters
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-match OverLength /\%>80v.\+/
+match OverLength /\%>120v.\+/
 
 " Don't expand tabs for Makefile
 autocmd FileType make setlocal noexpandtab
