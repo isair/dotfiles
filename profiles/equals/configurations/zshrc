@@ -10,6 +10,7 @@ source "$HOME"/.dotfiles-shared/shrc-setup-zsh
 source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
 source "$HOME"/.dotfiles-shared/shrc-setup-thefuck
 source "$HOME"/.dotfiles-shared/shrc-setup-nvm
+source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 
 # Use Java 1.8 by default, because react-native
@@ -48,9 +49,4 @@ source "$HOME"/.dotfiles-shared/shrc-utility
 #
 
 eval "$(starship init zsh)"
-
-
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
 

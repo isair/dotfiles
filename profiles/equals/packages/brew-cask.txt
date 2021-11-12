@@ -4,6 +4,7 @@ android-studio
 appcleaner
 authy
 bit-slicer
+burp-suite
 cd-to
 charles
 cyberduck
@@ -13,6 +14,8 @@ gitup
 google-chrome
 google-drive
 grammarly
+imageoptim
+jdownloader
 keepingyouawake
 logisim
 microsoft-auto-update

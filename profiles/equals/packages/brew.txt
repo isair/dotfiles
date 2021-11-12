@@ -1,5 +1,6 @@
 awscli
 bfg
+chruby
 circleci
 code-server
 gdb
@@ -8,11 +9,16 @@ git-flow
 git-lfs
 gnu-sed
 gradle
+imagemagick
 libuv
+lynx
 mkvtoolnix
 mpv
+potrace
 scrcpy
+speedtest-cli
 starship
+the_silver_searcher
 thefuck
 vim
 watchman
