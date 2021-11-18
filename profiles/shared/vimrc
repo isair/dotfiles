@@ -32,6 +32,7 @@ Plug 'rizzatti/dash.vim' " Dash (code docs) support
 Plug 'wkentaro/conque.vim' " Shell inside vim buffer
 Plug 'danro/rename.vim' " Adds a :rename command
 Plug 'dense-analysis/ale' " Real-time auto-completion, linting, fixing, etc tool
+Plug 'github/copilot.vim' " AI code suggestions
 Plug 'Shougo/vimproc.vim', {
 \ 'build' : {
 \   'windows' : 'tools\\update-dll-mingw',

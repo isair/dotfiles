@@ -43,6 +43,7 @@ nordvpn
 nvidia-geforce-now
 obs
 onyx
+playonmac
 postman
 qlcolorcode
 qlimagesize
