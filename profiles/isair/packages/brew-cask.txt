@@ -14,6 +14,7 @@ charles
 cyberduck
 daisydisk
 discord
+docker
 dotnet-sdk
 epic-games
 epubquicklook
@@ -40,6 +41,7 @@ microsoft-auto-update
 microsoft-edge
 ngrok
 nordvpn
+notion
 nvidia-geforce-now
 obs
 onyx

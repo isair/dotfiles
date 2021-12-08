@@ -36,6 +36,7 @@ mkcert
 mosh
 mutt
 nektos/tap/act
+nghttp2
 nikto
 nmap
 node
