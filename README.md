@@ -113,6 +113,7 @@ The back-up scripts support the following package managers.
 - profile
 - hyper.js
 - vim
+- ssh
 
 ## Development
 

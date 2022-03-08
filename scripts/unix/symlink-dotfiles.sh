@@ -43,3 +43,8 @@ if [ -f hyper.js ]; then
   rm -f ~/.hyper.js
   ln -s "${PWD}"/hyper.js ~/.hyper.js
 fi
+
+if [ -f ssh_config ]; then
+  rm -f ~/.ssh/config
+  ln -s "${PWD}"/ssh_config ~/.ssh/config
+fi

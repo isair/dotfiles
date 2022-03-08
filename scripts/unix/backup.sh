@@ -73,6 +73,10 @@ if [ -f ~/.hyper.js ]; then
   cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js | true
 fi
 
+if [ -f ~/.ssh/config ]; then
+  cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config | true
+fi
+
 ./symlink-dotfiles.sh "${PROFILE}"
 
 # Notify of success
