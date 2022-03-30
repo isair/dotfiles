@@ -7,7 +7,6 @@ circleci
 clang-format
 code-server
 dlib
-gdb
 git
 git-flow
 git-lfs
@@ -35,5 +34,4 @@ vim
 watchman
 wget
 youtube-dl
-yulrizka/tap/pushtotalk
 zsh-autosuggestions

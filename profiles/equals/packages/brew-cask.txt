@@ -40,7 +40,6 @@ syncthing
 temurin8
 the-unarchiver
 tor-browser
-virtualbox
 visual-studio-code
 whatsapp
 zoom
