@@ -31,12 +31,10 @@ fi
 # Install Oh My Zsh
 if hasConfig zsh; then
   if [ ! -d "${HOME}"/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended --skip-chsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended --skip-chsh"
     ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
     mkdir -p "${ZSH_PLUGINS_PATH}"
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_PLUGINS_PATH}"/zsh-autosuggestions
-    sudo chown -R "$(whoami)" /usr/local/share/zsh
-    chmod -R g-w,o-w /usr/local/share/zsh /usr/local/share/zsh/site-functions
   fi
 fi
 
