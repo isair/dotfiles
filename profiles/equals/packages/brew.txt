@@ -6,7 +6,7 @@ chruby
 circleci
 clang-format
 code-server
-ffmpeg
+dlib
 gdb
 git
 git-flow
@@ -30,8 +30,10 @@ speedtest-cli
 starship
 the_silver_searcher
 thefuck
+unzip
 vim
 watchman
+wget
 youtube-dl
 yulrizka/tap/pushtotalk
 zsh-autosuggestions

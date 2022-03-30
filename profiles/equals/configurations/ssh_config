@@ -1,2 +1,7 @@
+Host 95.179.134.96
+ HostName 95.179.134.96
+ User root
+ IdentityFile "/Volumes/GoogleDrive-114168437752863372122/My Drive/Backup/ssh/msi-id_rsa"
+
 Host *
  ServerAliveInterval 60
