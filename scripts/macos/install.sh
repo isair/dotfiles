@@ -46,6 +46,8 @@ if hasPackages brew; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
 
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
   # Make sure brew cask has access to older versions of packages.
   brew tap homebrew/cask-versions
 
