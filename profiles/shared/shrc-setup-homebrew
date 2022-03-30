@@ -1,7 +1,6 @@
 # Use brew binaries before system binaries
 if [[ "${OSTYPE}" == darwin* ]]; then
-  export PATH="/usr/local/bin:$PATH"
-  export PATH="/usr/local/sbin:$PATH"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
