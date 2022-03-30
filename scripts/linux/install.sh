@@ -12,7 +12,7 @@ setProfileEnv "$1"
 
 abortIfProfileNotFound
 
-set -u
+set -ux
 
 # Make sure everthing is up-to-date
 "${PWD}"/../unix/update.sh

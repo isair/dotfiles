@@ -14,7 +14,7 @@ abortIfSudo
 
 setProfileEnv "$1"
 
-set -u
+set -ux
 
 # Make sure everthing is up-to-date
 

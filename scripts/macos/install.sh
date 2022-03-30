@@ -12,7 +12,7 @@ setProfileEnv "$1"
 
 abortIfProfileNotFound
 
-set -u
+set -ux
 
 # Check for Xcode installation
 if ! hasBinary xcode-select; then
