@@ -1,4 +1,3 @@
-expo-cli
+corepack
 npm
-react-native-kill-packager
 yarn
