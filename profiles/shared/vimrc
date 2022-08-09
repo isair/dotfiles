@@ -41,6 +41,7 @@ Plug 'Shougo/vimproc.vim', {
 \   'linux' : 'make',
 \   'unix' : 'gmake',
 \ }}
+Plug 'Quramy/vison'
 
 call plug#end()
 

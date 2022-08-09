@@ -1,7 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
-
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # Source secrets file which holds environment
 # variables for things such as tokens
 source "$HOME/.secrets"
@@ -42,6 +40,8 @@ alias .bx="bundle exec"
 alias .pin="pod install"
 alias .pup="pod update"
 
+alias .cloud="sudo ifconfig awdl0 down"
+
 #
 # Utility Functions
 #
@@ -55,5 +55,4 @@ source "$HOME"/.dotfiles-shared/shrc-utility
 eval "$(starship init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

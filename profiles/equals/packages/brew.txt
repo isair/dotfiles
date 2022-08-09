@@ -7,6 +7,7 @@ circleci
 clang-format
 code-server
 dlib
+firebase-cli
 git
 git-flow
 git-lfs
@@ -15,6 +16,7 @@ gnu-sed
 go
 gradle
 graphicsmagick
+gum
 imagemagick
 jq
 lynx
