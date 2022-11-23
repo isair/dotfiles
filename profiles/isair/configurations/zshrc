@@ -5,26 +5,10 @@
 # Setup
 #
 
-source "$HOME"/.dotfiles-shared/shrc-setup-zsh
 source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
 source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
-
-#
-# Aliases
-#
-
-source "$HOME"/.dotfiles-shared/shrc-alias-git
-
-#
-# Utility Functions
-#
-
-source "$HOME"/.dotfiles-shared/shrc-utility
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
