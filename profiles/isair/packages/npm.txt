@@ -1,3 +1,8 @@
+cli
 corepack
+generator-eslint
 npm
+pnpm
 yarn
+yo
+zx

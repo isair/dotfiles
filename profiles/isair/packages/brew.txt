@@ -23,12 +23,15 @@ imagemagick
 jq
 luajit-openresty
 lynx
-macos-term-size
 mkvtoolnix
 mpv
+neovim
 nghttp2
 p7zip
+pipx
 potrace
+pyenv
+ripgrep
 ruby-install
 rust
 scrcpy
