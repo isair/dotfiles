@@ -8,11 +8,11 @@ battle-net
 bit-slicer
 blender
 bluestacks
-brave-browser
 breaktimer
 burp-suite
 cd-to
 charles
+cmake
 cool-retro-term
 daisydisk
 diffusionbee
@@ -34,6 +34,7 @@ grammarly-desktop
 handbrake
 imageoptim
 inkscape
+iterm2
 jdownloader
 keepingyouawake
 logisim-evolution
@@ -49,9 +50,11 @@ openemu
 porting-kit
 postman
 protonvpn
+pycharm
 pycharm-ce-with-anaconda-plugin
 rectangle
 securid
+shadow
 sidequest
 steam
 syncthing
