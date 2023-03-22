@@ -36,6 +36,7 @@ mpv
 neovim
 nghttp2
 opencv
+openjdk@17
 p7zip
 pipx
 potrace

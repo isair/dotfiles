@@ -4,6 +4,7 @@ appcleaner
 audacity
 authy
 balenaetcher
+bartender
 battle-net
 bit-slicer
 blender
@@ -15,7 +16,6 @@ charles
 cmake
 cool-retro-term
 daisydisk
-diffusionbee
 discord
 docker
 electrum
@@ -39,7 +39,9 @@ jdownloader
 keepingyouawake
 logisim-evolution
 microsoft-auto-update
+microsoft-edge
 miniforge
+mochi-diffusion
 ngrok
 notion
 notunes

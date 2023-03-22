@@ -2,6 +2,14 @@
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
 #
+# Preferences
+#
+
+export VISUAL=vim
+export EDITOR=vim
+export REACT_EDITOR=code
+
+#
 # Setup
 #
 
@@ -9,6 +17,18 @@ source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
 source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
+
+#
+# Aliases
+#
+
+source "$HOME"/.dotfiles-shared/shrc-alias-git
+
+#
+# Functions
+#
+
+source "$HOME"/.dotfiles-shared/shrc-functions-utility
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

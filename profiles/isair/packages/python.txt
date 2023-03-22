@@ -12,7 +12,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.2
 multidict==6.0.4
-numpy==1.24.1
+numpy==1.24.2
 openai==0.26.4
 pathlib==1.0.1
 protobuf==4.21.12
