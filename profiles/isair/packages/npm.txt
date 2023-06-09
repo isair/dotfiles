@@ -1,8 +1,6 @@
-cli
+github-copilot-cli
 corepack
-generator-eslint
 npm
+nx
 pnpm
 yarn
-yo
-zx

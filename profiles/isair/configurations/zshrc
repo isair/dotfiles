@@ -18,17 +18,22 @@ source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 #
 # Aliases
 #
 
 source "$HOME"/.dotfiles-shared/shrc-alias-git
+eval "$(github-copilot-cli alias -- "$0")"
 
 #
 # Functions
 #
 
 source "$HOME"/.dotfiles-shared/shrc-functions-utility
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
