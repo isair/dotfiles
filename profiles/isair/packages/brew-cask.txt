@@ -8,6 +8,7 @@ battle-net
 bit-slicer
 blender
 bluestacks
+boom
 burp-suite
 cd-to
 charles
