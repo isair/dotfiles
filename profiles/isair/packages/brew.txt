@@ -8,6 +8,7 @@ cabextract
 chruby
 circleci
 clang-format
+cmake
 cmocka
 code-server
 deno
@@ -40,6 +41,7 @@ mpv
 neovim
 nghttp2
 opencv
+openjdk@17
 p7zip
 pipx
 potrace

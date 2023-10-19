@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 #
 # Preferences
 #
@@ -13,13 +10,13 @@ export REACT_EDITOR=code
 # Setup
 #
 
+source "$HOME"/.dotfiles-shared/shrc-setup-zsh
 source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
+source "$HOME"/.dotfiles-shared/shrc-setup-thefuck
 source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+source "$HOME"/.dotfiles-shared/shrc-setup-nvm
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -30,7 +27,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 #
 
 source "$HOME"/.dotfiles-shared/shrc-alias-git
-eval "$(github-copilot-cli alias -- "$0")"
+eval "$(npx github-copilot-cli alias -- "$0")"
 
 #
 # Functions
