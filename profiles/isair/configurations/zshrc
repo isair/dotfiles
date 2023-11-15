@@ -32,7 +32,7 @@ source "$HOME"/.dotfiles-shared/shrc-alias-git
 eval "$(npx github-copilot-cli alias -- "$0")"
 
 alias .x=pnpm
-alias .p=cd ~/projects
+alias .p="cd ~/projects"
 alias .e=nvim
 
 #

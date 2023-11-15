@@ -4,10 +4,8 @@ audacity
 authy
 balance-lock
 balenaetcher
-battle-net
 bit-slicer
 blender
-bluestacks
 boom-3d
 burp-suite
 cd-to
@@ -20,7 +18,6 @@ discord
 docker
 electrum
 epic-games
-figma
 folx
 font-jetbrains-mono-nerd-font
 gitup
@@ -54,7 +51,6 @@ opera-gx
 postman
 prismlauncher
 protonvpn
-pycharm
 rectangle
 securid
 shadow
@@ -63,7 +59,6 @@ signal
 spotify
 steam
 stremio
-supertuxkart
 syncthing
 teamviewer
 telegram
