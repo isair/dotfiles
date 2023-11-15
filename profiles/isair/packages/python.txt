@@ -14,7 +14,7 @@ blis==0.7.9
 cachetools==5.3.0
 catalogue==2.0.8
 certifi==2022.12.7
-cffi==1.15.1
+cffi @ file:///private/tmp/cffi-20231014-5567-1hyue8f/cffi-1.16.0
 cfgv==3.3.1
 chardet==5.1.0
 charset-normalizer==3.1.0
@@ -30,7 +30,7 @@ distlib==0.3.6
 distro==1.8.0
 dnspython==2.3.0
 docker==6.0.1
-docutils==0.20.1
+docutils @ file:///private/tmp/docutils-20231015-5454-w1xze4/docutils-0.20.1
 duckduckgo-search==3.1.1
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl#sha256=0964370218b7e1672a30ac50d72cdc6b16f7c867496f1d60925691188f4d2510
 exceptiongroup==1.1.1
@@ -77,11 +77,12 @@ mypy-extensions==1.0.0
 networkx==3.1
 nodeenv==1.8.0
 numba==0.57.0
-numpy==1.25.1
+numpy==1.26.1
 oauthlib==3.2.2
 openai==0.27.2
 openai-whisper==20230314
 openapi-python-client==0.13.4
+openvino==2023.1.0
 orjson==3.8.10
 outcome==1.2.0
 packaging==23.1
@@ -94,15 +95,16 @@ playsound==1.2.2
 pluggy==1.0.0
 pre-commit==3.3.2
 preshed==3.0.8
-protobuf==4.23.4
+protobuf==4.24.4
 py-cpuinfo==9.0.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycodestyle==2.10.0
-pycparser==2.21
+pycparser @ file:///private/tmp/pycparser-20231013-5787-1anpge2/pycparser-2.21
 pydantic==1.10.7
 pyflakes==3.0.1
 PyGithub==1.58.1
+Pygments @ file:///private/tmp/pygments-20231008-5534-zuvwpt/Pygments-2.16.1
 PyJWT==2.6.0
 pylatexenc==2.10
 pymdown-extensions==10.0.1
@@ -110,9 +112,16 @@ PyNaCl==1.5.0
 pyOpenSSL==23.1.1
 pyparsing==3.0.9
 PyPDF2==3.0.1
-PyQt3D==5.15.5
-PyQt5==5.15.7
-PyQt5-sip==12.11.0
+PyQt3D==5.15.6
+PyQt5==5.15.9
+PyQt5-sip==12.12.1
+PyQt6==6.5.2
+PyQt6-3D==6.5.0
+PyQt6-Charts==6.5.0
+PyQt6-DataVisualization==6.5.0
+PyQt6-NetworkAuth==6.5.0
+PyQt6-sip==13.5.2
+PyQt6-WebEngine==6.5.0
 PyQtChart==5.15.6
 PyQtDataVisualization==5.15.5
 PyQtNetworkAuth==5.15.5
@@ -131,6 +140,7 @@ pytest-xdist==3.3.1
 python-dateutil==2.8.2
 python-docx==0.8.11
 python-dotenv==1.0.0
+pytz @ file:///private/tmp/python-pytz-20231006-5495-1z0ldzn/pytz-2023.3.post1
 pywatchman==1.4.1
 PyYAML==6.0
 pyyaml_env_tag==0.1

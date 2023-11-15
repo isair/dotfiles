@@ -2,8 +2,8 @@
 # Preferences
 #
 
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 export REACT_EDITOR=code
 
 #
@@ -17,6 +17,7 @@ source "$HOME"/.dotfiles-shared/shrc-setup-chruby
 source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
 source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
 source "$HOME"/.dotfiles-shared/shrc-setup-nvm
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -27,10 +28,16 @@ export SDKMAN_DIR="$HOME/.sdkman"
 #
 
 source "$HOME"/.dotfiles-shared/shrc-alias-git
+
 eval "$(npx github-copilot-cli alias -- "$0")"
+
+alias .x=pnpm
+alias .p=cd ~/projects
+alias .e=nvim
 
 #
 # Functions
 #
 
 source "$HOME"/.dotfiles-shared/shrc-functions-utility
+

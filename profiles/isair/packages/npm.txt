@@ -1,6 +1,7 @@
 github-copilot-cli
+inshellisense
 corepack
 npm
-nx
 pnpm
-yarn
+vercel
+zx
