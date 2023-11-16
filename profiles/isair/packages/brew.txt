@@ -3,7 +3,6 @@ aws-sam-cli
 awscli
 bfg
 bison
-browsh-org/browsh/browsh
 bundletool
 cabextract
 chruby
@@ -35,7 +34,6 @@ jdxcode/tap/rtx
 jpeg
 jq
 luajit-openresty
-lynx
 macos-term-size
 md5sha1sum
 mkvtoolnix
@@ -63,6 +61,7 @@ the_silver_searcher
 thefuck
 unzip
 vim
+w3m
 watchman
 wget
 xmlto
