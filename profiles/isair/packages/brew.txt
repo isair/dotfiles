@@ -55,6 +55,5 @@ watchman
 wget
 xmlto
 youtube-dl
-yulrizka/tap/pushtotalk
 zlib
 zsh-autosuggestions
