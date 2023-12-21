@@ -6,9 +6,7 @@ balance-lock
 balenaetcher
 bit-slicer
 blender
-boom-3d
 burp-suite
-cd-to
 charles
 cmake
 cool-retro-term
@@ -24,8 +22,6 @@ gitup
 godot
 gog-galaxy
 google-drive
-grammarly
-grammarly-desktop
 handbrake
 heroic
 imageoptim
@@ -42,12 +38,10 @@ minecraft
 miniforge
 ngrok
 notunes
-nvidia-geforce-now
 obsidian
 onionshare
 onyx
 openemu
-opera-gx
 postman
 prismlauncher
 protonvpn
@@ -71,6 +65,5 @@ visual-studio-code
 vlc
 whatsapp
 whisky
-wormhole
 zerotier-one
 zoom
