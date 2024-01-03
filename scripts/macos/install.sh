@@ -25,6 +25,9 @@ if [ ! "$(xcode-select -p)" = "" ]; then
   xcode-select --install || true
 fi
 
+# Rosetta is needed for any x86 app, which is still quite a common occurrence so install it
+sudo softwareupdate --install-rosetta
+
 # Make sure everthing is up-to-date
 "${PWD}"/../unix/update.sh
 
