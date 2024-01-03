@@ -1,5 +1,3 @@
-github-copilot-cli
-inshellisense
 corepack
 npm
 pnpm

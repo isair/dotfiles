@@ -10,6 +10,7 @@ export REACT_EDITOR=code
 # Setup
 #
 
+source "$HOME"/.secrets
 source "$HOME"/.dotfiles-shared/shrc-setup-zsh
 source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
 source "$HOME"/.dotfiles-shared/shrc-setup-thefuck
@@ -29,12 +30,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 source "$HOME"/.dotfiles-shared/shrc-alias-git
 
-eval "$(npx github-copilot-cli alias -- "$0")"
-
 alias .x=pnpm
 alias .p="cd ~/projects"
 alias .e=nvim
 alias .w=w3m
+alias \?\?="gh copilot suggest"
 
 #
 # Functions

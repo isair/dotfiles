@@ -11,6 +11,7 @@ clang-format
 cmake
 cockroachdb/tap/cockroach
 code-server
+coreutils
 ffmpeg@4
 gh
 git
