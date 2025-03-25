@@ -22,6 +22,10 @@ if hasPackages brew && ! hasBinary brew; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   if hasBinary apt-get; then
     sudo apt-get install build-essential
+  elif hasBinary pacman; then
+    sudo pacman -S base-devel
+  elif hasBinary yay; then
+    yay -S base-devel
   elif hasBinary yum; then
     sudo yum groupinstall 'Development Tools'
   fi
@@ -38,13 +42,42 @@ if hasPackages apt-get; then
   sudo apt-get --yes --force-yes install `cat "${PACKAGES_PATH}"/apt.txt | tr '\n' ' '`
 fi
 
-# TODO: yum support
-
 if hasPackages snap; then
   if ! hasBinary snap; then
     echoError 'This profile has snap packages but snap could not be found in path'
   fi
   sudo snap install `cat "${PACKAGES_PATH}"/snap.txt | tr '\n' ' '`
+fi
+
+# ArchLinux support
+
+if hasPackages pacman; then
+  if ! hasBinary pacman; then
+    echoError 'This profile has pacman packages but pacman could not be found in path'
+  fi
+  sudo pacman --noconfirm -Sy glibc
+  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+  sudo pacman --noconfirm -Sy $(cat "${PACKAGES_PATH}"/pacman.txt | tr '\n' ' ')
+fi
+
+if hasPackages yay; then
+  if ! hasBinary yay; then
+    echoError 'This profile has yay packages but yay could not be found in path'
+  fi
+  sudo yay --noconfirm -Sy glibc
+  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+  sudo yay --noconfirm -Sy $(cat "${PACKAGES_PATH}"/yay.txt | tr '\n' ' ')
+fi
+
+# RedHat based support
+
+if hasPackages yum; then
+  if ! hasBinary yum; then
+    echoError 'This profile has yum packages but yum could not be found in path'
+  fi
+  sudo yum install -y glibc-common
+  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+  sudo yum install -y $(cat "${PACKAGES_PATH}"/yum.txt | tr '\n' ' ')
 fi
 
 if hasPackages brew; then

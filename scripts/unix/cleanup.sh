@@ -47,6 +47,15 @@ if hasBinary snap; then
       done
 fi
 
+if hasBinary pacman; then
+  sudo pacman -Sc
+fi
+
+if hasBinary yum; then
+  sudo yum autoremove -y
+  sudo yum clean all
+fi
+
 if hasBinary brew; then
   su - "${USER}" -c 'brew cleanup --prune-prefix'
 fi
