@@ -99,6 +99,9 @@ The back-up scripts support the following package managers.
 - brew
 - apt
 - snap
+- pacman
+- yay
+- yum
 - npm
 - pip
 

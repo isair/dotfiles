@@ -30,6 +30,18 @@ if hasBinary snap; then
   snap list | awk '{if (NR > 1) print $1}' > "${PACKAGES_PATH}"/snap.txt
 fi
 
+if hasBinary pacman; then
+  comm -23 <(pacman -Qeq | sort) <(pacman -Qdtq | sort) > "${PACKAGES_PATH}"/pacman.txt
+fi
+
+if hasBinary yay; then
+  comm -23 <(yay -Qeq | sort) <(yay -Qdtq | sort) > "${PACKAGES_PATH}"/yay.txt
+fi
+
+if hasBinary yum; then
+  yum list installed | awk '{print $1}' | tail -n +2 > "${PACKAGES_PATH}"/yum.txt
+fi
+
 if hasBinary brew; then
   brew leaves > "${PACKAGES_PATH}"/brew.txt
   if isMac; then

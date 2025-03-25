@@ -32,7 +32,15 @@ if hasBinary apt-get; then
   sudo apt-get upgrade
 fi
 
-# TODO: yum support
+if hasBinary pacman; then
+  sudo pacman -Sy
+  sudo pacman -Su
+fi
+
+if hasBinary yum; then
+  sudo yum makecache
+  sudo yum upgrade -y
+fi
 
 if hasBinary brew; then
   su - "${USER}" -c 'brew update && brew upgrade'
