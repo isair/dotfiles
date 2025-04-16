@@ -1,0 +1,54 @@
+#
+# Preferences
+#
+
+export VISUAL=nvim
+export EDITOR=nvim
+export REACT_EDITOR=code
+
+#
+# Setup
+#
+
+source "$HOME"/.secrets
+source "$HOME"/.dotfiles-shared/shrc-setup-zsh
+source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
+source "$HOME"/.dotfiles-shared/shrc-setup-thefuck
+source "$HOME"/.dotfiles-shared/shrc-setup-chruby
+source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
+source "$HOME"/.dotfiles-shared/shrc-setup-pnpm
+source "$HOME"/.dotfiles-shared/shrc-setup-nvm
+
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
+
+
+
+export PATH="$(pyenv root)/shims:${PATH}"
+
+export PATH="$PATH:/usr/local/share/dotnet"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#
+# Aliases
+#
+
+source "$HOME"/.dotfiles-shared/shrc-alias-git
+
+alias .x=pnpm
+alias .p="cd ~/projects"
+alias .e=nvim
+alias .w=w3m
+alias \?\?="gh copilot suggest"
+
+#
+# Functions
+#
+
+source "$HOME"/.dotfiles-shared/shrc-functions-utility
+
+
+PATH=~/.console-ninja/.bin:$PATH
+
