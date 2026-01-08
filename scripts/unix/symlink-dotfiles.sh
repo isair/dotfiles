@@ -29,6 +29,11 @@ if [ -f bashrc ]; then
   ln -s "${PWD}"/bashrc ~/.bashrc
 fi
 
+if [ -f zshenv ]; then
+  rm -f ~/.zshenv
+  ln -s "${PWD}"/zshenv ~/.zshenv
+fi
+
 if [ -f zshrc ]; then
   rm -f ~/.zshrc
   ln -s "${PWD}"/zshrc ~/.zshrc
