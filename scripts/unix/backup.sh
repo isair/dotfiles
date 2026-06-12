@@ -41,6 +41,22 @@ if hasBinary snap; then
   snap list | awk '{if (NR > 1) print $1}' > "${PACKAGES_PATH}"/snap.txt
 fi
 
+if hasBinary pacman; then
+  # Explicitly-installed native (repo) packages only; these are what `pacman -S`
+  # can reinstall. Foreign/AUR packages are captured separately under yay.
+  pacman -Qqen | sort > "${PACKAGES_PATH}"/pacman.txt
+fi
+
+if hasBinary yay; then
+  # Explicitly-installed foreign (AUR) packages only, so they don't duplicate
+  # pacman.txt and are reinstalled via the AUR helper rather than pacman -S.
+  pacman -Qqem | sort > "${PACKAGES_PATH}"/yay.txt
+fi
+
+if hasBinary yum; then
+  yum list installed | awk '{print $1}' | tail -n +2 > "${PACKAGES_PATH}"/yum.txt
+fi
+
 if hasBinary brew; then
   brew leaves > "${PACKAGES_PATH}"/brew.txt
   if isMac; then

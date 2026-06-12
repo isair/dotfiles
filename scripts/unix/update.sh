@@ -44,7 +44,16 @@ if hasBinary apt-get; then
   sudo apt-get upgrade
 fi
 
-# TODO: yum support
+if hasBinary pacman; then
+  # Full system upgrade in one transaction (avoids partial upgrades).
+  # --noconfirm: update.sh is meant to run unattended via cron.
+  sudo pacman -Syu --noconfirm
+fi
+
+if hasBinary yum; then
+  sudo yum makecache
+  sudo yum upgrade -y
+fi
 
 if hasBinary brew; then
   su - "${USER}" -c 'brew update && brew upgrade'

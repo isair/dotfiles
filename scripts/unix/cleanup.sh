@@ -58,6 +58,16 @@ if hasBinary snap; then
       done
 fi
 
+if hasBinary pacman; then
+  # --noconfirm: cleanup.sh is meant to run unattended via cron.
+  sudo pacman -Sc --noconfirm
+fi
+
+if hasBinary yum; then
+  sudo yum autoremove -y
+  sudo yum clean all
+fi
+
 if hasBinary brew; then
   su - "${USER}" -c 'brew cleanup --prune-prefix'
 fi
