@@ -77,6 +77,29 @@ if [ -f ~/.ssh/config ]; then
   cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config | true
 fi
 
+# Back-up select ~/.config directories. The whole folder is not backed up on
+# purpose: it also holds credentials (gh, op, rclone, etc.) and caches that
+# must not end up in git.
+XDG_CONFIG_BACKUP_DIRS=(
+  fish
+  git
+  karabiner
+  kitty
+  linearmouse
+  nvim
+  thefuck
+  zed
+)
+
+for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
+  # Skip symlinks; those already point into this repo after a previous run.
+  if [ -d ~/.config/"${configDir}" ] && [ ! -L ~/.config/"${configDir}" ]; then
+    mkdir -p "${CONFIGS_PATH}"/config
+    rm -rf "${CONFIGS_PATH}"/config/"${configDir}"
+    cp -RL ~/.config/"${configDir}" "${CONFIGS_PATH}"/config/"${configDir}" || true
+  fi
+done
+
 ./symlink-dotfiles.sh "${PROFILE}"
 
 # Notify of success
