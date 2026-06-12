@@ -53,3 +53,13 @@ if [ -f ssh_config ]; then
   rm -f ~/.ssh/config
   ln -s "${PWD}"/ssh_config ~/.ssh/config
 fi
+
+if [ -d config ]; then
+  mkdir -p ~/.config
+  for configDir in config/*/; do
+    [ -d "${configDir}" ] || continue
+    configName="$(basename "${configDir}")"
+    rm -rf ~/.config/"${configName}"
+    ln -s "${PWD}"/config/"${configName}" ~/.config/"${configName}"
+  done
+fi

@@ -114,6 +114,7 @@ The back-up scripts support the following package managers.
 - hyper.js
 - vim
 - ssh
+- select `~/.config` directories (see `XDG_CONFIG_BACKUP_DIRS` in `scripts/unix/backup.sh`; the whole folder is skipped on purpose since it contains credentials and caches)
 
 ## Development
 
