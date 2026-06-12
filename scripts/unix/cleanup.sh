@@ -59,7 +59,8 @@ if hasBinary snap; then
 fi
 
 if hasBinary pacman; then
-  sudo pacman -Sc
+  # --noconfirm: cleanup.sh is meant to run unattended via cron.
+  sudo pacman -Sc --noconfirm
 fi
 
 if hasBinary yum; then

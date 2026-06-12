@@ -23,9 +23,9 @@ if hasPackages brew && ! hasBinary brew; then
   if hasBinary apt-get; then
     sudo apt-get install build-essential
   elif hasBinary pacman; then
-    sudo pacman -S base-devel
+    sudo pacman -S --noconfirm base-devel
   elif hasBinary yay; then
-    yay -S base-devel
+    yay -S --noconfirm base-devel
   elif hasBinary yum; then
     sudo yum groupinstall 'Development Tools'
   fi
@@ -55,18 +55,21 @@ if hasPackages pacman; then
   if ! hasBinary pacman; then
     echoError 'This profile has pacman packages but pacman could not be found in path'
   fi
-  sudo pacman --noconfirm -Sy glibc
+  # The system was already refreshed and upgraded by update.sh above, so install
+  # with -S (not -Sy) to avoid a partial upgrade.
+  sudo pacman --noconfirm -S glibc
   sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  sudo pacman --noconfirm -Sy $(cat "${PACKAGES_PATH}"/pacman.txt | tr '\n' ' ')
+  sudo pacman --noconfirm -S $(cat "${PACKAGES_PATH}"/pacman.txt | tr '\n' ' ')
 fi
 
 if hasPackages yay; then
   if ! hasBinary yay; then
     echoError 'This profile has yay packages but yay could not be found in path'
   fi
-  sudo yay --noconfirm -Sy glibc
-  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  sudo yay --noconfirm -Sy $(cat "${PACKAGES_PATH}"/yay.txt | tr '\n' ' ')
+  # yay refuses to run as root and calls sudo itself, so it must NOT be prefixed
+  # with sudo. yay.txt holds AUR packages only; the base system and locale are
+  # handled by the pacman section above (yay requires pacman).
+  yay --noconfirm -S $(cat "${PACKAGES_PATH}"/yay.txt | tr '\n' ' ')
 fi
 
 # RedHat based support

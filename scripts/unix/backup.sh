@@ -42,11 +42,15 @@ if hasBinary snap; then
 fi
 
 if hasBinary pacman; then
-  comm -23 <(pacman -Qeq | sort) <(pacman -Qdtq | sort) > "${PACKAGES_PATH}"/pacman.txt
+  # Explicitly-installed native (repo) packages only; these are what `pacman -S`
+  # can reinstall. Foreign/AUR packages are captured separately under yay.
+  pacman -Qqen | sort > "${PACKAGES_PATH}"/pacman.txt
 fi
 
 if hasBinary yay; then
-  comm -23 <(yay -Qeq | sort) <(yay -Qdtq | sort) > "${PACKAGES_PATH}"/yay.txt
+  # Explicitly-installed foreign (AUR) packages only, so they don't duplicate
+  # pacman.txt and are reinstalled via the AUR helper rather than pacman -S.
+  pacman -Qqem | sort > "${PACKAGES_PATH}"/yay.txt
 fi
 
 if hasBinary yum; then

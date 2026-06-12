@@ -45,8 +45,9 @@ if hasBinary apt-get; then
 fi
 
 if hasBinary pacman; then
-  sudo pacman -Sy
-  sudo pacman -Su
+  # Full system upgrade in one transaction (avoids partial upgrades).
+  # --noconfirm: update.sh is meant to run unattended via cron.
+  sudo pacman -Syu --noconfirm
 fi
 
 if hasBinary yum; then
