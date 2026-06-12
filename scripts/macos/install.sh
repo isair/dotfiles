@@ -32,7 +32,7 @@ sudo softwareupdate --install-rosetta
 "${PWD}"/../unix/update.sh
 
 # Install Oh My Zsh
-if hasConfig zsh; then
+if hasConfig zshrc; then
   if [ ! -d "${HOME}"/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended --skip-chsh"
     ZSH_PLUGINS_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
@@ -115,6 +115,6 @@ sudo "${PWD}"/../unix/cleanup.sh
 touch "${HOME}"/.secrets
 
 # Switch shell
-if hasConfig zsh; then
+if hasConfig zshrc; then
   chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
 fi
