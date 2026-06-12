@@ -87,8 +87,19 @@ XDG_CONFIG_BACKUP_DIRS=(
   kitty
   linearmouse
   nvim
+  opencode
   thefuck
   zed
+)
+
+# Regenerable dependency/lockfile junk pruned from every backed-up config dir
+# after copying (e.g. opencode bundles a multi-MB node_modules). These are
+# matched at any depth.
+XDG_CONFIG_EXCLUDES=(
+  node_modules
+  package.json
+  package-lock.json
+  bun.lock
 )
 
 for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
@@ -97,6 +108,9 @@ for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
     mkdir -p "${CONFIGS_PATH}"/config
     rm -rf "${CONFIGS_PATH}"/config/"${configDir}"
     cp -RL ~/.config/"${configDir}" "${CONFIGS_PATH}"/config/"${configDir}" || true
+    for exclude in "${XDG_CONFIG_EXCLUDES[@]}"; do
+      find "${CONFIGS_PATH}"/config/"${configDir}" -name "${exclude}" -prune -exec rm -rf {} + 2> /dev/null || true
+    done
   fi
 done
 
