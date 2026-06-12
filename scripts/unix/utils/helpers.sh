@@ -7,7 +7,7 @@ function echoError() {
 
 function abortIfSudo() {
   if [ "$(id -u)" = 0 ]; then
-    echoError "Error: Don't run this script using sudo"
+    echoError "Don't run this script using sudo"
   fi
 }
 
@@ -58,12 +58,14 @@ function universalRealPath() {
   if isMac; then
     OURPWD=$PWD
     cd "$(dirname "$1")"
-    LINK=$(readlink "$(basename "$1")")
-    while [ "$LINK" ]; do
-      cd "$(dirname "$LINK")"
-      LINK=$(readlink "$(basename "$1")")
+    TARGET="$(basename "$1")"
+    # Follow the symlink chain to its final target.
+    while [ -L "$TARGET" ]; do
+      TARGET="$(readlink "$TARGET")"
+      cd "$(dirname "$TARGET")"
+      TARGET="$(basename "$TARGET")"
     done
-    REALPATH="$PWD/$(basename "$1")"
+    REALPATH="$PWD/$TARGET"
     cd "$OURPWD"
     echo "$REALPATH"
   else

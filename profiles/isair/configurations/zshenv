@@ -1,0 +1,50 @@
+#
+# Environment setup for ALL zsh invocations (including non-interactive GUI apps)
+# Keep this minimal - only PATH and essential env vars
+#
+
+# Secrets (env vars that GUI apps might need)
+[ -f "$HOME/.secrets" ] && source "$HOME/.secrets"
+
+# Homebrew
+if [[ "${OSTYPE}" == darwin* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# Rust/Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Android Studio
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# nvm - set NVM_DIR and add default node to PATH for non-interactive shells (GUI apps)
+# Full nvm loading happens in zshrc (needs interactive shell features)
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+if [ -d "$NVM_DIR/versions/node" ]; then
+  # Find the latest installed version matching the default alias (or latest if no default)
+  DEFAULT_NODE_VERSION=$(cat "$NVM_DIR/alias/default" 2>/dev/null || echo "")
+  if [ -n "$DEFAULT_NODE_VERSION" ]; then
+    NODE_PATH=$(ls -d "$NVM_DIR/versions/node/v${DEFAULT_NODE_VERSION}"* 2>/dev/null | sort -V | tail -1)
+  fi
+  if [ -z "$NODE_PATH" ]; then
+    NODE_PATH=$(ls -d "$NVM_DIR/versions/node/"* 2>/dev/null | sort -V | tail -1)
+  fi
+  if [ -n "$NODE_PATH" ]; then
+    export PATH="$NODE_PATH/bin:$PATH"
+  fi
+fi
+
+# Editor preferences
+export VISUAL=nvim
+export EDITOR=nvim
+export REACT_EDITOR=code

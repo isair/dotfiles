@@ -1,0 +1,6 @@
+corepack
+npm
+pnpm
+vercel
+vscode-langservers-extracted
+zx

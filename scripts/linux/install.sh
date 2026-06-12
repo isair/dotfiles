@@ -102,7 +102,7 @@ if hasPackages python; then
 fi
 
 # Configure zsh
-if hasConfig zsh; then
+if hasConfig zshrc; then
   if ! hasBinary zsh; then
     echoError 'This profile has a zsh configuration file but does not install zsh itself'
   fi
@@ -141,7 +141,7 @@ fi
 touch "${HOME}"/.secrets
 
 # Switch shell
-if hasConfig zsh; then
+if hasConfig zshrc; then
   sudo sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/g' /etc/pam.d/chsh # Ensure we can switch shell, TODO: Regex for empty space
-  chsh -s "$(/usr/bin/env zsh)"
+  chsh -s "$(command -v zsh)"
 fi

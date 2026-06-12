@@ -2,7 +2,18 @@
 
 set -e
 
-cd "$(dirname "$0")" || exit 1
+# Resolve this script's real directory, even when invoked through a symlink
+# (e.g. from /usr/local/bin), so the relative paths below still resolve.
+selfPath="${BASH_SOURCE[0]}"
+while [ -L "${selfPath}" ]; do
+  selfDir="$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)"
+  selfPath="$(readlink "${selfPath}")"
+  case "${selfPath}" in
+    /*) ;;
+    *) selfPath="${selfDir}/${selfPath}" ;;
+  esac
+done
+cd "$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)" || exit 1
 
 source ./utils/helpers.sh
 
@@ -66,28 +77,63 @@ fi
 mkdir -p "${CONFIGS_PATH}"
 
 if [ -f ~/.profile ]; then
-  cp -L ~/.profile "${CONFIGS_PATH}"/profile | true
+  cp -L ~/.profile "${CONFIGS_PATH}"/profile || true
 fi
 
 if [ -f ~/.bashrc ]; then
-  cp -L ~/.bashrc "${CONFIGS_PATH}"/bashrc | true
+  cp -L ~/.bashrc "${CONFIGS_PATH}"/bashrc || true
 fi
 
 if [ -f ~/.zshrc ]; then
-  cp -L ~/.zshrc "${CONFIGS_PATH}"/zshrc | true
+  cp -L ~/.zshrc "${CONFIGS_PATH}"/zshrc || true
 fi
 
 if [ -f ~/.vimrc ]; then
-  cp -L ~/.vimrc "${CONFIGS_PATH}"/vimrc | true
+  cp -L ~/.vimrc "${CONFIGS_PATH}"/vimrc || true
 fi
 
 if [ -f ~/.hyper.js ]; then
-  cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js | true
+  cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js || true
 fi
 
 if [ -f ~/.ssh/config ]; then
-  cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config | true
+  cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config || true
 fi
+
+# Back-up select ~/.config directories. The whole folder is not backed up on
+# purpose: it also holds credentials (gh, op, rclone, etc.) and caches that
+# must not end up in git.
+XDG_CONFIG_BACKUP_DIRS=(
+  fish
+  git
+  karabiner
+  kitty
+  linearmouse
+  nvim
+  opencode
+  thefuck
+  zed
+)
+
+# Pruned from every backed-up config dir after copying. Only installed
+# dependency trees are dropped (e.g. opencode bundles a multi-MB
+# node_modules); manifests and lockfiles are kept so the tree can be restored
+# with a reinstall. Matched at any depth.
+XDG_CONFIG_EXCLUDES=(
+  node_modules
+)
+
+for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
+  # Skip symlinks; those already point into this repo after a previous run.
+  if [ -d ~/.config/"${configDir}" ] && [ ! -L ~/.config/"${configDir}" ]; then
+    mkdir -p "${CONFIGS_PATH}"/config
+    rm -rf "${CONFIGS_PATH}"/config/"${configDir}"
+    cp -RL ~/.config/"${configDir}" "${CONFIGS_PATH}"/config/"${configDir}" || true
+    for exclude in "${XDG_CONFIG_EXCLUDES[@]}"; do
+      find "${CONFIGS_PATH}"/config/"${configDir}" -name "${exclude}" -prune -exec rm -rf {} + 2> /dev/null || true
+    done
+  fi
+done
 
 ./symlink-dotfiles.sh "${PROFILE}"
 

@@ -1,0 +1,14 @@
+#
+# Setup
+#
+
+source "$HOME"/.dotfiles-shared/shrc-setup-homebrew
+source "$HOME"/.dotfiles-shared/shrc-setup-android-studio
+
+#
+# Utility Functions
+#
+
+source "$HOME"/.dotfiles-shared/shrc-utility
+
+PATH=~/.console-ninja/.bin:$PATH

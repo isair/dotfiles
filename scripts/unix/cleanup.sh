@@ -2,7 +2,18 @@
 
 set -u # TODO: set -eu after silencing find errors
 
-cd "$(dirname "$0")" || exit 1
+# Resolve this script's real directory, even when invoked through a symlink
+# (e.g. from /usr/local/bin), so the relative paths below still resolve.
+selfPath="${BASH_SOURCE[0]}"
+while [ -L "${selfPath}" ]; do
+  selfDir="$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)"
+  selfPath="$(readlink "${selfPath}")"
+  case "${selfPath}" in
+    /*) ;;
+    *) selfPath="${selfDir}/${selfPath}" ;;
+  esac
+done
+cd "$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)" || exit 1
 
 source ./utils/helpers.sh
 
@@ -89,7 +100,7 @@ if [ "${CLEAN_DEEP}" = 1 ]; then
   fi
   su - "${USER}" -c 'find ~/{projects,workspace} -maxdepth 4 -type d -regex ".*/(node_modules|ruby_gems|vendor|\.venv)" -exec rm -rf {} + 2>/dev/null'
   su - "${USER}" -c 'rm -rf ~/.jenkins/workspace'
-  su - "${USER}" -c 'sudo rm -rf "~/Library/Application Support/MobileSync/Backup"'
+  su - "${USER}" -c 'rm -rf ~/"Library/Application Support/MobileSync/Backup"'
 fi
 
 # Notify of success
