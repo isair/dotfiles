@@ -92,14 +92,12 @@ XDG_CONFIG_BACKUP_DIRS=(
   zed
 )
 
-# Regenerable dependency/lockfile junk pruned from every backed-up config dir
-# after copying (e.g. opencode bundles a multi-MB node_modules). These are
-# matched at any depth.
+# Pruned from every backed-up config dir after copying. Only installed
+# dependency trees are dropped (e.g. opencode bundles a multi-MB
+# node_modules); manifests and lockfiles are kept so the tree can be restored
+# with a reinstall. Matched at any depth.
 XDG_CONFIG_EXCLUDES=(
   node_modules
-  package.json
-  package-lock.json
-  bun.lock
 )
 
 for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
