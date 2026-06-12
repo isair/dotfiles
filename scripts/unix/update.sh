@@ -2,14 +2,26 @@
 
 set -eu
 
-cd "$(dirname "$0")" || exit 1
+# Resolve this script's real directory, even when invoked through a symlink
+# (e.g. from /usr/local/bin), so the relative paths below still resolve.
+selfPath="${BASH_SOURCE[0]}"
+while [ -L "${selfPath}" ]; do
+  selfDir="$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)"
+  selfPath="$(readlink "${selfPath}")"
+  case "${selfPath}" in
+    /*) ;;
+    *) selfPath="${selfDir}/${selfPath}" ;;
+  esac
+done
+cd "$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)" || exit 1
 
 source ./utils/helpers.sh
 
 cd ../.. || exit 1
 
 USER="$(getInstallationUser)"
-PROJECT_DIR="$(universalRealPath "$(dirname "$0")")"/../..
+# We are now at the repository root (scripts/unix/../..).
+PROJECT_DIR="$PWD"
 
 # Keep profiles up to date
 

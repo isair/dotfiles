@@ -2,7 +2,18 @@
 
 set -e
 
-cd "$(dirname "$0")" || exit 1
+# Resolve this script's real directory, even when invoked through a symlink
+# (e.g. from /usr/local/bin), so the relative paths below still resolve.
+selfPath="${BASH_SOURCE[0]}"
+while [ -L "${selfPath}" ]; do
+  selfDir="$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)"
+  selfPath="$(readlink "${selfPath}")"
+  case "${selfPath}" in
+    /*) ;;
+    *) selfPath="${selfDir}/${selfPath}" ;;
+  esac
+done
+cd "$(cd -P "$(dirname "${selfPath}")" > /dev/null 2>&1 && pwd)" || exit 1
 
 source ./utils/helpers.sh
 
@@ -54,27 +65,27 @@ fi
 mkdir -p "${CONFIGS_PATH}"
 
 if [ -f ~/.profile ]; then
-  cp -L ~/.profile "${CONFIGS_PATH}"/profile | true
+  cp -L ~/.profile "${CONFIGS_PATH}"/profile || true
 fi
 
 if [ -f ~/.bashrc ]; then
-  cp -L ~/.bashrc "${CONFIGS_PATH}"/bashrc | true
+  cp -L ~/.bashrc "${CONFIGS_PATH}"/bashrc || true
 fi
 
 if [ -f ~/.zshrc ]; then
-  cp -L ~/.zshrc "${CONFIGS_PATH}"/zshrc | true
+  cp -L ~/.zshrc "${CONFIGS_PATH}"/zshrc || true
 fi
 
 if [ -f ~/.vimrc ]; then
-  cp -L ~/.vimrc "${CONFIGS_PATH}"/vimrc | true
+  cp -L ~/.vimrc "${CONFIGS_PATH}"/vimrc || true
 fi
 
 if [ -f ~/.hyper.js ]; then
-  cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js | true
+  cp -L ~/.hyper.js "${CONFIGS_PATH}"/hyper.js || true
 fi
 
 if [ -f ~/.ssh/config ]; then
-  cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config | true
+  cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config || true
 fi
 
 # Back-up select ~/.config directories. The whole folder is not backed up on
