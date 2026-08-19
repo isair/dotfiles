@@ -3,6 +3,8 @@
 # PATH and env vars are set in ~/.zshenv (loaded for all shells including GUI apps)
 #
 
+source ~/.secrets
+
 #
 # Setup (interactive-only tools)
 #
@@ -26,6 +28,7 @@ source "$HOME"/.dotfiles-shared/shrc-alias-git
 
 alias .x=pnpm
 alias .p="cd ~/projects"
+alias .b="cd ~/Google\ Drive/My\ Drive/Backup/"
 alias .e=nvim
 alias .w=w3m
 alias \?\?="gh copilot suggest"
@@ -35,3 +38,9 @@ alias \?\?="gh copilot suggest"
 #
 
 source "$HOME"/.dotfiles-shared/shrc-functions-utility
+
+. "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/barissencan/.lmstudio/bin"
+# End of LM Studio CLI section

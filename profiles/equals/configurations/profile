@@ -1,1 +1,7 @@
 export LANG=en_GB.UTF-8
+
+. "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/barissencan/.lmstudio/bin"
+# End of LM Studio CLI section
