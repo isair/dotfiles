@@ -1,19 +1,38 @@
-param([string]$backupPath="")
+param([Parameter(Mandatory=$true)][string]$BackupPath)
 
-if ([string]::IsNullOrEmpty($backupPath)) {
-    Write-Error "Backup path must be provided as the first argument."
-    exit 1
+$ErrorActionPreference = 'Stop'
+. "$PSScriptRoot\Common.ps1"
+New-Item -ItemType Directory -Path $BackupPath -Force | Out-Null
+
+if (Get-Command scoop -ErrorAction SilentlyContinue) {
+    $global:LASTEXITCODE = 0
+    $export = (& scoop export) -join [Environment]::NewLine
+    Assert-CommandSucceeded 'scoop export'
+    $parsed = $export | ConvertFrom-Json -ErrorAction Stop
+    if ($null -eq $parsed.apps -or $null -eq $parsed.buckets) {
+        throw 'scoop export did not return a Scoopfile with apps and buckets.'
+    }
+    Write-Manifest (Join-Path $BackupPath 'scoopfile.json') $export
+} else {
+    Write-Warning 'Scoop was not found; existing Scoop backup was left untouched.'
 }
 
-$backupPath = $backupPath.Trim()
+if (Get-Command npm -ErrorAction SilentlyContinue) {
+    $global:LASTEXITCODE = 0
+    $output = (& npm ls --global --json --depth=0) -join [Environment]::NewLine
+    Assert-CommandSucceeded 'npm ls --global'
+    $installed = $output | ConvertFrom-Json -ErrorAction Stop
+    $names = @($installed.dependencies.PSObject.Properties.Name | Where-Object { $_ -ne 'npm' } | Sort-Object -Unique)
+    Write-Manifest (Join-Path $BackupPath 'npm.txt') (($names -join "`n") + "`n")
+} else {
+    Write-Warning 'npm was not found; existing npm backup was left untouched.'
+}
 
-# Ensure the backup directory exists before writing into it.
-New-Item -ItemType Directory -Force -Path $backupPath | Out-Null
-
-scoop export | ForEach-Object {
-    $packageData = $_ -split "\s+"
-    $packageName = $packageData[0]
-    return $packageName
-} | Out-File "$backupPath\scoop.txt" -Encoding UTF8
-
-Write-Output "Successfully backed up packages under $backupPath"
+if (Get-Command python -ErrorAction SilentlyContinue) {
+    $global:LASTEXITCODE = 0
+    $requirements = (& python -m pip freeze) -join "`n"
+    Assert-CommandSucceeded 'python -m pip freeze'
+    Write-Manifest (Join-Path $BackupPath 'python.txt') ($requirements + "`n")
+} else {
+    Write-Warning 'Python was not found; existing Python backup was left untouched.'
+}

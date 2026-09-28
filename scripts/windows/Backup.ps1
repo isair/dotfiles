@@ -1,15 +1,10 @@
-param([string]$profileName="")
+param([string]$ProfileName = 'personal')
 
-if ([string]::IsNullOrEmpty($profileName)) {
-    $profileName = "personal"
-}
+$ErrorActionPreference = 'Stop'
+. "$PSScriptRoot\Common.ps1"
 
-$repoPath = "$PSScriptRoot\..\.."
-$backupPath = "$repoPath\profiles\$profileName"
-$backupPath = $backupPath.Trim()
+$profilePath = Get-ProfileDirectory -Name $ProfileName -Create
+& "$PSScriptRoot\Backup-Packages.ps1" (Join-Path $profilePath 'packages')
+& "$PSScriptRoot\Backup-Configurations.ps1" (Join-Path $profilePath 'configurations')
 
-& "$PSScriptRoot\Backup-Configurations.ps1" "$backupPath\configurations"
-& "$PSScriptRoot\Backup-Packages.ps1" "$backupPath\packages"
-& "$PSScriptRoot\Backup-WindowsKey.ps1" "$backupPath\secure\licenses"
-# TODO: Check if Putty is installed.
-& "$PSScriptRoot\Backup-Putty.ps1" "$backupPath\secure\connections"
+Write-Output "Backed up profile '$ProfileName' to $profilePath"

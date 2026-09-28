@@ -1,46 +1,14 @@
-# This script needs to be run as an administrator
+param([string]$ProfileName = 'personal')
 
-## Construct paths
-$repoPath = "$PSScriptRoot\..\.."
-$backupPath = Get-Content "$repoPath\data\config\windows-backup-path.txt"
+$ErrorActionPreference = 'Stop'
+. "$PSScriptRoot\Common.ps1"
 
-## Allow scripts to be executed
-Set-ExecutionPolicy RemoteSigned
+$profilePath = Get-ProfileDirectory -Name $ProfileName
+& "$PSScriptRoot\Install-Packages.ps1" (Join-Path $profilePath 'packages')
+& "$PSScriptRoot\Install-Configurations.ps1" (Join-Path $profilePath 'configurations')
 
-## Install package manager
-Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
-
-## Add package sources
-# TODO: Add scripts for backing up and restoring sources
-scoop bucket add extras
-scoop bucket add java
-scoop bucket add nonportable
-scoop bucket add versions
-
-## Install packages
-& "$PSScriptRoot\Install-Packages.ps1" $backupPath
-
-## TODO: Symlink dotfiles, set $Profile, etc.
-
-## Configure git
-git config --global core.autocrlf true
-# TODO: Write .gitconfig
-
-## Install VIM Plug
-mkdir ~\vimfiles\autoload
-$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-(New-Object Net.WebClient).DownloadFile(
-  $uri,
-  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-    "~\vimfiles\autoload\plug.vim"
-  )
-)
-
-## Install the latest node release
-nvm install latest
-
-## Run AHK scripts at startup
-& "$PSScriptRoot\utils\Make-Shortcut.ps1" keyboard-shortcuts.ahk "C:\Users\$env:USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\keyboard-shortcuts.lnk"
-
-## Install essential node packages
-yarn global add react-native-cli
+if (Get-Command git -ErrorAction SilentlyContinue) {
+    & git config --global core.autocrlf true
+    Assert-CommandSucceeded 'git config'
+}
+Write-Output "Installed profile '$ProfileName'"
