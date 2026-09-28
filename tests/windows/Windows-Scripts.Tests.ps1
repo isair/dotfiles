@@ -75,6 +75,30 @@ try {
     Set-Content -LiteralPath (Join-Path $configs 'vimrc') -Value 'third version'
     Assert-Throws { & (Join-Path $scripts 'Install-Configurations.ps1') $configs $mapping } 'Existing backup was overwritten'
 
+    $global:Calls = @()
+    function git {
+        $global:Calls += "git $($args -join ' ')"
+        $global:LASTEXITCODE = 0
+        if ($args -contains 'status') { return '' }
+    }
+    function scoop { $global:Calls += "scoop $($args -join ' ')"; $global:LASTEXITCODE = 0 }
+    & (Join-Path $scripts 'Update.ps1')
+    if (-not ($global:Calls | Where-Object { $_ -match '^git .* pull --ff-only$' })) { throw 'Clean repo was not updated' }
+    if ($global:Calls -notcontains 'scoop update *') { throw 'Scoop apps were not updated' }
+
+    $global:Calls = @()
+    function git {
+        $global:Calls += "git $($args -join ' ')"
+        $global:LASTEXITCODE = 0
+        if ($args -contains 'status') { return ' M local-change' }
+    }
+    & (Join-Path $scripts 'Update.ps1') 3>$null
+    if ($global:Calls | Where-Object { $_ -match '^git .* pull --ff-only$' }) { throw 'Dirty repo was pulled' }
+
+    $global:Calls = @()
+    & (Join-Path $scripts 'Cleanup.ps1')
+    Assert-Equal 'scoop cleanup *,scoop cache rm *' ($global:Calls -join ',') 'Scoop cleanup was not run'
+
     Write-Output 'Windows script regression checks passed.'
 } finally {
     Remove-Item -LiteralPath $temp -Recurse -Force
