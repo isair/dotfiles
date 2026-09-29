@@ -18,6 +18,41 @@ try {
     Assert-Throws { Get-ProfileDirectory -Name '..\escape' -Create } 'Profile traversal was accepted'
     Assert-Throws { Get-ProfileDirectory -Name 'missing-profile-for-test' } 'Missing profile was accepted'
 
+    $profilesRoot = Join-Path $temp 'profiles'
+    $baseProfile = Get-ProfileDirectory -Name 'base' -ProfilesRoot $profilesRoot -Create
+    $childProfile = Get-ProfileDirectory -Name 'child' -ProfilesRoot $profilesRoot -Create
+    foreach ($path in @($baseProfile, $childProfile)) {
+        New-Item -ItemType Directory -Path (Join-Path $path 'packages') -Force | Out-Null
+        New-Item -ItemType Directory -Path (Join-Path $path 'configurations') -Force | Out-Null
+    }
+    Set-Content -LiteralPath (Join-Path $childProfile 'inherits') -Value 'base'
+    $chain = @(Get-ProfileChain -Name 'child' -ProfilesRoot $profilesRoot)
+    Assert-Equal "$baseProfile,$childProfile" ($chain -join ',') 'Profile order was wrong'
+    Set-Content -LiteralPath (Join-Path $baseProfile 'packages\npm.txt') -Value 'typescript'
+    Set-Content -LiteralPath (Join-Path $childProfile 'packages\npm.txt') -Value @('typescript', '@scope/tool')
+    Set-Content -LiteralPath (Join-Path $baseProfile 'packages\scoopfile.json') -Value '{"apps":[{"Name":"git"}],"buckets":[{"Name":"main"}]}'
+    Set-Content -LiteralPath (Join-Path $childProfile 'packages\scoopfile.json') -Value '{"apps":[{"Name":"git"},{"Name":"7zip","Source":"main"}],"buckets":[{"Name":"main"}]}'
+    Set-Content -LiteralPath (Join-Path $baseProfile 'configurations\vimrc') -Value 'shared'
+    Set-Content -LiteralPath (Join-Path $childProfile 'configurations\vimrc') -Value 'shared'
+    Remove-InheritedProfileContent -ProfileChain $chain
+    Assert-Equal '@scope/tool' ((Get-Content -LiteralPath (Join-Path $childProfile 'packages\npm.txt') -Raw).Trim()) 'Inherited npm package was backed up twice'
+    $childScoop = Get-Content -LiteralPath (Join-Path $childProfile 'packages\scoopfile.json') -Raw | ConvertFrom-Json
+    Assert-Equal '7zip' $childScoop.apps[0].Name 'Inherited Scoop app was backed up twice'
+    Assert-Equal 'main' $childScoop.buckets[0].Name 'Bucket required by child app was removed'
+    if (Test-Path -LiteralPath (Join-Path $childProfile 'configurations\vimrc')) { throw 'Inherited configuration was backed up twice' }
+    Set-Content -LiteralPath (Join-Path $childProfile 'configurations\vimrc') -Value 'child'
+    $selected = Join-Path $temp 'selected-vimrc'
+    & (Join-Path $scripts 'Install-Configurations.ps1') @(
+        (Join-Path $baseProfile 'configurations'), (Join-Path $childProfile 'configurations')
+    ) @(@{ Name = 'vimrc'; Destination = $selected })
+    Assert-Equal 'child' ((Get-Content -LiteralPath $selected -Raw).Trim()) 'Child configuration did not win'
+    Set-Content -LiteralPath (Join-Path $baseProfile 'inherits') -Value 'child'
+    Assert-Throws { Get-ProfileChain -Name 'child' -ProfilesRoot $profilesRoot } 'Profile cycle was accepted'
+    Set-Content -LiteralPath (Join-Path $baseProfile 'inherits') -Value 'missing'
+    Assert-Throws { Get-ProfileChain -Name 'child' -ProfilesRoot $profilesRoot } 'Missing parent was accepted'
+    Set-Content -LiteralPath (Join-Path $baseProfile 'inherits') -Value '../escape'
+    Assert-Throws { Get-ProfileChain -Name 'child' -ProfilesRoot $profilesRoot } 'Invalid parent was accepted'
+
     $packages = Join-Path $temp 'packages'
     $global:Calls = @()
     function scoop {

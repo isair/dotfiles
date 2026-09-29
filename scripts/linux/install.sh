@@ -11,6 +11,7 @@ abortIfSudo
 setProfileEnv "$1"
 
 abortIfProfileNotFound
+resolveProfileChain
 
 set -ux
 
@@ -39,14 +40,20 @@ if hasPackages apt-get; then
   fi
   # TODO: Better way to install locales
   sudo apt-get --yes --force-yes install locales && sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  sudo apt-get --yes --force-yes install `cat "${PACKAGES_PATH}"/apt.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then sudo apt-get --yes --force-yes install "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages snap; then
   if ! hasBinary snap; then
     echoError 'This profile has snap packages but snap could not be found in path'
   fi
-  sudo snap install `cat "${PACKAGES_PATH}"/snap.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then sudo snap install "${PACKAGES[@]}"; fi
+  done
 fi
 
 # ArchLinux support
@@ -59,7 +66,10 @@ if hasPackages pacman; then
   # with -S (not -Sy) to avoid a partial upgrade.
   sudo pacman --noconfirm -S glibc
   sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  sudo pacman --noconfirm -S $(cat "${PACKAGES_PATH}"/pacman.txt | tr '\n' ' ')
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then sudo pacman --noconfirm -S "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages yay; then
@@ -69,7 +79,10 @@ if hasPackages yay; then
   # yay refuses to run as root and calls sudo itself, so it must NOT be prefixed
   # with sudo. yay.txt holds AUR packages only; the base system and locale are
   # handled by the pacman section above (yay requires pacman).
-  yay --noconfirm -S $(cat "${PACKAGES_PATH}"/yay.txt | tr '\n' ' ')
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then yay --noconfirm -S "${PACKAGES[@]}"; fi
+  done
 fi
 
 # RedHat based support
@@ -80,20 +93,29 @@ if hasPackages yum; then
   fi
   sudo yum install -y glibc-common
   sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-  sudo yum install -y $(cat "${PACKAGES_PATH}"/yum.txt | tr '\n' ' ')
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then sudo yum install -y "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages brew; then
   if ! hasBinary brew; then
     echoError 'This profile has homebrew packages but brew could not be found in path'
   fi
-  brew install `cat "${PACKAGES_PATH}"/brew.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then brew install "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages npm; then
   ## TODO: If nvm is installed, make sure a node version is installed
   if hasBinary npm; then
-    npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
+    for packageFile in "${PACKAGE_FILES[@]}"; do
+      readPackageNames "${packageFile}"
+      if [ -n "${PACKAGES[*]-}" ]; then npm install --global "${PACKAGES[@]}"; fi
+    done
   fi
 fi
 
@@ -101,7 +123,9 @@ if hasPackages python; then
   if ! hasBinary pip; then
     echoError 'This profile has python packages but does not install pip'
   fi
-  sudo pip install -r "${PACKAGES_PATH}"/python.txt
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    sudo pip install -r "${packageFile}"
+  done
 fi
 
 # Configure zsh

@@ -27,6 +27,7 @@ printf "Backing up... "
 
 # Ensure backup path exists.
 mkdir -p "${PACKAGES_PATH}"
+resolveProfileChain
 
 # Since this script will be run via cron as well, ensure PATH is correct.
 PATH=/usr/local/bin:"${PATH}"
@@ -76,6 +77,10 @@ if hasBinary pip; then
   pip freeze > "${PACKAGES_PATH}"/python.txt
 fi
 
+for manager in apt snap pacman yay yum brew brew-cask npm python; do
+  pruneInheritedPackages "${manager}"
+done
+
 # Back-up configurations.
 
 mkdir -p "${CONFIGS_PATH}"
@@ -103,6 +108,10 @@ fi
 if [ -f ~/.ssh/config ]; then
   cp -L ~/.ssh/config "${CONFIGS_PATH}"/ssh_config || true
 fi
+
+for configName in profile bashrc zshenv zshrc vimrc hyper.js ssh_config; do
+  pruneInheritedConfig "${configName}"
+done
 
 # Back-up select ~/.config directories. The whole folder is not backed up on
 # purpose: it also holds credentials (gh, op, rclone, etc.) and caches that
@@ -136,6 +145,7 @@ for configDir in "${XDG_CONFIG_BACKUP_DIRS[@]}"; do
     for exclude in "${XDG_CONFIG_EXCLUDES[@]}"; do
       find "${CONFIGS_PATH}"/config/"${configDir}" -name "${exclude}" -prune -exec rm -rf {} + 2> /dev/null || true
     done
+    pruneInheritedConfigDir "${configDir}"
   fi
 done
 
