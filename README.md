@@ -67,6 +67,26 @@ Windows configuration backup covers the Windows PowerShell and PowerShell 7 cons
 
 `Update.ps1` pulls a clean checkout with a fast-forward only and updates Scoop and installed apps. `Cleanup.ps1` removes old Scoop versions and its download cache. `Backup-WindowsKey.ps1` and `Backup-Putty.ps1` are separate, manual backups; they are never run by `Backup.ps1`, and `profiles/**/secure/` is gitignored.
 
+### Gist backup and restore
+
+Install Python 3 and [GitHub CLI](https://cli.github.com/), then sign in with `gh auth login`. Add `--gist` to a Unix backup or `-Gist` to a Windows backup to create a new unlisted gist containing the backed-up profile. The command prints its URL. Each run creates a new gist; keep the URL to restore it later.
+
+```sh
+./scripts/unix/backup.sh personal --gist
+python3 scripts/gist.py restore https://gist.github.com/<gist-id>
+# Then run scripts/macos/install.sh personal or scripts/linux/install.sh personal.
+```
+
+```powershell
+& .\scripts\windows\Backup.ps1 personal -Gist
+py -3 .\scripts\gist.py restore https://gist.github.com/<gist-id>
+# Then run .\scripts\windows\Install.ps1 personal.
+```
+
+Restore saves the profile under its original name without installing anything. Use `--profile new-name` to choose another name. It refuses to overwrite an existing profile unless `--replace` is set; replacement keeps the previous directory as `profiles/<name>.pre-gist-restore` and refuses to replace that copy. Restore validates the archive and its file paths before writing. The `secure/` directory and `.DS_Store` files are omitted from gist backups. Links to files inside the profile or `profiles/shared` are saved as file contents; links elsewhere are rejected.
+
+Gists marked secret are **unlisted, not private**: anyone with the URL can read them. Review the profile before uploading it, especially configuration files that might contain credentials. Gist backup does not encrypt the profile.
+
 ## Automating Backup, Cleanup & Updates
 
 One way to automate backup and cleanup is to add cron jobs for these scripts.
