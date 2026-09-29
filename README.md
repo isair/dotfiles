@@ -34,7 +34,7 @@ This will back-up your packages, apps, and configurations to the profile you've 
 
 The following steps assume that you are doing the setup on a freshly formatted computer. Therefore you don't even have your SSH keys or anything set up.
 
-Open the Terminal app and enter the commands below.
+Open a terminal and enter the commands below.
 
 ```sh
 mkdir ~/projects
@@ -51,6 +51,21 @@ Before typing the following line, make sure you check the various profiles under
 ```sh
 ./scripts/macos/install.sh <profile-name>
 ```
+
+### Windows
+
+Use a regular PowerShell session (not Run as administrator). Clone the repo, then run:
+
+```powershell
+& .\scripts\windows\Backup.ps1 personal
+& .\scripts\windows\Install.ps1 personal
+```
+
+`Backup.ps1` creates `profiles/<name>` if needed. `Install.ps1` requires an existing profile and installs its Scoop, npm, and Python packages when their manifests exist. If a Scoop manifest is present and Scoop is missing, it uses Scoop's official per-user installer. Scoop backups are stored as `packages/scoopfile.json`, which includes buckets; older `packages/scoop.txt` lists still install. Run the scripts with `powershell.exe -ExecutionPolicy Bypass -File .\scripts\windows\Install.ps1 personal` if local execution policy blocks the file.
+
+Windows configuration backup covers the Windows PowerShell and PowerShell 7 console profiles, `_vimrc`, SSH config, and Hyper config when present. Install copies these files into the active user's locations and saves different existing files as `.pre-dotfiles.bak`; it stops if that backup name is already occupied. Re-run install after editing the profile. The backup leaves absent files and missing package managers' existing manifests untouched.
+
+`Update.ps1` pulls a clean checkout with a fast-forward only and updates Scoop and installed apps. `Cleanup.ps1` removes old Scoop versions and its download cache. `Backup-WindowsKey.ps1` and `Backup-Putty.ps1` are separate, manual backups; they are never run by `Backup.ps1`, and `profiles/**/secure/` is gitignored.
 
 ## Automating Backup, Cleanup & Updates
 
@@ -81,7 +96,7 @@ Your computer will now update everything and clean-up disk space in the morning.
 
 ## Sharing Profiles Between Machines
 
-All dot files are symlinked to your project clone directory. The update script is also responsible for `git pull`ing any changes made to the repo. Therefore, if you have set up automatic updates as mentioned in the previous section, all you need to do is `git push` your changes! Any machine installed using the same profile will automatically get them when their update script runs again.
+On Unix, dotfiles are symlinked to your project clone directory. The update script also pulls changes from git. On Windows, configuration files are copied; re-run `Install.ps1` to apply profile changes.
 
 ## Supported Package Managers
 
@@ -108,6 +123,8 @@ The back-up scripts support the following package managers.
 ### Windows
 
 - scoop
+- npm
+- pip
 
 ## Backed-up Configurations
 

@@ -1,0 +1,22 @@
+name: Windows scripts
+
+on:
+  push:
+    paths:
+      - 'scripts/windows/**'
+      - 'tests/windows/**'
+      - '.github/workflows/windows-scripts.yml'
+  pull_request:
+    paths:
+      - 'scripts/windows/**'
+      - 'tests/windows/**'
+      - '.github/workflows/windows-scripts.yml'
+
+jobs:
+  regression:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run Windows script checks
+        shell: pwsh
+        run: ./tests/windows/Windows-Scripts.Tests.ps1
