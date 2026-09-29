@@ -4,15 +4,28 @@ on:
   push:
     paths:
       - 'scripts/windows/**'
+      - 'scripts/gist.py'
+      - 'scripts/unix/backup.sh'
+      - 'tests/test_gist.py'
       - 'tests/windows/**'
       - '.github/workflows/windows-scripts.yml'
   pull_request:
     paths:
       - 'scripts/windows/**'
+      - 'scripts/gist.py'
+      - 'scripts/unix/backup.sh'
+      - 'tests/test_gist.py'
       - 'tests/windows/**'
       - '.github/workflows/windows-scripts.yml'
 
 jobs:
+  gist-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run gist profile tests
+        run: python3 -m unittest discover -s tests -p 'test_gist.py'
+
   regression:
     runs-on: windows-latest
     steps:

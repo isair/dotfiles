@@ -21,6 +21,10 @@ abortIfSudo
 
 setProfileEnv "$1"
 
+if [ "${2:-}" != "" ] && [ "${2:-}" != "--gist" ]; then
+  echoError "Usage: backup.sh [profile] [--gist]"
+fi
+
 set -u
 
 printf "Backing up... "
@@ -143,3 +147,10 @@ done
 
 # Notify of success
 echo "done!"
+
+if [ "${2:-}" = "--gist" ]; then
+  if ! hasBinary python3; then
+    echoError 'Python 3 is required to create a gist backup'
+  fi
+  python3 ../gist.py backup "${PROFILE}"
+fi
