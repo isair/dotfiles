@@ -1,12 +1,16 @@
-param([Parameter(Mandatory=$true)][string]$ConfigurationsPath, [object[]]$Mappings)
+param([Parameter(Mandatory=$true)][string[]]$ConfigurationsPath, [object[]]$Mappings)
 
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot\Common.ps1"
 
 if ($null -eq $Mappings) { $Mappings = @(Get-ConfigurationMappings) }
 foreach ($mapping in $Mappings) {
-    $source = Join-Path $ConfigurationsPath $mapping.Name
-    if (-not (Test-Path -LiteralPath $source -PathType Leaf)) { continue }
+    $source = $null
+    foreach ($path in $ConfigurationsPath) {
+        $candidate = Join-Path $path $mapping.Name
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) { $source = $candidate }
+    }
+    if (-not $source) { continue }
     $parent = Split-Path -Parent $mapping.Destination
     New-Item -ItemType Directory -Path $parent -Force | Out-Null
 

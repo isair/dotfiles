@@ -22,55 +22,36 @@ abortIfSudo
 setProfileEnv "$1"
 
 abortIfProfileNotFound
+resolveProfileChain
 
 set -u
 
-cd "${CONFIGS_PATH}"
+profilesRoot="$(cd "${PROFILES_PATH}" && pwd)"
 
 rm -rf ~/.dotfiles-shared
-ln -s "${PWD}"/../../shared ~/.dotfiles-shared
+ln -s "${profilesRoot}"/shared ~/.dotfiles-shared
 
-if [ -f profile ]; then
-  rm -f ~/.profile
-  ln -s "${PWD}"/profile ~/.profile
-fi
-
-if [ -f bashrc ]; then
-  rm -f ~/.bashrc
-  ln -s "${PWD}"/bashrc ~/.bashrc
-fi
-
-if [ -f zshenv ]; then
-  rm -f ~/.zshenv
-  ln -s "${PWD}"/zshenv ~/.zshenv
-fi
-
-if [ -f zshrc ]; then
-  rm -f ~/.zshrc
-  ln -s "${PWD}"/zshrc ~/.zshrc
-fi
-
-if [ -f vimrc ]; then
-  rm -f ~/.vimrc
-  ln -s "${PWD}"/vimrc ~/.vimrc
-fi
-
-if [ -f hyper.js ]; then
-  rm -f ~/.hyper.js
-  ln -s "${PWD}"/hyper.js ~/.hyper.js
-fi
-
-if [ -f ssh_config ]; then
-  rm -f ~/.ssh/config
-  ln -s "${PWD}"/ssh_config ~/.ssh/config
-fi
-
-if [ -d config ]; then
-  mkdir -p ~/.config
-  for configDir in config/*/; do
-    [ -d "${configDir}" ] || continue
-    configName="$(basename "${configDir}")"
-    rm -rf ~/.config/"${configName}"
-    ln -s "${PWD}"/config/"${configName}" ~/.config/"${configName}"
+for profileName in "${PROFILE_CHAIN[@]}"; do
+  configs="${profilesRoot}/${profileName}/configurations"
+  [ -d "${configs}" ] || continue
+  for configName in profile bashrc zshenv zshrc vimrc hyper.js ssh_config; do
+    [ -f "${configs}/${configName}" ] || continue
+    if [ "${configName}" = ssh_config ]; then
+      mkdir -p ~/.ssh
+      destination=~/.ssh/config
+    else
+      destination=~/."${configName}"
+    fi
+    rm -f "${destination}"
+    ln -s "${configs}/${configName}" "${destination}"
   done
-fi
+  if [ -d "${configs}/config" ]; then
+    mkdir -p ~/.config
+    for configDir in "${configs}"/config/*/; do
+      [ -d "${configDir}" ] || continue
+      configName="$(basename "${configDir}")"
+      rm -rf ~/.config/"${configName}"
+      ln -s "${configDir%/}" ~/.config/"${configName}"
+    done
+  fi
+done

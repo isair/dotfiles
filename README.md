@@ -30,6 +30,19 @@ First, fork this repository and clone it on your machine. Then:
 
 This will back-up your packages, apps, and configurations to the profile you've given - `personal` if left blank. Creating the profile as necessary if it doesn't exist.
 
+### Inheriting Profiles
+
+To base a profile on another, add an `inherits` file at the profile root. Put one parent profile name on each line:
+
+```text
+# profiles/work/inherits
+personal
+```
+
+Parents can inherit from other profiles. You can list several parents; each profile is resolved once, with ancestors before descendants and the selected profile last. Packages from every resolved profile are installed. For a configuration present in several profiles, the last file in that order wins. On Unix the chosen files and `~/.config` directories are symlinked to their original profile; on Windows the chosen files are copied. Missing parents, invalid names, and inheritance cycles stop installation before packages or configurations are changed.
+
+Backups write to the selected profile only. Package entries and configuration files identical to an inherited profile are removed from the child's backup, so the parent remains the source for those settings. Windows Scoop exports are reduced in the same way when parent Scoopfiles contain the same app or bucket entries. An `inherits` file is never changed by a backup.
+
 ### Installing a Profile
 
 The following steps assume that you are doing the setup on a freshly formatted computer. Therefore you don't even have your SSH keys or anything set up.

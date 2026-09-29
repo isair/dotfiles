@@ -11,6 +11,7 @@ abortIfSudo
 setProfileEnv "$1"
 
 abortIfProfileNotFound
+resolveProfileChain
 
 set -ux
 
@@ -71,14 +72,20 @@ if hasPackages brew; then
   if ! hasBinary brew; then
     echoError 'This profile has homebrew packages but brew could not be found in path'
   fi
-  brew install `cat "${PACKAGES_PATH}"/brew.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then brew install "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages brew-cask; then
   if ! hasBinary brew; then
     echoError 'This profile has homebrew casks but brew could not be found in path'
   fi
-  brew install --cask `cat "${PACKAGES_PATH}"/brew-cask.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then brew install --cask "${PACKAGES[@]}"; fi
+  done
 fi
 
 ## TODO: If nvm is installed, make sure a node version is installed
@@ -87,14 +94,19 @@ if hasPackages npm; then
   if ! hasBinary npm; then
     echoError 'This profile has npm packages but npm could not be found in path'
   fi
-  npm install --global `cat "${PACKAGES_PATH}"/npm.txt | tr '\n' ' '`
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    readPackageNames "${packageFile}"
+    if [ -n "${PACKAGES[*]-}" ]; then npm install --global "${PACKAGES[@]}"; fi
+  done
 fi
 
 if hasPackages python; then
   if ! hasBrewBinary pip; then # Enforce brew as default macOS python requires sudo
     echoError 'This profile has python packages but does not install pip via homebrew'
   fi
-  pip install -r "${PACKAGES_PATH}"/python.txt
+  for packageFile in "${PACKAGE_FILES[@]}"; do
+    pip install -r "${packageFile}"
+  done
 fi
 
 # Reload QuickLook plugins
